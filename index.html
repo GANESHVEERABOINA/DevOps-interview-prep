@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOps Fresher — One-Day Interview Prep</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8E%AF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EFF0EA; --paper-raised:#E7E8DF; --ink:#1E2430; --ink-soft:#4B5567; --rule:#D2D3C7;
+  --must:#B5541A; --must-bg:#F3E3D6; --should:#2B6E77; --should-bg:#DCEAEB; --basic:#6B7A45; --basic-bg:#E7EBDB;
+  --accent-ink:#2B3A67; --link:#2B6E77;
+  --font-serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --font-mono:'IBM Plex Mono','Courier New',monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#14171C; --paper-raised:#1B1F26; --ink:#E9E7DF; --ink-soft:#ABB2C0; --rule:#2B2F37;
+    --must:#E0913D; --must-bg:#3A2A18; --should:#5FC2CC; --should-bg:#173237; --basic:#A7C078; --basic-bg:#26301A;
+    --accent-ink:#B9C4E8; --link:#5FC2CC;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14171C; --paper-raised:#1B1F26; --ink:#E9E7DF; --ink-soft:#ABB2C0; --rule:#2B2F37;
+  --must:#E0913D; --must-bg:#3A2A18; --should:#5FC2CC; --should-bg:#173237; --basic:#A7C078; --basic-bg:#26301A;
+  --accent-ink:#B9C4E8; --link:#5FC2CC;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--paper); color:var(--ink); font-family:var(--font-serif);
+  line-height:1.55; font-size:17px;
+}
+a{color:var(--link);}
+.wrap{ max-width:1180px; margin:0 auto; display:grid; grid-template-columns:250px minmax(0,1fr); gap:0; }
+@media (max-width:900px){ .wrap{ grid-template-columns:1fr; } }
+
+/* ---------- Header ---------- */
+header.top{
+  background:var(--accent-ink); color:#F2F1EA; padding:28px 24px 22px;
+}
+header.top .eyebrow{
+  font-family:var(--font-mono); font-size:12.5px; letter-spacing:.02em; opacity:.75; margin:0 0 6px;
+}
+header.top h1{ margin:0 0 8px; font-size:clamp(26px,4vw,38px); font-weight:700; line-height:1.15; }
+header.top p.lead{ margin:0; max-width:62ch; opacity:.92; font-size:16px; }
+header.top .stats{ display:flex; gap:18px; flex-wrap:wrap; margin-top:16px; font-family:var(--font-mono); font-size:13px; opacity:.85; }
+
+/* ---------- Sidebar ---------- */
+nav.side{
+  border-right:1px solid var(--rule); padding:18px 14px; position:sticky; top:0; align-self:start;
+  max-height:100vh; overflow-y:auto;
+}
+@media (max-width:900px){
+  nav.side{ position:static; max-height:none; border-right:none; border-bottom:1px solid var(--rule); }
+}
+nav.side .navtitle{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin:14px 6px 6px; }
+nav.side ul{ list-style:none; margin:0; padding:0; }
+nav.side li a{
+  display:block; padding:6px 8px; border-radius:4px; text-decoration:none; color:var(--ink); font-size:14.5px;
+}
+nav.side li a:hover{ background:var(--paper-raised); }
+nav.side li a .tag{ font-family:var(--font-mono); font-size:10.5px; margin-left:4px; opacity:.7; }
+
+/* ---------- Toolbar ---------- */
+.toolbar{
+  position:sticky; top:0; z-index:5; background:var(--paper); border-bottom:1px solid var(--rule);
+  padding:12px 28px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+}
+.toolbar input[type="search"]{
+  flex:1; min-width:160px; font-family:var(--font-serif); font-size:15px; padding:8px 12px;
+  border:1px solid var(--rule); border-radius:6px; background:var(--paper-raised); color:var(--ink);
+}
+.toolbar button{
+  font-family:var(--font-mono); font-size:12.5px; padding:7px 11px; border-radius:6px; border:1px solid var(--rule);
+  background:var(--paper-raised); color:var(--ink); cursor:pointer;
+}
+.toolbar button.active{ background:var(--accent-ink); color:#fff; border-color:var(--accent-ink); }
+.toolbar .count{ font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); white-space:nowrap; }
+
+/* ---------- Main content ---------- */
+main{ padding:8px 28px 60px; min-width:0; }
+.intro-block{ max-width:74ch; padding:22px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px; }
+.intro-block h2{ font-size:22px; margin:0 0 10px; }
+.intro-block p{ max-width:70ch; }
+.plan-grid{ display:grid; gap:10px; margin-top:14px; }
+.plan-row{ display:grid; grid-template-columns:110px 1fr; gap:14px; padding:10px 0; border-top:1px dashed var(--rule); }
+.plan-row .time{ font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); padding-top:2px; }
+
+section.part{ max-width:74ch; padding:34px 0 6px; border-top:1px solid var(--rule); scroll-margin-top:70px; }
+section.part:first-of-type{ border-top:none; }
+.part-head{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:4px; }
+.part-head h2{ margin:0; font-size:24px; }
+.badge{
+  font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.03em;
+  padding:2px 8px; border-radius:20px; white-space:nowrap;
+}
+.badge.must{ background:var(--must-bg); color:var(--must); }
+.badge.should{ background:var(--should-bg); color:var(--should); }
+.badge.basic{ background:var(--basic-bg); color:var(--basic); }
+.part-note{ color:var(--ink-soft); font-size:15px; margin:4px 0 18px; }
+
+.qa{ border-left:3px solid var(--rule); padding-left:16px; margin:0 0 16px; scroll-margin-top:70px; }
+.qa.must{ border-left-color:var(--must); }
+.qa.should{ border-left-color:var(--should); }
+.qa.basic{ border-left-color:var(--basic); }
+.qa.hidden{ display:none; }
+.qa summary{
+  font-weight:600; cursor:pointer; list-style:none; padding:2px 0; font-size:16.5px;
+}
+.qa summary::-webkit-details-marker{ display:none; }
+.qa summary::before{ content:"▸ "; color:var(--ink-soft); font-size:13px; }
+.qa[open] summary::before{ content:"▾ "; }
+.qa .say{
+  margin:10px 0 8px; padding:10px 14px; background:var(--paper-raised); border-radius:6px;
+  font-size:16px; white-space:pre-line;
+}
+.qa .say span.line{ display:block; }
+.qa .kp{ margin:6px 0 4px; padding-left:18px; color:var(--ink-soft); font-size:14.5px; }
+.qa .kp li{ margin-bottom:2px; }
+.qa .cmd{ font-family:var(--font-mono); background:var(--paper-raised); padding:1px 6px; border-radius:4px; font-size:14.5px; }
+
+.cmdrow{ border-left:3px solid var(--rule); padding:6px 0 6px 16px; margin:0; }
+.cmdrow.must{ border-left-color:var(--must); }
+.cmdrow.should{ border-left-color:var(--should); }
+.cmdrow.basic{ border-left-color:var(--basic); }
+.cmdrow.hidden{ display:none; }
+.cmdrow .cmd{ font-family:var(--font-mono); font-weight:600; font-size:15px; }
+.cmdrow p{ margin:2px 0 0; font-size:15px; }
+
+.scenario{ border-left:3px solid var(--must); padding-left:16px; margin:0 0 20px; }
+.scenario.hidden{ display:none; }
+.scenario h4{ margin:0 0 6px; font-size:16.5px; }
+.scenario table{ width:100%; border-collapse:collapse; font-size:14.5px; margin-bottom:8px; }
+.scenario table td{ padding:3px 8px 3px 0; vertical-align:top; }
+.scenario table td.label{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); white-space:nowrap; width:110px; }
+.scenario .say{ margin:8px 0 0; padding:10px 14px; background:var(--paper-raised); border-radius:6px; font-size:15.5px; }
+
+blockquote.script{
+  margin:10px 0; padding:10px 14px; background:var(--paper-raised); border-radius:6px; font-size:16px; white-space:pre-line;
+}
+.version-label{ font-family:var(--font-mono); font-size:12px; text-transform:uppercase; color:var(--ink-soft); margin:18px 0 4px; }
+
+.phrase{ display:grid; grid-template-columns:1fr; gap:2px; margin-bottom:14px; padding-left:16px; border-left:3px solid var(--should); }
+.phrase .sit{ font-size:14px; color:var(--ink-soft); }
+.phrase .say{ margin:4px 0 0; padding:8px 12px; background:var(--paper-raised); border-radius:6px; font-size:15.5px; }
+
+.revision-grid{ display:grid; gap:8px; }
+ol.revlist{ padding-left:22px; }
+ol.revlist li{ margin-bottom:6px; font-size:15.5px; }
+ol.revlist a{ text-decoration:none; }
+ol.revlist a:hover{ text-decoration:underline; }
+
+.cmdtable{ width:100%; border-collapse:collapse; font-size:14.5px; margin:10px 0 22px; }
+.cmdtable th, .cmdtable td{ text-align:left; padding:5px 10px 5px 0; border-bottom:1px solid var(--rule); }
+.cmdtable th{ font-family:var(--font-mono); font-size:11.5px; text-transform:uppercase; color:var(--ink-soft); }
+.cmdtable td.cmd{ font-family:var(--font-mono); font-weight:600; background:none; padding-left:0; }
+
+.top{ position:fixed; right:18px; bottom:18px; font-family:var(--font-mono); font-size:12px; padding:8px 12px;
+  border-radius:20px; background:var(--accent-ink); color:#fff; text-decoration:none; opacity:.9; }
+
+footer.end{ max-width:74ch; padding:30px 0 60px; color:var(--ink-soft); font-size:14px; border-top:1px solid var(--rule); margin-top:20px;}
+
+@media print{
+  nav.side, .toolbar, .top{ display:none !important; }
+  .wrap{ grid-template-columns:1fr; }
+  body{ font-size:12.5px; }
+  a{ color:inherit; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <p class="eyebrow">DevOps Entry-Level &middot; Interview is Saturday &middot; You have one day</p>
+  <h1>Your Complete Interview Prep Book</h1>
+  <p class="lead">Every answer here is written the way you should actually say it out loud — short sentences, simple words. Read each answer, then say it in your own voice a few times before you check the next one.</p>
+  <div class="stats">
+    <span>🔥 = say this no matter what</span>
+    <span>⭐ = know it well</span>
+    <span>🟢 = just don't go blank</span>
+  </div>
+</header>
+<div class="wrap">
+<nav class="side">
+  <div class="toolbar" style="position:static;border:none;padding:0 0 10px;flex-direction:column;align-items:stretch;">
+    <input type="search" id="search" placeholder="Search a question or answer...">
+    <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;">
+      <button class="filterbtn active" data-p="all">All</button>
+      <button class="filterbtn" data-p="must">🔥 Must</button>
+      <button class="filterbtn" data-p="should">⭐ Should</button>
+      <button class="filterbtn" data-p="basic">🟢 Basic</button>
+    </div>
+    <div style="display:flex;gap:6px;margin-top:8px;">
+      <button id="practiceBtn" style="flex:1;">🎤 Practice mode</button>
+      <button id="revealBtn" style="flex:1;">👁 Reveal all</button>
+    </div>
+    <div class="count" id="count" style="margin-top:6px;"></div>
+  </div>
+  <div class="navtitle">Start here</div>
+  <ul>
+    <li><a href="#study-plan">One-day study plan</a></li>
+    <li><a href="#self-intro">Self introduction</a></li>
+    <li><a href="#interview-start">Opening small talk</a></li>
+  </ul>
+  <div class="navtitle">🔥 Must know</div>
+  <ul>
+    <li><a href="#devops-basics">DevOps basics</a></li>
+    <li><a href="#linux">Linux</a></li>
+    <li><a href="#git">Git</a></li>
+    <li><a href="#github">GitHub</a></li>
+    <li><a href="#docker">Docker</a></li>
+    <li><a href="#jenkins">Jenkins</a></li>
+    <li><a href="#aws">AWS</a></li>
+    <li><a href="#cicd-pipeline">Full CI/CD pipeline</a></li>
+    <li><a href="#architecture-recap">Architecture recap</a></li>
+    <li><a href="#troubleshooting">Troubleshooting</a></li>
+    <li><a href="#project-questions">Your project</a></li>
+    <li><a href="#hr-questions">HR questions</a></li>
+    <li><a href="#english-survival">English survival lines</a></li>
+  </ul>
+  <div class="navtitle">⭐ Should know</div>
+  <ul>
+    <li><a href="#maven">Maven</a></li>
+    <li><a href="#monitoring">Monitoring</a></li>
+    <li><a href="#terraform">Terraform</a></li>
+    <li><a href="#ansible">Ansible</a></li>
+  </ul>
+  <div class="navtitle">🟢 Basic only</div>
+  <ul>
+    <li><a href="#kubernetes">Kubernetes</a></li>
+    <li><a href="#sonarqube">SonarQube</a></li>
+    <li><a href="#networking">Networking</a></li>
+    <li><a href="#python-basics">Python</a></li>
+  </ul>
+  <div class="navtitle">Last look</div>
+  <ul>
+    <li><a href="#final-revision">Final revision sheet</a></li>
+  </ul>
+</nav>
+<main id="content">
+
+<div class="intro-block" id="study-plan">
+<h2>Your one-day study plan</h2>
+<p>You can't deeply revise everything in one day, and you don't need to. Follow this order. The 🔥 sections are non-negotiable — everything else is a bonus if you have time left.</p>
+<div class="plan-grid">
+  <div class="plan-row"><div class="time">Morning</div><div>Self introduction (all 3 versions, out loud, 10 times). Opening small talk. DevOps basics. Linux. Git &amp; GitHub.</div></div>
+  <div class="plan-row"><div class="time">Afternoon</div><div>Docker (your strong area — go deep here). Jenkins. AWS basics. Then the full CI/CD pipeline answer — say it out loud until it's smooth.</div></div>
+  <div class="plan-row"><div class="time">Evening</div><div>Troubleshooting scenarios. Your project questions. HR questions. English survival lines — memorise these, they save you when you freeze.</div></div>
+  <div class="plan-row"><div class="time">Before bed</div><div>Quick skim of Maven, Monitoring, Terraform, Ansible — just enough to not go blank. Skim Kubernetes, SonarQube, networking, Python for 2 minutes each.</div></div>
+  <div class="plan-row"><div class="time">Morning of</div><div>Do NOT cram new topics. Only re-read the "Final revision sheet" at the bottom of this page and say your self-introduction out loud twice.</div></div>
+</div>
+<p style="margin-top:16px;"><strong>How to use this page:</strong> click any question to open its answer. Use the <strong>Practice mode</strong> button in the sidebar to close all answers — then click a question, try to say the answer out loud from memory, and open it to check yourself.</p>
+</div>
+
+<section class="part" id="self-intro">
+<div class="part-head"><h2>Self introduction</h2><span class="badge must">🔥 must know</span></div>
+<p class="part-note">This is almost always the first real question. Practice all three versions until the full version feels natural. If you go blank, drop straight to the emergency version — nobody will mind.</p>
+
+<div class="version-label">A. Full version (45–60 seconds)</div>
+<blockquote class="script">Good morning sir / madam.
+My name is [Your Name].
+I completed my B.Sc. in Computer Science from Andhra Kesari University, Ongole.
+I am a DevOps fresher, and I am very interested in the DevOps field.
+During my learning, I have practiced tools like Linux, Git, GitHub, Docker, Jenkins, and Maven.
+I also have basic knowledge of AWS, Terraform, Ansible, and Kubernetes.
+I have practiced building a small CI/CD pipeline in my learning environment, connecting GitHub, Jenkins, Docker, and AWS.
+I have not worked on this in production, but I have practiced the basics with my own small projects.
+I also have basic knowledge of monitoring and SonarQube for code quality.
+I am a fast learner, and I am serious about improving my practical skills.
+My goal is to join a good company like yours, gain real-time experience, and grow as a DevOps engineer.
+Thank you for giving me this opportunity.</blockquote>
+
+<div class="version-label">B. Very easy version</div>
+<blockquote class="script">Good morning sir.
+My name is [Your Name].
+I did my B.Sc. in Computer Science.
+I am a DevOps fresher.
+I have practiced Linux, Git, Docker, and Jenkins.
+I also know the basics of AWS and Terraform.
+I have practiced a small CI/CD pipeline by myself.
+I want to join your company and learn real-time work.
+Thank you, sir.</blockquote>
+
+<div class="version-label">C. Emergency short version (if you freeze)</div>
+<blockquote class="script">Good morning sir.
+My name is [Your Name].
+I am a DevOps fresher.
+I have practiced Git, Docker, Jenkins, and AWS.
+I am ready to learn and work hard.
+Thank you.</blockquote>
+</section>
+
+<section class="part" id="interview-start">
+<div class="part-head"><h2>1 &middot; Opening small talk</h2><span class="badge must">🔥 must know</span></div>
+<p class="part-note">The interview usually starts with easy talk before the technical questions. Answer these calmly and slowly — there is no wrong answer here, just speak naturally.</p>
+
+<details class="qa must" data-priority="must" open><summary>How do I greet the interviewer?</summary>
+<div class="say">Good morning sir / madam.
+Thank you for giving me this opportunity.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Good morning / Good afternoon</summary>
+<div class="say">Good morning sir. It is nice to meet you.
+(In the afternoon, just say: Good afternoon sir.)</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How are you?</summary>
+<div class="say">I am doing well, thank you. How are you?</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Are you ready for the interview?</summary>
+<div class="say">Yes sir, I am ready. I have prepared well for this interview.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Tell me about yourself / Can you introduce yourself?</summary>
+<div class="say">Use your Self Introduction here — see the "Self introduction" section at the top of this page. Say the Full version if you feel confident, or the Easy version if you want to keep it short.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Why did you choose DevOps?</summary>
+<div class="say">I chose DevOps because I like working on both the development side and the operations side.
+I am interested in automation, and I like how DevOps connects coding with deployment and infrastructure.
+I have practiced tools like Git, Docker, Jenkins, and AWS, and I want to build my career in this field.</div>
+<ul class="kp"><li>Connects dev + ops</li><li>Interested in automation</li><li>Already practiced the tools</li><li>Clear career direction</li></ul>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Why are you interested in Cloud?</summary>
+<div class="say">I am interested in cloud because it is the future of IT infrastructure.
+Cloud gives us flexibility, we can create servers quickly, and we don't need to manage physical hardware.
+I have practiced AWS basics like EC2 and S3, and I want to learn more about cloud in real projects.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What are your strengths?</summary>
+<div class="say">My strength is, I learn new technologies quickly.
+I am hardworking, and I don't give up when I face a problem — I try to solve it step by step.
+I also have good hands-on practice in DevOps tools.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What are your weaknesses?</summary>
+<div class="say">My weakness is, sometimes I take a little more time to speak fluently in English, but I am improving this every day.
+Also, I am still learning advanced real-time scenarios, so I am working on getting more practical exposure.</div>
+<ul class="kp"><li>Honest, not a fake weakness — this matches your real situation</li><li>Always follow a weakness with what you're doing about it</li></ul>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Why should we hire you?</summary>
+<div class="say">You should hire me because I have practiced all the important DevOps tools like Git, Docker, Jenkins, and AWS.
+I am a fast learner, I am honest about what I know, and I am ready to work hard and learn real-time skills from your team.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What are your career goals?</summary>
+<div class="say">My goal is to become a skilled DevOps engineer.
+In the beginning, I want to learn real-time projects and improve my skills.
+In future, I want to grow into a senior DevOps role and also improve my cloud knowledge.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Are you comfortable learning new technologies?</summary>
+<div class="say">Yes sir, I am very comfortable learning new technologies.
+I already learned many tools by myself, like Docker, Jenkins, Terraform, and Kubernetes basics.
+I enjoy learning, and I adapt quickly.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Do you have any questions for us?</summary>
+<div class="say">Yes sir, I have a few questions. (See "Questions I can ask the interviewer" in the Final revision sheet at the bottom of this page — always say yes to this question, it shows interest.)</div>
+</details>
+</section>
+
+<section class="part" id="devops-basics">
+<div class="part-head"><h2>3 &middot; DevOps basics</h2><span class="badge must">🔥 must know</span></div>
+
+<details class="qa must" data-priority="must" open><summary>What is DevOps?</summary>
+<div class="say">DevOps is a combination of Development and Operations.
+It is a culture and practice where developers and the operations team work together.
+The goal is to build, test, and release software faster and more reliably.</div>
+<ul class="kp"><li>Dev + Ops working together</li><li>A culture / practice, not a tool</li><li>Faster, more reliable releases</li></ul>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Why do we use DevOps?</summary>
+<div class="say">We use DevOps to reduce the gap between development and operations teams.
+It helps us release software faster, with fewer errors, and with better collaboration between teams.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What are the benefits of DevOps?</summary>
+<div class="say">DevOps gives faster delivery, better quality, more automation, and better collaboration between teams.
+It also reduces manual errors and helps us fix problems quickly.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is CI/CD?</summary>
+<div class="say">CI/CD means Continuous Integration and Continuous Delivery or Deployment.
+CI means we integrate code changes frequently and test them automatically.
+CD means we deliver or deploy that code automatically to the next environment.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is Continuous Integration?</summary>
+<div class="say">Continuous Integration means developers push code changes frequently, and every time, the code is automatically built and tested.
+This helps us find bugs early.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is Continuous Delivery?</summary>
+<div class="say">Continuous Delivery means after testing, the code is automatically prepared and ready to release, but the final deployment to production is done manually, with one click.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is Continuous Deployment?</summary>
+<div class="say">Continuous Deployment means the tested code is automatically deployed to production, without any manual approval step.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Difference between Continuous Delivery and Continuous Deployment</summary>
+<div class="say">In Continuous Delivery, deployment to production needs manual approval.
+In Continuous Deployment, there is no manual step — everything is automatic.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is automation?</summary>
+<div class="say">Automation means using tools and scripts to do repetitive tasks automatically, instead of doing them manually.
+In DevOps, we automate building, testing, and deployment.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a DevOps lifecycle?</summary>
+<div class="say">The DevOps lifecycle has stages like Plan, Code, Build, Test, Release, Deploy, Operate, and Monitor.
+These stages repeat continuously to improve the software.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is version control?</summary>
+<div class="say">Version control is a system that tracks changes in code over time.
+It helps multiple developers work together, and it helps us go back to old versions if needed.
+Git is a popular version control tool.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a CI/CD pipeline?</summary>
+<div class="say">A CI/CD pipeline is a set of automated steps that take code from development to production.
+For example: code push, build, test, code quality check, create Docker image, and deploy to server.</div>
+</details>
+</section>
+
+<section class="part" id="linux">
+<div class="part-head"><h2>4 &middot; Linux</h2><span class="badge must">🔥 must know</span></div>
+<p class="part-note">Commands don't need long explanations — say them in one short line, like the examples below.</p>
+
+<details class="qa must" data-priority="must" open><summary>What is Linux?</summary>
+<div class="say">Linux is an open-source operating system.
+It is widely used on servers because it is stable, secure, and free.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Why is Linux used in DevOps?</summary>
+<div class="say">Most servers and cloud machines run on Linux.
+A DevOps engineer needs Linux to manage servers, run scripts, and deploy applications.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a file? What is a directory?</summary>
+<div class="say">A file is a place where we store data, like text or code.
+A directory is a folder that contains files and other directories.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a Linux permission? Explain r, w, x.</summary>
+<div class="say">A permission controls who can read, write, or execute a file.
+r means read, w means write, and x means execute.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What are owner, group, and others?</summary>
+<div class="say">Owner is the user who created the file.
+Group is a set of users who share some permission.
+Others means everyone else on the system.</div>
+</details>
+
+<div class="navtitle" style="margin:18px 0 4px;">Commands — one line each</div>
+
+<div class="cmdrow must" data-priority="must"><span class="cmd">chmod</span><p>Used to change file or directory permissions. Example: <span class="cmd">chmod 755 filename</span></p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">chown</span><p>Used to change the owner of a file or directory.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">pwd</span><p>Shows the current working directory.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">ls</span><p>Lists files and directories.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">cd</span><p>Changes the current directory.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">mkdir</span><p>Creates a new directory.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">touch</span><p>Creates a new empty file.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">cp</span><p>Copies files or directories.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">mv</span><p>Moves or renames files.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">rm</span><p>Removes files or directories.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">cat</span><p>Shows the content of a file.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">grep</span><p>Searches for a word or pattern inside a file.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">ps</span><p>Shows the running processes.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">top</span><p>Shows live system performance, like CPU and memory usage.</p></div>
+
+<details class="qa must" data-priority="must"><summary>How do you check disk usage?</summary>
+<div class="say">I use the command df -h to check disk usage.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How do you check memory usage?</summary>
+<div class="say">I use the command free -h to check memory usage.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How do you check running processes?</summary>
+<div class="say">I use ps -ef, or the top command, to check running processes.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How do you find a particular process?</summary>
+<div class="say">I use the command ps -ef, then pipe it with grep — for example: ps -ef | grep processname.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How do you change file permissions?</summary>
+<div class="say">I use the chmod command, for example: chmod 755 filename.</div>
+</details>
+</section>
+
+<section class="part" id="git">
+<div class="part-head"><h2>5 &middot; Git</h2><span class="badge must">🔥 must know</span></div>
+
+<details class="qa must" data-priority="must" open><summary>What is Git?</summary>
+<div class="say">Git is a distributed version control tool.
+It helps us track changes in code and work together with other developers.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Why do we use Git?</summary>
+<div class="say">We use Git to manage source code, track the history of changes, and collaborate with team members without overwriting each other's work.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a repository?</summary>
+<div class="say">A repository is a place where our project code and its history are stored.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is the working directory, staging area, local repository, and remote repository?</summary>
+<div class="say">The working directory is the folder on my machine where I make changes to files.
+The staging area is where I keep changes that are ready to be committed.
+The local repository is the Git repository stored on my own machine.
+The remote repository is the Git repository stored on a server, like GitHub.</div>
+</details>
+
+<div class="navtitle" style="margin:18px 0 4px;">Commands — one line each</div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">git init</span><p>Creates a new local Git repository.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">git clone</span><p>Downloads a copy of a remote repository to the local machine.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">git status</span><p>Shows the current state of files — changed, staged, or untracked.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">git add</span><p>Moves changes from the working directory to the staging area.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">git commit</span><p>Saves the staged changes to the local repository.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">git push</span><p>Sends local commits to the remote repository.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">git pull</span><p>Downloads changes from the remote repository and merges them into the local branch.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">git fetch</span><p>Downloads changes from the remote repository, but does not merge them automatically.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">git branch</span><p>Used to create, list, or delete branches.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">git merge</span><p>Combines changes from one branch into another branch.</p></div>
+
+<details class="qa must" data-priority="must"><summary>Why do we use branches?</summary>
+<div class="say">Branches let us work on new features or fixes separately, without affecting the main code.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a merge conflict?</summary>
+<div class="say">A merge conflict happens when Git cannot automatically combine changes, because the same part of a file was changed in two different ways.
+We need to fix it manually.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>git pull vs git fetch</summary>
+<div class="say">git fetch only downloads changes.
+git pull downloads changes and also merges them automatically.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Explain the Git workflow.</summary>
+<div class="say">First, I make changes in the Working Directory.
+Then, I use git add to move changes to the Staging Area.
+Then, I use git commit to save changes in the Local Repository.
+Finally, I use git push to send changes to the Remote Repository, like GitHub.</div>
+<ul class="kp"><li>Working Directory → Staging Area → Local Repository → Remote Repository</li></ul>
+</details>
+</section>
+
+<section class="part" id="github">
+<div class="part-head"><h2>6 &middot; GitHub</h2><span class="badge must">🔥 must know</span></div>
+
+<details class="qa must" data-priority="must" open><summary>What is GitHub?</summary>
+<div class="say">GitHub is a cloud platform to host Git repositories.
+It helps teams store code online and collaborate.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Git vs GitHub</summary>
+<div class="say">Git is the version control tool that runs on my machine.
+GitHub is an online platform where I store my Git repositories and collaborate with others.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a GitHub repository?</summary>
+<div class="say">A GitHub repository is a project folder stored on GitHub, containing our code and its history.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How do you push code to GitHub? How do you clone a repository?</summary>
+<div class="say">First I use git add and git commit locally, then I use git push to send the code to GitHub.
+To clone, I use git clone with the repository URL, to download it to my local machine.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How does Jenkins connect with GitHub?</summary>
+<div class="say">Jenkins connects to GitHub using the repository URL and credentials, or using a webhook, so Jenkins can automatically pull the latest code.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a webhook?</summary>
+<div class="say">A webhook is a notification that GitHub sends to Jenkins automatically, when new code is pushed.
+It triggers the Jenkins build automatically.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Why is GitHub used in DevOps?</summary>
+<div class="say">GitHub is used to store code centrally, so the whole team and CI/CD tools like Jenkins can access the latest code easily.</div>
+</details>
+</section>
+
+<section class="part" id="docker">
+<div class="part-head"><h2>7 &middot; Docker</h2><span class="badge must">🔥 must know — your strongest area</span></div>
+<p class="part-note">This is where you should sound the most confident. Go slightly deeper here than other topics.</p>
+
+<details class="qa must" data-priority="must" open><summary>What is Docker?</summary>
+<div class="say">Docker is a container platform.
+It is used to package and run applications.
+It helps us run applications with their required dependencies, so the application runs the same way everywhere.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Why do we use Docker?</summary>
+<div class="say">We use Docker because it solves the problem of "it works on my machine."
+Docker packages the application with everything it needs, so it works the same way on any server.</div>
+</details>
+
+<details class="qa must" data-priority="must" id="docker-architecture" open><summary>What is Docker architecture? (full answer)</summary>
+<div class="say">Docker architecture has four main parts: Docker Client, Docker Daemon, Docker Images and Containers, and Docker Registry.
+The Docker Client is where I type commands like docker run.
+The command goes to the Docker Daemon, which does the actual work.
+The Daemon checks if the image is available locally. If not, it pulls it from the Docker Registry, like Docker Hub.
+Then the Daemon creates a container from that image, and the container runs my application.</div>
+<div class="version-label">Final one-minute answer</div>
+<blockquote class="script">Docker architecture has a client, a daemon, images and containers, and a registry.
+I type a command in the Docker Client.
+It goes to the Docker Daemon.
+The Daemon checks for the image locally, or pulls it from the Docker Registry like Docker Hub, and then creates and runs the container.</blockquote>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is the Docker Client? What is the Docker Daemon?</summary>
+<div class="say">The Docker Client is what I use to type Docker commands, like docker run or docker build.
+The Docker Daemon is the background service that actually creates and manages containers and images.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is Docker Registry? What is Docker Hub?</summary>
+<div class="say">Docker Registry is a storage place for Docker images.
+Docker Hub is the most common public registry, where we pull ready-made images like nginx or mysql, or push our own images.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a Docker image? What is a Docker container? Image vs Container?</summary>
+<div class="say">A Docker image is a read-only template that contains the application code and everything needed to run it.
+A Docker container is a running instance of that image.
+So an image is like a blueprint, and a container is the running application created from that blueprint.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a Dockerfile?</summary>
+<div class="say">A Dockerfile is a text file with instructions to build a Docker image, step by step.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a Docker volume? Volume vs Bind Mount?</summary>
+<div class="say">A Docker volume is used to store data outside the container, so data is not lost when the container is removed.
+A volume is managed by Docker itself, and Docker decides where to store it.
+A bind mount points to a specific folder on my host machine instead.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a Docker network?</summary>
+<div class="say">A Docker network allows containers to communicate with each other and with the outside world.</div>
+</details>
+
+<div class="navtitle" style="margin:18px 0 4px;">Commands — one line each</div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker pull</span><p>Downloads an image from a registry.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker run</span><p>Creates and starts a new container from an image.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker ps</span><p>Shows the running containers.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker ps -a</span><p>Shows all containers, running and stopped.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker stop</span><p>Stops a running container.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker start</span><p>Starts a stopped container.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker restart</span><p>Stops and starts a container again.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker rm</span><p>Removes a stopped container.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker images</span><p>Shows all images available locally.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker rmi</span><p>Removes an image.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker logs</span><p>Shows the logs of a container — useful for debugging.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker inspect</span><p>Shows detailed information about a container or image.</p></div>
+<div class="cmdrow must" data-priority="must"><span class="cmd">docker exec</span><p>Lets me run a command inside a running container, for example to open a shell.</p></div>
+
+<details class="qa must" data-priority="must"><summary>What happens when you run "docker run nginx"?</summary>
+<div class="say">Docker checks if the nginx image is available locally.
+If yes, it creates a container from that image and starts it.
+If not, Docker downloads it from Docker Hub first, then creates the container.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What happens if the Docker image is not available locally?</summary>
+<div class="say">Docker automatically pulls the image from the configured registry, usually Docker Hub, and then creates the container.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How do you troubleshoot a stopped container? How do you check container logs?</summary>
+<div class="say">First I check docker ps -a to see the container status.
+Then I check docker logs to see the error message.
+Based on the error, I fix the issue and start the container again.</div>
+</details>
+</section>
+
+<section class="part" id="jenkins">
+<div class="part-head"><h2>8 &middot; Jenkins</h2><span class="badge must">🔥 must know</span></div>
+
+<details class="qa must" data-priority="must" open><summary>What is Jenkins?</summary>
+<div class="say">Jenkins is an open-source automation tool.
+It is used to automate building, testing, and deploying applications.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Why do we use Jenkins?</summary>
+<div class="say">We use Jenkins to automate the CI/CD pipeline, so code is built, tested, and deployed automatically whenever developers push changes.</div>
+</details>
+
+<details class="qa must" data-priority="must" id="jenkins-architecture" open><summary>What is Jenkins architecture? (full answer)</summary>
+<div class="say">Jenkins architecture has a Controller and one or more Agents.
+The Controller manages jobs, schedules builds, and shows the results in the dashboard.
+The Agent is the machine that actually does the work, like building and testing code.
+When code is pushed to GitHub, a webhook notifies Jenkins. The Controller schedules the job, sends it to an Agent, and the Agent runs the pipeline steps.</div>
+<div class="version-label">Final one-minute answer</div>
+<blockquote class="script">Jenkins has a Controller and Agents.
+The Controller manages and schedules the jobs.
+The Agent actually runs the build.
+When a developer pushes code, GitHub sends a webhook to Jenkins, the Controller assigns the job to an Agent, and the Agent runs the pipeline — build, test, and deploy.</blockquote>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Controller vs Agent</summary>
+<div class="say">The Controller (earlier called Master) manages and schedules jobs.
+The Agent (earlier called Slave / Node) is the machine where the actual build work happens.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a Jenkins job? What is a Jenkins pipeline?</summary>
+<div class="say">A Jenkins job is a task, like building or testing a project, that Jenkins runs.
+A Jenkins pipeline is a set of automated steps, like build, test, and deploy, defined in a sequence.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a Jenkinsfile? What is a Jenkins stage?</summary>
+<div class="say">A Jenkinsfile is a text file where I write the pipeline steps as code.
+A stage is one step in the pipeline, like the Build stage, Test stage, or Deploy stage.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How does Jenkins help in CI/CD?</summary>
+<div class="say">Jenkins automates the whole pipeline.
+It pulls code from GitHub, builds it, runs tests, and deploys it, without manual work.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What happens when a developer pushes code to GitHub?</summary>
+<div class="say">GitHub sends a webhook notification to Jenkins.
+Jenkins automatically pulls the latest code and starts the pipeline — build, test, and deploy.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How do you troubleshoot a failed Jenkins build? Where do you check logs?</summary>
+<div class="say">First I check the Console Output of that build in Jenkins.
+I look for the error message, find which stage failed, and fix that issue, like a code error or a missing dependency.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Freestyle job vs Pipeline job</summary>
+<div class="say">A freestyle job is a simple Jenkins job configured through the UI, without writing pipeline code.
+A pipeline job is defined using a Jenkinsfile, with code, and it's more flexible for complex CI/CD steps.</div>
+</details>
+</section>
+
+<section class="part" id="maven">
+<div class="part-head"><h2>9 &middot; Maven</h2><span class="badge should">⭐ should know</span></div>
+
+<details class="qa should" data-priority="should" open><summary>What is Maven? Why do we use it?</summary>
+<div class="say">Maven is a build tool for Java projects.
+It helps us compile code, manage dependencies, and package the application.
+We use it because it automatically downloads required libraries and builds the project in a standard way.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What is pom.xml? What are dependencies?</summary>
+<div class="say">pom.xml is the configuration file of Maven. It contains the project details and the list of dependencies.
+Dependencies are external libraries that our project needs to work.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What is the Maven lifecycle?</summary>
+<div class="say">The Maven lifecycle has phases like validate, compile, test, package, and install, which run in order.</div>
+</details>
+
+<div class="navtitle" style="margin:18px 0 4px;">Commands — one line each</div>
+<div class="cmdrow should" data-priority="should"><span class="cmd">mvn clean</span><p>Removes old build files.</p></div>
+<div class="cmdrow should" data-priority="should"><span class="cmd">mvn compile</span><p>Compiles the source code.</p></div>
+<div class="cmdrow should" data-priority="should"><span class="cmd">mvn test</span><p>Runs the test cases.</p></div>
+<div class="cmdrow should" data-priority="should"><span class="cmd">mvn package</span><p>Creates the final build file, like a jar or war file.</p></div>
+
+<details class="qa should" data-priority="should"><summary>How is Maven used in Jenkins?</summary>
+<div class="say">In the Jenkins pipeline, we add a build stage where Jenkins calls Maven commands, like mvn clean package, to build the project.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What happens when a Maven build fails?</summary>
+<div class="say">I check the Maven build logs in the Jenkins console output.
+Usually the reason is a compilation error, a missing dependency, or a failed test case.
+I fix that issue and run the build again.</div>
+</details>
+</section>
+
+<section class="part" id="aws">
+<div class="part-head"><h2>10 &middot; AWS</h2><span class="badge must">🔥 must know — basics only</span></div>
+
+<details class="qa must" data-priority="must" open><summary>What is AWS? Why do we use it?</summary>
+<div class="say">AWS is Amazon Web Services. It is a cloud platform that provides computing, storage, and other services over the internet.
+We use AWS because it gives us servers and services on demand, without buying physical hardware. It is flexible and scalable.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is cloud computing?</summary>
+<div class="say">Cloud computing means using computing resources like servers, storage, and databases over the internet, instead of managing our own hardware.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is EC2? What is an EC2 instance?</summary>
+<div class="say">EC2 is Elastic Compute Cloud. It gives us virtual servers in the cloud.
+An EC2 instance is a single virtual server that we create using the EC2 service.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is S3? EC2 vs S3</summary>
+<div class="say">S3 is Simple Storage Service, used to store files and data as objects, like images, backups, or logs.
+EC2 gives us virtual servers to run applications. S3 is used to store files and data.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is IAM? IAM user vs IAM role</summary>
+<div class="say">IAM is Identity and Access Management. It controls who can access AWS resources, and what actions they can perform.
+An IAM user is an individual account created to access AWS resources.
+An IAM role is a set of permissions that can be assumed temporarily by a service or user, without sharing permanent credentials.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is a Security Group?</summary>
+<div class="say">A Security Group is a virtual firewall for EC2 instances. It controls incoming and outgoing traffic.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is VPC? What is a subnet? Public vs private subnet</summary>
+<div class="say">VPC is Virtual Private Cloud — a private network inside AWS, where we launch resources like EC2 instances.
+A subnet is a smaller part of a VPC network.
+A public subnet has direct access to the internet. A private subnet does not, which makes it more secure for internal resources.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is SSH? How do you connect to an EC2 instance?</summary>
+<div class="say">SSH is a secure way to connect to a remote server from my machine, using a terminal.
+I connect to an EC2 instance using SSH with the key pair file — for example: ssh -i keyfile.pem ec2-user@publicIP.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How do you deploy an application on EC2?</summary>
+<div class="say">I connect to the EC2 instance using SSH, install the required software, copy or pull my application code, and run it — or run it as a Docker container.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What will you check if EC2 is not reachable?</summary>
+<div class="say">First I check if the instance is running.
+Then I check the security group rules.
+Then I check if the correct key and public IP are being used.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What is an Availability Zone? What is a Region?</summary>
+<div class="say">An Availability Zone is a physically separate data center within an AWS region.
+A Region is a geographical area, like Mumbai or Singapore, that contains multiple Availability Zones.</div>
+</details>
+</section>
+
+<section class="part" id="terraform">
+<div class="part-head"><h2>11 &middot; Terraform</h2><span class="badge should">⭐ should know</span></div>
+
+<details class="qa should" data-priority="should" open><summary>What is Terraform? Why do we use it?</summary>
+<div class="say">Terraform is an Infrastructure as Code tool. It helps us create and manage cloud resources using code.
+We use it because it lets us create infrastructure automatically and consistently, instead of creating resources manually.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What is Infrastructure as Code?</summary>
+<div class="say">Infrastructure as Code means we write our infrastructure — servers, networks — as code files, instead of creating them manually.</div>
+</details>
+
+<details class="qa should" data-priority="should" open><summary>Terraform workflow / architecture (full answer)</summary>
+<div class="say">First, I write my infrastructure in Terraform files, using HCL language.
+Then I run terraform init, which prepares the folder and downloads the provider plugin, like the AWS provider.
+Then I run terraform plan, to see what changes will happen.
+Then I run terraform apply, to actually create the resources in AWS.</div>
+<div class="version-label">Final one-minute answer</div>
+<blockquote class="script">In Terraform, I first write my infrastructure as code in Terraform files.
+Then I run terraform init to set up the provider.
+Then terraform plan to preview the changes.
+Then terraform apply to create the actual resources in AWS.
+If I want to remove everything, I run terraform destroy.</blockquote>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What is a provider? What is a resource?</summary>
+<div class="say">A provider is a plugin that lets Terraform talk to a cloud platform, like AWS.
+A resource is the actual infrastructure item we create, like an EC2 instance or S3 bucket.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What is a variable? What is an output? What is Terraform state?</summary>
+<div class="say">A variable lets us pass different values into our Terraform code, so it's reusable.
+An output shows useful information after Terraform creates resources, like the public IP of a server.
+Terraform state is a file that keeps track of the resources Terraform has created, so it knows what already exists.</div>
+</details>
+
+<div class="navtitle" style="margin:18px 0 4px;">Commands — one line each</div>
+<div class="cmdrow should" data-priority="should"><span class="cmd">terraform init</span><p>Prepares the working directory and downloads required provider plugins.</p></div>
+<div class="cmdrow should" data-priority="should"><span class="cmd">terraform plan</span><p>Shows what changes Terraform will make, before actually applying them.</p></div>
+<div class="cmdrow should" data-priority="should"><span class="cmd">terraform apply</span><p>Creates or updates the actual infrastructure.</p></div>
+<div class="cmdrow should" data-priority="should"><span class="cmd">terraform destroy</span><p>Removes the infrastructure created by Terraform.</p></div>
+
+<details class="qa should" data-priority="should"><summary>Terraform vs manual resource creation</summary>
+<div class="say">Manual creation means clicking in the AWS console each time.
+Terraform lets me create the same infrastructure with code, so it's faster, consistent, and repeatable.</div>
+</details>
+</section>
+
+<section class="part" id="ansible">
+<div class="part-head"><h2>12 &middot; Ansible</h2><span class="badge should">⭐ should know</span></div>
+
+<details class="qa should" data-priority="should" open><summary>What is Ansible? Why do we use it?</summary>
+<div class="say">Ansible is a configuration management and automation tool.
+It helps us install software, configure servers, and automate tasks on many servers at once.
+We use it because it saves time — instead of configuring servers one by one manually, we automate it using playbooks.</div>
+</details>
+
+<details class="qa should" data-priority="should" open><summary>Ansible architecture (full answer)</summary>
+<div class="say">The Control Node is where Ansible is installed.
+The Inventory file lists all the Managed Nodes.
+We write a Playbook with the tasks we want to perform.
+Ansible uses Modules to actually do the work, like installing software.
+The Control Node connects to Managed Nodes using SSH and runs the playbook there.</div>
+<div class="version-label">Final one-minute answer</div>
+<blockquote class="script">In Ansible, the Control Node is where Ansible is installed.
+It reads the Inventory file to know the Managed Nodes.
+I write tasks in a Playbook, using Modules.
+Ansible connects to the Managed Nodes through SSH, and runs the playbook tasks on them, without needing any agent installed.</blockquote>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What is a Playbook? What is a Task? What is a Module?</summary>
+<div class="say">A Playbook is a YAML file where I write the automation tasks, step by step.
+A Task is a single action in a playbook, like installing a package.
+A Module is a small program Ansible uses to perform that action.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What is YAML?</summary>
+<div class="say">YAML is a simple, readable data format used to write Ansible playbooks.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>How does Ansible connect to Linux servers?</summary>
+<div class="say">Ansible connects to managed nodes using SSH, without needing an agent installed on them.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>Basic Ansible commands</summary>
+<div class="say">ansible-playbook is used to run a playbook.
+ansible all -m ping is used to check connectivity to all servers.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>Ansible vs Terraform</summary>
+<div class="say">Terraform is mainly used to create infrastructure, like servers.
+Ansible is mainly used to configure and manage software on servers that already exist.</div>
+</details>
+</section>
+
+<section class="part" id="kubernetes">
+<div class="part-head"><h2>13 &middot; Kubernetes</h2><span class="badge basic">🟢 basic only</span></div>
+<p class="part-note">Keep it simple. If they push deeper than this, it's fine to say: "I have basic knowledge of Kubernetes, I have practiced it in my learning environment, not in production."</p>
+
+<details class="qa basic" data-priority="basic" open><summary>What is Kubernetes? Why do we use it?</summary>
+<div class="say">Kubernetes is a container orchestration tool. It helps us manage, scale, and run many containers automatically.
+We use it because managing many containers manually is difficult — Kubernetes automates deployment, scaling, and healing of containers.</div>
+</details>
+
+<details class="qa basic" data-priority="basic"><summary>What is a Pod? What is a Node? What is a Cluster?</summary>
+<div class="say">A Pod is the smallest unit in Kubernetes, usually containing one or more containers.
+A Node is a machine, physical or virtual, where Kubernetes runs Pods.
+A Cluster is a group of Nodes managed together.</div>
+</details>
+
+<details class="qa basic" data-priority="basic"><summary>What is a Deployment? What is a Service? What is a ReplicaSet?</summary>
+<div class="say">A Deployment manages how many copies of a Pod should run, and helps update them safely.
+A Service gives a stable way to access Pods, even if the Pods change or restart.
+A ReplicaSet makes sure a specific number of Pod copies are always running.</div>
+</details>
+
+<details class="qa basic" data-priority="basic"><summary>Kubernetes architecture — Control Plane and Worker Node</summary>
+<div class="say">Kubernetes has a Control Plane, which manages the cluster, and Worker Nodes, which run the actual application Pods.
+The Control Plane handles scheduling and health. The Worker Node runs the Pods and reports status back.</div>
+</details>
+
+<details class="qa basic" data-priority="basic"><summary>What is self-healing? What is scaling?</summary>
+<div class="say">Self-healing means if a Pod or container fails, Kubernetes automatically restarts or replaces it.
+Scaling means Kubernetes can automatically increase or decrease the number of running Pods, based on load.</div>
+</details>
+
+<details class="qa basic" data-priority="basic"><summary>Basic kubectl commands</summary>
+<div class="say">kubectl get pods shows running pods.
+kubectl get nodes shows the nodes.
+kubectl apply -f file.yaml applies a configuration.</div>
+</details>
+
+<details class="qa basic" data-priority="basic"><summary>Docker vs Kubernetes</summary>
+<div class="say">Docker is used to create and run containers.
+Kubernetes is used to manage and orchestrate many containers across multiple servers.</div>
+</details>
+</section>
+
+<section class="part" id="monitoring">
+<div class="part-head"><h2>14 &middot; Monitoring</h2><span class="badge should">⭐ should know</span></div>
+
+<details class="qa should" data-priority="should" open><summary>What is monitoring? Why do we need it?</summary>
+<div class="say">Monitoring means continuously checking the health and performance of servers and applications.
+We need it to find problems early, before they affect users — like high CPU usage or application downtime.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What do we monitor? (CPU, memory, disk, network, application)</summary>
+<div class="say">We monitor things like CPU, memory, disk, network, application logs, and uptime.
+CPU and memory monitoring checks resource usage, so the server doesn't run out of capacity.
+Disk monitoring checks storage usage, so the disk doesn't get full.
+Network monitoring checks traffic and connectivity between servers.
+Application monitoring checks if the application is running and responding properly.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What are logs? What are alerts?</summary>
+<div class="say">Logs are records of events and errors generated by the system or application — we check logs to find the root cause of a problem.
+Alerts are notifications sent automatically when something goes wrong, like high CPU or the server going down.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>How does monitoring help DevOps?</summary>
+<div class="say">Monitoring helps us detect and fix issues quickly, and improve system reliability.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What will you check if CPU usage is high?</summary>
+<div class="say">I check which process is using high CPU using the top command, and then decide if I need to restart the process or scale the server.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What will you check if disk is full?</summary>
+<div class="say">I use df -h to check disk usage, then find and remove unnecessary files, or clean up logs.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>What will you check if the application is down or slow?</summary>
+<div class="say">If the application is down, first I check if the server is reachable, then I check the application logs and process status.
+If the application is slow, I check CPU and memory usage, and application logs, to see if there's a resource issue or an error.</div>
+</details>
+
+<details class="qa should" data-priority="should"><summary>Do you know any monitoring tools?</summary>
+<div class="say">I have basic knowledge of monitoring tools like Prometheus, Grafana, and AWS CloudWatch.
+Prometheus collects and stores metrics like CPU and memory data over time.
+Grafana is a dashboard tool used to visualize that data.
+CloudWatch is AWS's built-in monitoring service, used to monitor AWS resources and set alarms.
+I have practiced these basics in my learning environment.</div>
+</details>
+</section>
+
+<section class="part" id="sonarqube">
+<div class="part-head"><h2>15 &middot; SonarQube</h2><span class="badge basic">🟢 basic only</span></div>
+
+<details class="qa basic" data-priority="basic" open><summary>What is SonarQube? Why do we use it?</summary>
+<div class="say">SonarQube is a code quality tool. It checks our code for bugs, code smells, and security issues.
+We use it to make sure our code quality is good before it goes to production.</div>
+</details>
+
+<details class="qa basic" data-priority="basic"><summary>What does SonarQube check?</summary>
+<div class="say">It checks things like bugs, vulnerabilities, code duplication, and coding standard violations.</div>
+</details>
+
+<details class="qa basic" data-priority="basic"><summary>How does SonarQube fit into CI/CD? How does Jenkins work with it?</summary>
+<div class="say">After the build and test stage, SonarQube analyzes the code quality before we move to the next step, like packaging or deployment.
+Jenkins runs a SonarQube scan as a stage in the pipeline, and if the code quality doesn't meet the standard, the pipeline can be stopped.</div>
+</details>
+</section>
+
+<section class="part" id="networking">
+<div class="part-head"><h2>Basic Networking</h2><span class="badge basic">🟢 basic only</span></div>
+
+<details class="qa basic" data-priority="basic" open><summary>What is networking? What is an IP address?</summary>
+<div class="say">Networking means connecting computers and servers together, so they can communicate and share data.
+An IP address is a unique number that identifies a device on a network.</div>
+</details>
+
+<details class="qa basic" data-priority="basic"><summary>What is a port? What is DNS?</summary>
+<div class="say">A port is a number used to identify a specific service running on a server, like port 80 for websites.
+DNS converts a website name into an IP address, so computers can find each other.</div>
+</details>
+
+<details class="qa basic" data-priority="basic"><summary>What is a firewall? HTTP vs HTTPS</summary>
+<div class="say">A firewall controls incoming and outgoing traffic, to protect a server from unauthorized access.
+HTTP is normal web traffic. HTTPS is the secure, encrypted version of HTTP.</div>
+</details>
+</section>
+
+<section class="part" id="python-basics">
+<div class="part-head"><h2>Basic Python</h2><span class="badge basic">🟢 basic only</span></div>
+
+<details class="qa basic" data-priority="basic" open><summary>What is Python used for in DevOps?</summary>
+<div class="say">Python is used to write automation scripts, like checking server status, processing logs, or automating small tasks.
+I have basic knowledge of Python, and I have practiced simple scripts in my learning environment.</div>
+</details>
+
+<details class="qa basic" data-priority="basic"><summary>What is a variable, a list, a function, a loop in Python?</summary>
+<div class="say">A variable stores a value, like a number or text, so we can use it later.
+A list stores multiple values together, like a list of server names.
+A function is a block of code that performs a task, and we can reuse it.
+A loop repeats a task multiple times, like checking the status of multiple servers one by one.</div>
+</details>
+</section>
+
+<section class="part" id="cicd-pipeline">
+<div class="part-head"><h2>16 &middot; Complete CI/CD pipeline</h2><span class="badge must">🔥 must know</span></div>
+<p class="part-note">Pipeline: Developer → GitHub → Jenkins → SonarQube → Maven → Test → Docker → Docker Registry → AWS → Monitoring. This is one of the most likely questions you'll get — practice the final answer below until it's smooth.</p>
+
+<details class="qa must" data-priority="must"><summary>Where does each tool fit in the pipeline?</summary>
+<div class="say">GitHub stores the source code, and Jenkins pulls the latest code from GitHub when the pipeline starts.
+Jenkins is the main automation engine — it runs all the stages: build, test, code quality check, and deployment.
+Maven is used in the build stage, to compile the code and package it, for example into a jar file.
+SonarQube runs after the build stage, to check code quality before moving forward.
+After the build, Docker creates a container image of the application using a Dockerfile.
+The application is deployed on AWS, for example on an EC2 instance.
+After deployment, monitoring tools continuously check the application's health and performance.</div>
+</details>
+
+<details class="qa must" data-priority="must" id="pipeline-final" open><summary>Explain your CI/CD pipeline. (final 30–60 second answer)</summary>
+<blockquote class="script">I will explain my CI/CD pipeline step by step.
+First, the developer writes code and pushes it to GitHub.
+GitHub triggers a webhook, which automatically starts a Jenkins pipeline.
+Jenkins pulls the latest code from GitHub.
+Then Jenkins runs a Maven build, to compile and package the application.
+After that, SonarQube checks the code quality.
+Then Jenkins runs the test cases, to make sure the code is working correctly.
+After testing, Jenkins builds a Docker image using the Dockerfile, and pushes it to the Docker Registry.
+Then the application is deployed on AWS, for example on an EC2 instance, by pulling the image and running it as a container.
+Finally, monitoring tools continuously check the application, to make sure it's running properly.
+This whole process is automated — every time a developer pushes code, it goes through build, test, quality check, and deployment automatically.</blockquote>
+</details>
+</section>
+
+<section class="part" id="architecture-recap">
+<div class="part-head"><h2>17 &middot; Architecture quick-revise</h2><span class="badge must">🔥 must know</span></div>
+<p class="part-note">The full explanations are in each tool's own section above. These are just the compressed, one-minute versions for a fast final review.</p>
+
+<details class="qa must" data-priority="must" open><summary>Git architecture (one-minute answer)</summary>
+<blockquote class="script">Git has four parts: Working Directory, Staging Area, Local Repository, and Remote Repository.
+I make changes in the Working Directory.
+I use git add to move changes to the Staging Area.
+I use git commit to save changes in the Local Repository.
+Finally, I use git push to send changes to the Remote Repository, like GitHub.</blockquote>
+</details>
+
+<details class="qa must" data-priority="must"><summary>GitHub's role (one-minute answer)</summary>
+<blockquote class="script">GitHub stores my remote repository in the cloud.
+My local Git repository connects to GitHub using git push and git pull.
+GitHub also connects with Jenkins using a webhook, so when I push code, Jenkins is triggered automatically.</blockquote>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Docker architecture (one-minute answer)</summary>
+<blockquote class="script">Docker architecture has a client, a daemon, images and containers, and a registry.
+I type a command in the Docker Client.
+It goes to the Docker Daemon.
+The Daemon checks for the image locally, or pulls it from the Docker Registry like Docker Hub, and then creates and runs the container.</blockquote>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Jenkins architecture (one-minute answer)</summary>
+<blockquote class="script">Jenkins has a Controller and Agents.
+The Controller manages and schedules the jobs.
+The Agent actually runs the build.
+When a developer pushes code, GitHub sends a webhook to Jenkins, the Controller assigns the job to an Agent, and the Agent runs the pipeline — build, test, and deploy.</blockquote>
+</details>
+
+<details class="qa should" data-priority="should"><summary>Terraform workflow (one-minute answer)</summary>
+<blockquote class="script">In Terraform, I first write my infrastructure as code in Terraform files.
+Then I run terraform init to set up the provider.
+Then terraform plan to preview the changes.
+Then terraform apply to create the actual resources in AWS.
+If I want to remove everything, I run terraform destroy.</blockquote>
+</details>
+
+<details class="qa should" data-priority="should"><summary>Ansible architecture (one-minute answer)</summary>
+<blockquote class="script">In Ansible, the Control Node is where Ansible is installed.
+It reads the Inventory file to know the Managed Nodes.
+I write tasks in a Playbook, using Modules.
+Ansible connects to the Managed Nodes through SSH, and runs the playbook tasks on them, without needing any agent installed.</blockquote>
+</details>
+</section>
+
+<section class="part" id="troubleshooting">
+<div class="part-head"><h2>18 &middot; Troubleshooting scenarios</h2><span class="badge must">🔥 must know</span></div>
+<p class="part-note">For every scenario, follow the same pattern out loud: what you'd check first → the command → the likely reason → the fix. You don't need to know the exact real answer — showing the right approach is what matters for a fresher.</p>
+
+<div class="scenario" data-priority="must"><h4>Docker container stopped</h4>
+<table><tr><td class="label">FIRST CHECK</td><td>Container status</td></tr><tr><td class="label">COMMAND</td><td class="cmd">docker ps -a</td></tr><tr><td class="label">REASON</td><td>Application crashed, wrong config, or missing dependency</td></tr><tr><td class="label">FIX</td><td>Check <span class="cmd">docker logs</span>, fix the issue, then <span class="cmd">docker start</span></td></tr></table>
+<div class="say">First I check docker ps -a to see the container status. Then I check docker logs to find the error. Based on the reason, I fix the issue and start the container again.</div>
+</div>
+
+<div class="scenario" data-priority="must"><h4>Container running but application not accessible</h4>
+<table><tr><td class="label">FIRST CHECK</td><td>Port mapping, security group</td></tr><tr><td class="label">COMMAND</td><td class="cmd">docker ps</td></tr><tr><td class="label">REASON</td><td>Wrong port mapping, or firewall blocking the port</td></tr><tr><td class="label">FIX</td><td>Fix port mapping, or open the port in the security group</td></tr></table>
+<div class="say">I check if the container port is mapped correctly using docker ps. Then I check the security group or firewall settings, to make sure the port is open.</div>
+</div>
+
+<div class="scenario" data-priority="must"><h4>Jenkins build failed</h4>
+<table><tr><td class="label">FIRST CHECK</td><td>Console output</td></tr><tr><td class="label">REASON</td><td>Code error, missing dependency, wrong configuration</td></tr><tr><td class="label">FIX</td><td>Fix the issue, rerun the build</td></tr></table>
+<div class="say">I check the console output of the failed build. I find the exact error message, fix the issue — like a code error or missing dependency — then I run the build again.</div>
+</div>
+
+<div class="scenario" data-priority="must"><h4>Jenkins cannot clone the GitHub repository</h4>
+<table><tr><td class="label">FIRST CHECK</td><td>Repository URL, credentials</td></tr><tr><td class="label">REASON</td><td>Wrong URL, expired token, network issue</td></tr><tr><td class="label">FIX</td><td>Update credentials or fix the URL</td></tr></table>
+<div class="say">I check if the repository URL is correct, and if the credentials or SSH key are valid. Sometimes the token expires, so I need to update it.</div>
+</div>
+
+<div class="scenario" data-priority="must"><h4>Git push failed</h4>
+<table><tr><td class="label">REASON</td><td>No permission, remote has new changes, wrong branch</td></tr><tr><td class="label">FIX</td><td><span class="cmd">git pull</span> first, then push again; check credentials</td></tr></table>
+<div class="say">First I check the error message. If it says the remote has new changes, I run git pull first, then push again. If it's a permission issue, I check my credentials.</div>
+</div>
+
+<div class="scenario" data-priority="must"><h4>Maven build failed</h4>
+<table><tr><td class="label">REASON</td><td>Compilation error, missing dependency, failed test</td></tr><tr><td class="label">FIX</td><td>Check the build log, fix code or pom.xml, rebuild</td></tr></table>
+<div class="say">I check the Maven build log to see if it's a compilation error, missing dependency, or failed test case, and then fix that issue.</div>
+</div>
+
+<div class="scenario" data-priority="must"><h4>EC2 server not reachable</h4>
+<table><tr><td class="label">FIRST CHECK</td><td>Instance state, security group, key pair</td></tr></table>
+<div class="say">I check if the instance is in running state. Then I check the security group rules, to see if the correct port is open. I also confirm I am using the right key and public IP.</div>
+</div>
+
+<div class="scenario" data-priority="must"><h4>Application is down</h4>
+<table><tr><td class="label">FIRST CHECK</td><td>Server reachable, process running, logs</td></tr></table>
+<div class="say">First I check if the server is reachable. Then I check if the application process is running. Then I check the application logs to find the reason.</div>
+</div>
+
+<div class="scenario" data-priority="should"><h4>CPU usage very high</h4>
+<table><tr><td class="label">COMMAND</td><td class="cmd">top</td></tr></table>
+<div class="say">I use the top command to check which process is using high CPU, then decide if I need to restart it or scale the server.</div>
+</div>
+
+<div class="scenario" data-priority="should"><h4>Disk is full</h4>
+<table><tr><td class="label">COMMAND</td><td class="cmd">df -h</td></tr></table>
+<div class="say">I use df -h to check disk usage, find which folder is taking space, and clean up unnecessary files or old logs.</div>
+</div>
+
+<div class="scenario" data-priority="should"><h4>Application is slow</h4>
+<table><tr><td class="label">FIRST CHECK</td><td>CPU, memory, logs</td></tr></table>
+<div class="say">I check CPU and memory usage, and application logs, to see if there's a resource issue or an error causing the slowness.</div>
+</div>
+
+<div class="scenario" data-priority="must"><h4>Docker image not found</h4>
+<table><tr><td class="label">REASON</td><td>Wrong image name/tag, or image not pushed to registry</td></tr></table>
+<div class="say">I check if the image name and tag are correct, and confirm the image is available in the Docker registry.</div>
+</div>
+
+<div class="scenario" data-priority="must"><h4>Jenkins pipeline failed during the Docker build stage</h4>
+<table><tr><td class="label">REASON</td><td>Dockerfile error, missing base image, syntax issue</td></tr></table>
+<div class="say">I check the console output for the Docker build stage, look at the Dockerfile for errors, and fix the issue, like a wrong base image or a syntax mistake.</div>
+</div>
+
+<div class="scenario" data-priority="must"><h4>Jenkins pipeline failed during the Maven build stage</h4>
+<table><tr><td class="label">REASON</td><td>Compilation error or missing dependency in pom.xml</td></tr></table>
+<div class="say">I check the console output for the Maven stage specifically, and look for compilation errors or missing dependencies in pom.xml.</div>
+</div>
+</section>
+
+<section class="part" id="project-questions">
+<div class="part-head"><h2>19 &middot; Questions about your project</h2><span class="badge must">🔥 must know</span></div>
+<p class="part-note">This answer assumes your practice project matches the full pipeline you've learned (GitHub → Jenkins → SonarQube → Maven → Docker → AWS → Monitoring). If your actual practice project was different, swap in your real tools and steps — but keep the same honest, fresher-level tone: this was practice, not production.</p>
+
+<details class="qa must" data-priority="must" open><summary>Tell me about your project.</summary>
+<div class="say">In my learning environment, I practiced building a complete CI/CD pipeline.
+I used GitHub to store my code, Jenkins to automate the build and deployment, Maven to build the application, SonarQube to check code quality, Docker to containerize the application, and I deployed it on an AWS EC2 instance.
+I also practiced basic monitoring to check the application status.
+This was a practice project, not a production project, but I did it hands-on by myself.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What was your role? What technologies did you use?</summary>
+<div class="say">Since it was my personal practice project, I did everything myself — writing the pipeline, configuring Jenkins, writing the Dockerfile, and deploying on AWS.
+I used Git, GitHub, Jenkins, Maven, SonarQube, Docker, and AWS, along with basic monitoring.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Why did you use Git / GitHub / Jenkins / Maven / Docker / AWS?</summary>
+<div class="say">I used Git to manage my source code and track changes.
+I used GitHub to store my code online, so Jenkins could access it and trigger the pipeline automatically.
+I used Jenkins to automate the whole process, so I didn't have to build and deploy manually every time.
+I used Maven because my application was Java-based, and Maven helped me build and package it easily.
+I used Docker to package my application with its dependencies, so it runs the same way on any server.
+I used AWS because it gave me a free-tier EC2 server to deploy and test my application in a real cloud environment.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How did your CI/CD pipeline work? How did you deploy the application?</summary>
+<div class="say">My pipeline worked the same way I explained earlier — code push, Jenkins build, SonarQube check, Maven package, Docker image, and deploy to AWS.
+To deploy, I built a Docker image of my application, pushed it to a registry, connected to my EC2 instance using SSH, pulled the image, and ran it as a container.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>How did you monitor it? What problems did you face? How did you troubleshoot?</summary>
+<div class="say">I did basic monitoring, checking things like CPU, memory, and application logs, to make sure the application was running properly.
+One problem I faced was, my Jenkins pipeline failed because of a wrong Dockerfile configuration. I checked the console output, found the mistake, fixed it, and the pipeline worked.
+In general, I check logs and console output first, to understand the exact error, and then fix the root cause step by step.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What did you learn from the project?</summary>
+<div class="say">I learned how all these DevOps tools work together in a real pipeline.
+I also improved my practical hands-on skills and my confidence to work with real-time scenarios.</div>
+</details>
+</section>
+
+<section class="part" id="hr-questions">
+<div class="part-head"><h2>20 &middot; HR questions</h2><span class="badge must">🔥 must know</span></div>
+<p class="part-note">Several of these repeat questions from the opening small talk section — that's normal, HR just asks them again. Use the same answers.</p>
+
+<details class="qa must" data-priority="must" open><summary>Why are you looking for a job?</summary>
+<div class="say">I completed my B.Sc. and I have been practicing DevOps tools.
+Now I am ready and looking for a job, to start my career and gain real-time experience.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>What did you learn during your training / self-practice?</summary>
+<div class="say">During my training, I learned how to use Git, Docker, Jenkins, and AWS.
+I also practiced building a basic CI/CD pipeline by myself.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Are you comfortable working in a team?</summary>
+<div class="say">Yes sir, I am comfortable working in a team.
+I believe teamwork helps us solve problems faster and learn from each other.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Where do you see yourself in the future?</summary>
+<div class="say">In the future, I see myself as an experienced DevOps engineer, working on real cloud projects, and continuously improving my skills.</div>
+</details>
+
+<details class="qa must" data-priority="must"><summary>Tell me about yourself / Why DevOps / Why should we hire you / Strengths / Weaknesses / Comfortable learning new tech / Any questions for us?</summary>
+<div class="say">These are the same questions from the "Opening small talk" section near the top of this page — use the same answers. And for "any questions for us", check the Final revision sheet at the bottom.</div>
+</details>
+</section>
+
+<section class="part" id="english-survival">
+<div class="part-head"><h2>21 &middot; English survival lines</h2><span class="badge must">🔥 memorise these</span></div>
+<p class="part-note">These are the sentences that save you when your mind goes blank. Memorise them word for word — they sound polite and confident in any interview.</p>
+
+<div class="phrase" data-priority="must"><div class="sit">When you don't understand the question</div><div class="say">Sorry sir, could you please repeat the question?</div></div>
+<div class="phrase" data-priority="must"><div class="sit">When you need a moment to think</div><div class="say">Sure sir, just a moment.</div></div>
+<div class="phrase" data-priority="must"><div class="sit">When you know the topic only partially</div><div class="say">I have basic knowledge of this topic.</div></div>
+<div class="phrase" data-priority="must"><div class="sit">When you genuinely don't know the answer</div><div class="say">Sorry sir, I don't know the exact answer.</div></div>
+<div class="phrase" data-priority="must"><div class="sit">When you've practiced something but have no production experience</div><div class="say">I have practiced this in my learning environment, but I have not worked on it in production.</div></div>
+<div class="phrase" data-priority="must"><div class="sit">When you want to correct yourself mid-answer</div><div class="say">Sorry sir, let me correct that.</div></div>
+<div class="phrase" data-priority="must"><div class="sit">When the interview is ending</div><div class="say">Thank you for your time and for this opportunity. I look forward to hearing from you.</div></div>
+</section>
+
+<section class="part" id="final-revision">
+<div class="part-head"><h2>Final revision sheet</h2><span class="badge must">🔥 read this last</span></div>
+<p class="part-note">Use this the night before, and again the morning of the interview. Don't learn anything new from here — just confirm you remember it.</p>
+
+<div class="version-label">1 &middot; Top 50 questions — final checklist</div>
+<div class="revision-grid">
+<ol class="revlist">
+<li><a href="#self-intro">Tell me about yourself / self-introduction</a></li>
+<li><a href="#interview-start">Why did you choose DevOps</a></li>
+<li><a href="#interview-start">Why are you interested in cloud</a></li>
+<li><a href="#interview-start">Strengths and weaknesses</a></li>
+<li><a href="#interview-start">Why should we hire you</a></li>
+<li><a href="#devops-basics">What is DevOps</a></li>
+<li><a href="#devops-basics">What is CI/CD</a></li>
+<li><a href="#devops-basics">CI vs CD vs Continuous Deployment</a></li>
+<li><a href="#devops-basics">What is a DevOps lifecycle</a></li>
+<li><a href="#devops-basics">What is version control</a></li>
+<li><a href="#linux">Linux permissions, r/w/x, owner/group/others</a></li>
+<li><a href="#linux">chmod, chown, and basic commands</a></li>
+<li><a href="#linux">How to check disk and memory usage</a></li>
+<li><a href="#git">What is Git, repository, staging area</a></li>
+<li><a href="#git">git add / commit / push / pull / fetch</a></li>
+<li><a href="#git">What is a merge conflict</a></li>
+<li><a href="#git">Explain the Git workflow</a></li>
+<li><a href="#github">Git vs GitHub</a></li>
+<li><a href="#github">What is a webhook</a></li>
+<li><a href="#github">How Jenkins connects with GitHub</a></li>
+<li><a href="#docker">What is Docker, why we use it</a></li>
+<li><a href="#docker-architecture">Docker architecture — full answer</a></li>
+<li><a href="#docker">Image vs Container</a></li>
+<li><a href="#docker">What is a Dockerfile</a></li>
+<li><a href="#docker">Volume vs Bind Mount</a></li>
+<li><a href="#docker">docker run / ps / stop / logs / exec</a></li>
+<li><a href="#docker">What happens when you run docker run nginx</a></li>
+<li><a href="#docker">Troubleshooting a stopped container</a></li>
+<li><a href="#jenkins">What is Jenkins, why we use it</a></li>
+<li><a href="#jenkins-architecture">Jenkins architecture — full answer</a></li>
+<li><a href="#jenkins">Controller vs Agent</a></li>
+<li><a href="#jenkins">What is a Jenkinsfile / pipeline / stage</a></li>
+<li><a href="#jenkins">Troubleshooting a failed build</a></li>
+<li><a href="#aws">What is AWS, EC2, S3</a></li>
+<li><a href="#aws">EC2 vs S3</a></li>
+<li><a href="#aws">IAM user vs IAM role</a></li>
+<li><a href="#aws">Security Group and VPC</a></li>
+<li><a href="#aws">How to connect to and deploy on EC2</a></li>
+<li><a href="#pipeline-final">Explain your complete CI/CD pipeline</a></li>
+<li><a href="#cicd-pipeline">Where does each tool fit in the pipeline</a></li>
+<li><a href="#troubleshooting">Docker container stopped — what will you check</a></li>
+<li><a href="#troubleshooting">Jenkins build failed — what will you check</a></li>
+<li><a href="#troubleshooting">EC2 not reachable — what will you check</a></li>
+<li><a href="#troubleshooting">Application is down / slow — what will you check</a></li>
+<li><a href="#project-questions">Tell me about your project</a></li>
+<li><a href="#project-questions">Why did you use each tool</a></li>
+<li><a href="#project-questions">What problems did you face</a></li>
+<li><a href="#hr-questions">Why are you looking for a job</a></li>
+<li><a href="#hr-questions">Comfortable working in a team</a></li>
+<li><a href="#maven">What is Maven, pom.xml, mvn commands</a></li>
+<li><a href="#terraform">Terraform init / plan / apply / destroy</a></li>
+</ol>
+</div>
+
+<div class="version-label">2 &middot; Top 30 to physically say out loud tonight</div>
+<p>Don't just read these — actually speak them, standing up, at normal volume, at least twice each:</p>
+<ol class="revlist">
+<li>Self-introduction — full version</li>
+<li>Self-introduction — emergency version</li>
+<li>Why did you choose DevOps</li>
+<li>What are your strengths / weaknesses</li>
+<li>Why should we hire you</li>
+<li>What is DevOps</li>
+<li>What is CI/CD</li>
+<li>Explain the Git workflow</li>
+<li>What is a webhook, and how Jenkins connects to GitHub</li>
+<li>Docker architecture — final one-minute answer</li>
+<li>Image vs Container</li>
+<li>What happens when you run docker run nginx</li>
+<li>Jenkins architecture — final one-minute answer</li>
+<li>What happens when a developer pushes code to GitHub</li>
+<li>What is EC2, and how do you connect to it</li>
+<li>What is IAM, Security Group, VPC</li>
+<li>The complete CI/CD pipeline — final answer (below)</li>
+<li>Docker container stopped — troubleshooting steps</li>
+<li>Jenkins build failed — troubleshooting steps</li>
+<li>EC2 not reachable — troubleshooting steps</li>
+<li>Tell me about your project</li>
+<li>Why did you use Docker / Jenkins / AWS in your project</li>
+<li>What problems did you face, and how did you fix them</li>
+<li>Why are you looking for a job</li>
+<li>Are you comfortable learning new technologies</li>
+<li>"I have practiced this in my learning environment, but not in production."</li>
+<li>"Sorry sir, could you please repeat the question?"</li>
+<li>What is Terraform, and its basic workflow</li>
+<li>What is Ansible, and its basic architecture</li>
+<li>Do you have any questions for us</li>
+</ol>
+
+<div class="version-label">3 &middot; Top architectures to revise</div>
+<p>Git, GitHub, Docker, Jenkins, Terraform, and Ansible — all compressed into one-minute answers in the <a href="#architecture-recap">Architecture quick-revise</a> section above.</p>
+
+<div class="version-label">4 &middot; Top commands to remember</div>
+<table class="cmdtable">
+<tr><th>Area</th><th>Command</th><th>What it does</th></tr>
+<tr><td>Linux</td><td class="cmd">chmod 755 file</td><td>Change permissions</td></tr>
+<tr><td>Linux</td><td class="cmd">df -h</td><td>Check disk usage</td></tr>
+<tr><td>Linux</td><td class="cmd">free -h</td><td>Check memory usage</td></tr>
+<tr><td>Linux</td><td class="cmd">ps -ef | grep name</td><td>Find a process</td></tr>
+<tr><td>Git</td><td class="cmd">git add / commit / push</td><td>Stage, save, and send changes</td></tr>
+<tr><td>Git</td><td class="cmd">git pull vs git fetch</td><td>Pull merges automatically, fetch does not</td></tr>
+<tr><td>Docker</td><td class="cmd">docker run / ps / logs / exec</td><td>Start, list, debug, enter a container</td></tr>
+<tr><td>Docker</td><td class="cmd">docker ps -a</td><td>Show all containers, including stopped</td></tr>
+<tr><td>Jenkins</td><td class="cmd">Console Output</td><td>Where you check why a build failed</td></tr>
+<tr><td>Maven</td><td class="cmd">mvn clean package</td><td>Build and package the application</td></tr>
+<tr><td>Terraform</td><td class="cmd">init → plan → apply</td><td>Set up, preview, then create infrastructure</td></tr>
+<tr><td>Ansible</td><td class="cmd">ansible-playbook</td><td>Run a playbook</td></tr>
+<tr><td>Kubernetes</td><td class="cmd">kubectl get pods</td><td>List running pods</td></tr>
+</table>
+
+<div class="version-label">5 &middot; Complete CI/CD pipeline answer</div>
+<blockquote class="script">I will explain my CI/CD pipeline step by step.
+First, the developer writes code and pushes it to GitHub.
+GitHub triggers a webhook, which automatically starts a Jenkins pipeline.
+Jenkins pulls the latest code from GitHub.
+Then Jenkins runs a Maven build, to compile and package the application.
+After that, SonarQube checks the code quality.
+Then Jenkins runs the test cases, to make sure the code is working correctly.
+After testing, Jenkins builds a Docker image using the Dockerfile, and pushes it to the Docker Registry.
+Then the application is deployed on AWS, for example on an EC2 instance, by pulling the image and running it as a container.
+Finally, monitoring tools continuously check the application, to make sure it's running properly.</blockquote>
+
+<div class="version-label">6 &middot; Self-introduction — emergency version</div>
+<blockquote class="script">Good morning sir.
+My name is [Your Name].
+I am a DevOps fresher.
+I have practiced Git, Docker, Jenkins, and AWS.
+I am ready to learn and work hard.
+Thank you.</blockquote>
+
+<div class="version-label">7 &middot; HR answers</div>
+<p>See the full <a href="#hr-questions">HR questions section</a> above — strengths, weaknesses, teamwork, and career goals are all there.</p>
+
+<div class="version-label">8 &middot; Common troubleshooting pattern</div>
+<p>For any "what will you check" question, always answer in this order: <strong>first check → command or tool → likely reason → fix.</strong> Full scenarios are in the <a href="#troubleshooting">Troubleshooting section</a> above.</p>
+
+<div class="version-label">9 &middot; Questions you can ask the interviewer</div>
+<blockquote class="script">What technologies does your team currently use for CI/CD?
+What will be my main responsibilities in this role?
+Will there be any training or mentorship for freshers?
+What does a typical day look like for a DevOps engineer here?</blockquote>
+</section>
+
+<footer class="end">
+<p>You've practiced Git, Docker, Jenkins, and AWS with your own hands — that already puts you ahead of many freshers who only read about these tools. Speak slowly, breathe, and if you don't know something, say so honestly using the survival lines above. That honesty is a strength, not a weakness. Good luck on Saturday.</p>
+</footer>
+
+</main>
+</div>
+<a href="#study-plan" class="top">↑ Top</a>
+<script>
+(function(){
+  var search = document.getElementById('search');
+  var filterBtns = document.querySelectorAll('.filterbtn');
+  var practiceBtn = document.getElementById('practiceBtn');
+  var revealBtn = document.getElementById('revealBtn');
+  var countEl = document.getElementById('count');
+  var activePriority = 'all';
+
+  function allItems(){
+    return document.querySelectorAll('.qa, .cmdrow, .scenario');
+  }
+
+  function applyFilters(){
+    var q = (search.value || '').toLowerCase().trim();
+    var items = allItems();
+    var visible = 0;
+    items.forEach(function(el){
+      var text = el.textContent.toLowerCase();
+      var matchesText = q === '' || text.indexOf(q) !== -1;
+      var pri = el.getAttribute('data-priority') || 'must';
+      var matchesPriority = activePriority === 'all' || pri === activePriority;
+      var show = matchesText && matchesPriority;
+      el.classList.toggle('hidden', !show);
+      if(show) visible++;
+    });
+    // hide whole sections with nothing visible
+    document.querySelectorAll('section.part').forEach(function(sec){
+      var kids = sec.querySelectorAll('.qa, .cmdrow, .scenario');
+      if(kids.length === 0) return;
+      var anyVisible = Array.prototype.some.call(kids, function(k){ return !k.classList.contains('hidden'); });
+      sec.style.display = anyVisible ? '' : 'none';
+    });
+    countEl.textContent = visible + ' shown';
+  }
+
+  search.addEventListener('input', applyFilters);
+  filterBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      filterBtns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      activePriority = btn.getAttribute('data-p');
+      applyFilters();
+    });
+  });
+
+  practiceBtn.addEventListener('click', function(){
+    document.querySelectorAll('details.qa').forEach(function(d){ d.open = false; });
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+  revealBtn.addEventListener('click', function(){
+    document.querySelectorAll('details.qa').forEach(function(d){ d.open = true; });
+  });
+
+  applyFilters();
+})();
+</script>
+</body>
+</html>
