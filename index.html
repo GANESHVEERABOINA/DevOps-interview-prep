@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DevOps Fresher — One-Day Interview Prep</title>
+<title>DevOps Interview Prep</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8E%AF%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -23,16 +23,8 @@
   --rule: rgba(255, 255, 255, 0.12);
   
   /* Accents */
-  --accent: #3b82f6;
+  --accent: #3b82f6; /* Blue accent for all items */
   --link: #60a5fa;
-  
-  /* Categories */
-  --must: #ef4444; 
-  --must-bg: rgba(239, 68, 68, 0.15);
-  --should: #f59e0b; 
-  --should-bg: rgba(245, 158, 11, 0.15);
-  --basic: #10b981; 
-  --basic-bg: rgba(16, 185, 129, 0.15);
   
   /* Fonts */
   --font-main: 'Inter', system-ui, -apple-system, sans-serif;
@@ -54,7 +46,7 @@ body {
 a { color: var(--link); text-decoration: none; transition: color 0.2s; }
 a:hover { color: #93c5fd; }
 
-/* Custom Scrollbar for Modern UI */
+/* Custom Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-main); }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
@@ -67,7 +59,7 @@ a:hover { color: #93c5fd; }
 /* ---------- Sidebar ---------- */
 nav.side {
   border-right: 1px solid var(--rule); 
-  padding: 24px 16px; 
+  padding: 32px 16px; 
   position: sticky; 
   top: 0; 
   align-self: start;
@@ -76,89 +68,36 @@ nav.side {
   background: var(--bg-main);
 }
 @media (max-width:900px){
-  nav.side { position: static; max-height: none; border-right: none; border-bottom: 1px solid var(--rule); }
+  nav.side { position: static; max-height: none; border-right: none; border-bottom: 1px solid var(--rule); padding: 20px 16px; }
 }
 
 nav.side .navtitle { 
   font-family: var(--font-mono); 
-  font-size: 11px; 
+  font-size: 12px; 
   text-transform: uppercase; 
   letter-spacing: 0.1em; 
   color: var(--text-muted); 
-  margin: 24px 8px 8px; 
+  margin: 0 8px 16px; 
 }
-nav.side ul { list-style: none; margin: 0; padding: 0; }
+nav.side ul { list-style: none; margin: 0 0 30px 0; padding: 0; }
 nav.side li a {
-  display: block; padding: 8px 12px; border-radius: 8px; color: var(--text-main); font-size: 14px;
-  transition: all 0.2s ease;
+  display: block; padding: 8px 12px; border-radius: 8px; color: var(--text-main); font-size: 14.5px;
+  transition: all 0.2s ease; margin-bottom: 2px;
 }
-nav.side li a:hover { background: var(--glass-bg); padding-left: 16px; }
-
-/* ---------- Toolbar (Glassmorphism) ---------- */
-.toolbar {
-  position: sticky; 
-  top: 0; 
-  z-index: 10; 
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--rule);
-  padding: 16px 32px; 
-  display: flex; 
-  gap: 12px; 
-  flex-wrap: wrap; 
-  align-items: center;
-}
-
-.toolbar input[type="search"] {
-  flex: 1; min-width: 160px; font-family: var(--font-main); font-size: 14px; padding: 10px 16px;
-  border: 1px solid var(--glass-border); border-radius: 8px; 
-  background: rgba(0,0,0,0.4); color: var(--text-main);
-  outline: none; transition: all 0.2s;
-}
-.toolbar input[type="search"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); }
-
-.toolbar button {
-  font-family: var(--font-main); font-weight: 500; font-size: 13px; padding: 9px 14px; 
-  border-radius: 8px; border: 1px solid var(--glass-border);
-  background: var(--glass-bg); color: var(--text-main); cursor: pointer;
-  transition: all 0.2s ease;
-}
-.toolbar button:hover { background: var(--glass-hover); }
-.toolbar button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-.toolbar .count { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+nav.side li a:hover { background: var(--glass-bg); padding-left: 16px; color: var(--accent); }
 
 /* ---------- Main content ---------- */
-main { padding: 16px 32px 60px; min-width: 0; }
+main { padding: 32px 40px 80px; min-width: 0; }
+@media (max-width:900px){ main { padding: 24px 20px 60px; } }
 
-.intro-block { padding: 22px 0 24px; border-bottom: 1px solid var(--rule); margin-bottom: 16px; }
-.intro-block h2 { font-size: 28px; margin: 0 0 12px; font-weight: 700; letter-spacing: -0.02em; }
-.intro-block p { color: var(--text-muted); }
+section.part { max-width: 80ch; padding: 30px 0 10px; border-top: 1px solid var(--rule); scroll-margin-top: 40px; }
+section.part:first-of-type { border-top: none; padding-top: 0; }
 
-.plan-grid { display: grid; gap: 12px; margin-top: 20px; }
-.plan-row { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 16px; 
-  background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; }
-.plan-row .time { font-family: var(--font-mono); font-size: 12.5px; color: var(--accent); font-weight: 500;}
+.part-head { margin-bottom: 20px; }
+.part-head h2 { margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.01em; color: #fff; }
 
-section.part { max-width: 80ch; padding: 40px 0 10px; border-top: 1px solid var(--rule); scroll-margin-top: 80px; }
-section.part:first-of-type { border-top: none; }
-
-.part-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
-.part-head h2 { margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
-.part-note { color: var(--text-muted); font-size: 15px; margin: 4px 0 24px; }
-
-/* Modern Badges */
-.badge {
-  font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
-  padding: 4px 10px; border-radius: 6px; white-space: nowrap; font-weight: 600;
-}
-.badge.must { background: var(--must-bg); color: var(--must); border: 1px solid rgba(239, 68, 68, 0.2); }
-.badge.should { background: var(--should-bg); color: var(--should); border: 1px solid rgba(245, 158, 11, 0.2); }
-.badge.basic { background: var(--basic-bg); color: var(--basic); border: 1px solid rgba(16, 185, 129, 0.2); }
-
-/* QA Sections */
-.qa { margin: 0 0 20px; scroll-margin-top: 80px; }
-.qa.hidden { display: none; }
+/* QA Sections (Uniform Styling) */
+.qa { border-left: 3px solid var(--accent); padding-left: 16px; margin: 0 0 20px; scroll-margin-top: 40px; }
 
 .qa summary {
   font-weight: 500; cursor: pointer; list-style: none; padding: 10px 12px; font-size: 17px;
@@ -171,8 +110,8 @@ section.part:first-of-type { border-top: none; }
 .qa[open] summary::before { content: "▾"; color: var(--accent); }
 
 /* Glassmorphism Cards for Answers */
-.qa .say, .scenario .say, .phrase .say, blockquote.script {
-  margin: 12px 0 12px 24px; 
+.qa .say, .scenario .say, .phrase .say {
+  margin: 12px 0 12px 10px; 
   padding: 16px 20px; 
   background: var(--glass-bg); 
   backdrop-filter: blur(12px);
@@ -185,7 +124,7 @@ section.part:first-of-type { border-top: none; }
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.qa .kp { margin: 10px 0 4px 24px; padding-left: 18px; color: var(--text-muted); font-size: 14.5px; }
+.qa .kp { margin: 10px 0 4px 10px; padding-left: 18px; color: var(--text-muted); font-size: 14.5px; }
 .qa .kp li { margin-bottom: 6px; }
 
 /* Commands */
@@ -193,392 +132,367 @@ section.part:first-of-type { border-top: none; }
   font-family: var(--font-mono); background: rgba(255,255,255,0.1); 
   padding: 2px 6px; border-radius: 4px; font-size: 13.5px; color: #93c5fd;
 }
-.cmdrow { margin: 0 0 12px 24px; padding: 12px 16px; background: var(--glass-bg); border-radius: 8px; border: 1px solid var(--glass-border); }
-.cmdrow.hidden { display: none; }
+.cmdrow { border-left: 3px solid var(--accent); margin: 0 0 16px 0; padding: 12px 16px; background: var(--glass-bg); border-radius: 0 8px 8px 0; border: 1px solid var(--glass-border); border-left: none; }
 .cmdrow .cmd { font-weight: 500; background: none; padding: 0; font-size: 14.5px;}
 .cmdrow p { margin: 4px 0 0; font-size: 14px; color: var(--text-muted); }
 
 /* Scenarios */
-.scenario { margin: 0 0 24px 24px; }
-.scenario.hidden { display: none; }
-.scenario h4 { margin: 0 0 10px; font-size: 16px; color: var(--must); }
+.scenario { border-left: 3px solid var(--accent); padding-left: 16px; margin: 0 0 24px 0; }
+.scenario h4 { margin: 0 0 10px; font-size: 16px; color: #fff; font-weight: 600; }
 .scenario table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 12px; }
 .scenario table td { padding: 4px 8px 4px 0; vertical-align: top; }
 .scenario table td.label { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); white-space: nowrap; width: 110px; text-transform: uppercase;}
 
-.version-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--accent); margin: 24px 0 8px 24px; letter-spacing: 0.05em; }
-
 /* Phrases */
-.phrase { margin-bottom: 16px; padding-left: 24px; }
-.phrase .sit { font-size: 14px; color: var(--should); font-weight: 500; margin-bottom: 4px; }
-
-/* Tables & Lists */
-.revision-grid { display: grid; gap: 8px; margin-left: 24px;}
-ol.revlist { padding-left: 20px; color: var(--text-muted); }
-ol.revlist li { margin-bottom: 8px; font-size: 15px; }
-
-.cmdtable { width: 100%; border-collapse: collapse; font-size: 14.5px; margin: 16px 0 24px 24px; }
-.cmdtable th, .cmdtable td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); }
-.cmdtable th { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-muted); }
-.cmdtable td.cmd { color: #93c5fd; }
+.phrase { border-left: 3px solid var(--accent); padding-left: 16px; margin-bottom: 20px; }
+.phrase .sit { font-size: 14px; color: var(--text-muted); font-weight: 500; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-mono); }
 
 .backtotop { 
   position: fixed; right: 24px; bottom: 24px; font-family: var(--font-main); font-weight: 500; font-size: 13px; 
   padding: 10px 16px; border-radius: 24px; background: var(--glass-bg); backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border); color: #fff; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
-.backtotop:hover { background: var(--glass-hover); transform: translateY(-2px); }
-
-footer.end { max-width: 80ch; padding: 40px 0 60px; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--rule); margin-top: 40px;}
+.backtotop:hover { background: var(--glass-hover); transform: translateY(-2px); border-color: var(--accent); }
 
 @media print{
-  nav.side, .toolbar, .backtotop { display: none !important; }
+  nav.side, .backtotop { display: none !important; }
   .wrap { grid-template-columns: 1fr; }
   body { font-size: 12.5px; background: white; color: black; }
   a { color: inherit; }
-  .qa .say, .scenario .say { background: #f0f0f0; border: 1px solid #ccc; color: black; filter: none; }
+  .qa .say, .scenario .say, .phrase .say { background: #f0f0f0; border: 1px solid #ccc; color: black; filter: none; }
 }
 </style>
 </head>
 <body>
 <div class="wrap">
 <nav class="side">
-  <div class="toolbar" style="position:static;border:none;padding:0 0 20px;flex-direction:column;align-items:stretch;background:transparent;backdrop-filter:none;">
-    <input type="search" id="search" placeholder="Search a question...">
-    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
-      <button class="filterbtn active" data-p="all">All</button>
-      <button class="filterbtn" data-p="must">🔥 Must</button>
-      <button class="filterbtn" data-p="should">⭐ Should</button>
-      <button class="filterbtn" data-p="basic">🟢 Basic</button>
-    </div>
-    <div style="display:flex;gap:8px;margin-top:10px;">
-      <button id="practiceBtn" style="flex:1;">🎤 Practice mode</button>
-      <button id="revealBtn" style="flex:1;">👁 Reveal all</button>
-    </div>
-    <div class="count" id="count" style="margin-top:10px;"></div>
-  </div>
-  <div class="navtitle">Start here</div>
+  <div class="navtitle">Interview Topics</div>
   <ul>
-    <li><a href="#study-plan">One-day study plan</a></li>
-    <li><a href="#hr-questions">HR & Personal</a></li>
-    <li><a href="#devops-basics">DevOps Basics</a></li>
-  </ul>
-  <div class="navtitle">🔥 Must know</div>
-  <ul>
-    <li><a href="#linux">Linux</a></li>
-    <li><a href="#git">Git & GitHub</a></li>
-    <li><a href="#docker">Docker</a></li>
-    <li><a href="#jenkins">Jenkins</a></li>
-    <li><a href="#aws">AWS</a></li>
-    <li><a href="#cicd-pipeline">Full CI/CD pipeline</a></li>
-    <li><a href="#architecture-recap">Architecture Recap</a></li>
-    <li><a href="#troubleshooting">Troubleshooting</a></li>
-    <li><a href="#project-questions">Your project</a></li>
-    <li><a href="#english-survival">English survival lines</a></li>
-  </ul>
-  <div class="navtitle">⭐ Should know</div>
-  <ul>
-    <li><a href="#maven">Maven</a></li>
-    <li><a href="#monitoring">Monitoring (Prometheus, Grafana)</a></li>
-    <li><a href="#terraform">Terraform</a></li>
-    <li><a href="#ansible">Ansible</a></li>
-  </ul>
-  <div class="navtitle">🟢 Basic only</div>
-  <ul>
-    <li><a href="#kubernetes">Kubernetes</a></li>
-    <li><a href="#sonarqube">SonarQube</a></li>
-    <li><a href="#networking">Networking</a></li>
-    <li><a href="#python-basics">Python</a></li>
-  </ul>
-  <div class="navtitle">Last look</div>
-  <ul>
-    <li><a href="#final-revision">Final revision sheet</a></li>
+    <li><a href="#hr-questions">1. HR & Personal</a></li>
+    <li><a href="#saving-words">2. Saving Words</a></li>
+    <li><a href="#devops-basics">3. DevOps Basics</a></li>
+    <li><a href="#linux">4. Linux</a></li>
+    <li><a href="#git">5. Git & GitHub</a></li>
+    <li><a href="#docker">6. Docker</a></li>
+    <li><a href="#jenkins">7. Jenkins</a></li>
+    <li><a href="#kubernetes">8. Kubernetes</a></li>
+    <li><a href="#sonarqube">9. SonarQube</a></li>
+    <li><a href="#aws">10. AWS</a></li>
+    <li><a href="#ansible">11. Ansible</a></li>
+    <li><a href="#terraform">12. Terraform</a></li>
+    <li><a href="#architectures">13. Architectures</a></li>
+    <li><a href="#project-questions">14. Your Project</a></li>
   </ul>
 </nav>
+
 <main id="content">
 
-<div class="intro-block" id="study-plan">
-<h2>Your one-day study plan</h2>
-<p>You can't deeply revise everything in one day, and you don't need to. Follow this order. The 🔥 sections are non-negotiable — everything else is a bonus if you have time left.</p>
-<div class="plan-grid">
-  <div class="plan-row"><div class="time">Morning</div><div>Self introduction (all 3 versions, out loud, 10 times). HR Questions. DevOps basics. Linux. Git &amp; GitHub.</div></div>
-  <div class="plan-row"><div class="time">Afternoon</div><div>Docker (your strong area — go deep here). Jenkins. AWS basics. Then the full CI/CD pipeline answer — say it out loud until it's smooth.</div></div>
-  <div class="plan-row"><div class="time">Evening</div><div>Troubleshooting scenarios. Your project questions. English survival lines — memorise these, they save you when you freeze.</div></div>
-  <div class="plan-row"><div class="time">Before bed</div><div>Quick skim of Maven, Monitoring, Terraform, Ansible — just enough to not go blank. Skim Kubernetes, SonarQube, networking, Python for 2 minutes each.</div></div>
-  <div class="plan-row"><div class="time">Morning of</div><div>Do NOT cram new topics. Only re-read the "Final revision sheet" at the bottom of this page and say your self-introduction out loud twice.</div></div>
-</div>
-</div>
-
 <section class="part" id="hr-questions">
-<div class="part-head"><h2>1 &middot; HR & Personal Questions</h2><span class="badge must">🔥 must know</span></div>
-<p class="part-note">This is almost always the first real part of the interview. Practice these until they feel natural.</p>
+<div class="part-head"><h2>1. HR & Personal Questions</h2></div>
 
-<details class="qa must" data-priority="must" open><summary>Introduce yourself...!</summary>
+<details class="qa" open><summary>Introduce yourself...!</summary>
 <div class="say">Hi, thank you for this opportunity. I am Ganesh Veeraboina, with a background in Computer Science and a focus on DevOps and Automation.
 I work with Linux and Git, set up CI/CD pipelines using Jenkins, and integrate SonarQube for code quality. I also containerize apps with Docker, manage them via Kubernetes, automate infrastructure using Terraform and Ansible, and use monitoring tools to ensure smooth operations.
 I am seeking an entry-level role to apply these skills to real-world projects and grow within a team. Thank you.
 That is all about me for now.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>Why are you looking for a job change?</summary>
+<details class="qa"><summary>Why are you looking for a job change?</summary>
 <div class="say">I have learned a lot and delivered good projects in my current company. However, I am now looking for new technical challenges, a larger infrastructure to manage, and better career growth. I believe this new role will give me that opportunity.
 That is the reason for my job change.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>Why do you want to join our company?</summary>
+<details class="qa"><summary>Why do you want to join our company?</summary>
 <div class="say">I have read about your company's recent projects and growth. I am looking for a place where I can work on real-time challenges and improve my DevOps skills. Your company has a great technical environment where I can contribute my knowledge and also learn from senior experts.
 That is why I want to join your team.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What are your greatest strengths?</summary>
+<details class="qa"><summary>What are your greatest strengths?</summary>
 <div class="say">My greatest strength is my problem-solving ability. In DevOps, servers crash and deployments fail unexpectedly. I stay calm under pressure, check the logs, and find the root cause quickly. I am also a fast learner who adapts easily to new tools.
 Those are my main strengths.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is your weakness?</summary>
+<details class="qa"><summary>What is your weakness?</summary>
 <div class="say">Sometimes I focus too much on small details to make the automation script or pipeline absolutely perfect, which takes a bit of extra time. However, I am actively learning to balance perfection with project deadlines by prioritizing the most important tasks first.
 That is a weakness I am working on.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>How do you handle work pressure or critical production issues?</summary>
+<details class="qa"><summary>How do you handle work pressure or critical production issues?</summary>
 <div class="say">In DevOps, production issues are common. When a live server goes down, I do not panic. My first priority is to bring the application back online for the users quickly, maybe by restarting or rolling back. Once it is stable, I investigate the logs peacefully to find the actual root cause.
 That is how I handle pressure.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>How do you handle a disagreement with a developer or team member?</summary>
+<details class="qa"><summary>How do you handle a disagreement with a developer or team member?</summary>
 <div class="say">I believe in clear communication. If a developer's code fails in my pipeline, I do not blame them. Instead, I politely share the error logs with them and work together to find a solution. My focus is always on fixing the problem as a team.
 That is how I handle team conflicts.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>Where do you see yourself in the next 3 to 5 years?</summary>
+<details class="qa"><summary>Where do you see yourself in the next 3 to 5 years?</summary>
 <div class="say">In the next few years, I see myself as a Senior DevOps Engineer or a Cloud Architect. I want to master advanced cloud security and Kubernetes, and take on more responsibilities to guide junior team members.
 That is my future career goal.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What are your salary expectations?</summary>
+<details class="qa"><summary>What are your salary expectations?</summary>
 <div class="say">I am looking for a salary that matches my skills, experience, and the current industry standards. I am open to discussing this based on the budget you have for this role and the responsibilities involved.
 That is my expectation regarding salary.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>Do you have any questions for us?</summary>
+<details class="qa"><summary>Do you have any questions for us?</summary>
 <div class="say">Yes, I do. Could you please tell me more about the exact DevOps tools your team is using right now? Also, what would be my immediate daily responsibilities if I am selected for this role?
 Those are my questions for you.</div>
 </details>
 </section>
 
-<section class="part" id="devops-basics">
-<div class="part-head"><h2>2 &middot; DevOps Basics</h2><span class="badge must">🔥 must know</span></div>
+<section class="part" id="saving-words">
+<div class="part-head"><h2>2. Saving Words (Survival Lines)</h2></div>
 
-<details class="qa must" data-priority="must" open><summary>What is DevOps?</summary>
+<div class="phrase"><div class="sit">To Buy Time</div>
+<div class="say">Please give me a second to recall.
+Can I take a moment to think?</div></div>
+
+<div class="phrase"><div class="sit">If You Don't Know</div>
+<div class="say">I haven't worked on this directly, but I am quick to learn.
+I don't know the exact answer, but I will check the logs and research it.</div></div>
+
+<div class="phrase"><div class="sit">Forgot the Command</div>
+<div class="say">I don't remember the exact command, but I know the logic.
+I usually check the official documentation for the exact syntax.</div></div>
+
+<div class="phrase"><div class="sit">Didn't Understand</div>
+<div class="say">Sorry, can you please repeat the question?
+Could you please rephrase the question?</div></div>
+
+<div class="phrase"><div class="sit">Partial Knowledge</div>
+<div class="say">I am not an expert in this, but I know the basics.
+I haven't configured it from scratch, but I have monitored it.</div></div>
+</section>
+
+<section class="part" id="devops-basics">
+<div class="part-head"><h2>3. DevOps Basics</h2></div>
+
+<details class="qa" open><summary>What is DevOps?</summary>
 <div class="say">In simple words, DevOps is a combination of Development and Operations.
 Earlier, developers used to write the code and give it to the operations team to deploy. This caused a lot of delays. DevOps solves this by bringing both teams together.
 The main goal is to automate the entire software delivery process. This helps companies release software faster, with fewer errors, and less manual work.
 - That is my basic understanding of DevOps.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>Why do we need DevOps? (What problem does it solve?)</summary>
+<details class="qa"><summary>Why do we need DevOps? (What problem does it solve?)</summary>
 <div class="say">Before DevOps, developers used to write the code and give it to the operations team to deploy. If the code failed on the server, developers blamed the server, and operations blamed the code. DevOps removes this wall between them by sharing the responsibility and automating the manual work.
 - That is why we need DevOps.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What are the main stages of the DevOps Lifecycle?</summary>
+<details class="qa"><summary>What are the main stages of the DevOps Lifecycle?</summary>
 <div class="say">The DevOps lifecycle is an endless, continuous loop. It includes Continuous Development (writing code), Continuous Integration (building code), Continuous Testing (finding bugs), Continuous Deployment (pushing to servers), and Continuous Monitoring (checking server health).
 - That covers the DevOps lifecycle.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is the difference between Agile and DevOps?</summary>
+<details class="qa"><summary>What is the difference between Agile and DevOps?</summary>
 <div class="say">Agile is a methodology used mainly by the Development team to plan and write software quickly in small steps. DevOps takes it a step further by including the Operations team to automatically test and deploy that software directly to the servers.
 - That is the difference between them.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is the main role of a DevOps Engineer?</summary>
+<details class="qa"><summary>What is the main role of a DevOps Engineer?</summary>
 <div class="say">The main goal of a DevOps engineer is to automate everything. Instead of doing manual work, we build CI/CD pipelines. So, whenever a developer writes code, it gets automatically tested and safely deployed to the live servers without any human errors.
 - That is the main role of a DevOps engineer.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is the difference between Continuous Delivery and Continuous Deployment?</summary>
+<details class="qa"><summary>What is the difference between Continuous Delivery and Continuous Deployment?</summary>
 <div class="say">In Continuous Delivery, the code is tested automatically, but a human must manually click a button to approve and deploy it to live servers. In Continuous Deployment, there is no human touch; if the code passes all tests, it is automatically pushed to the live servers immediately.
 - That is the main difference.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is Infrastructure as Code (IaC) in DevOps?</summary>
+<details class="qa"><summary>What is Infrastructure as Code (IaC) in DevOps?</summary>
 <div class="say">IaC means managing and creating our cloud servers using simple code instead of manually clicking buttons on a website. Tools like Terraform and Ansible help us do this. If we need to build 100 servers, we just run the code, and it builds them exactly the same way every time without errors.
 - That is Infrastructure as Code.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is the difference between Monolithic and Microservices architecture?</summary>
+<details class="qa"><summary>What is the difference between Monolithic and Microservices architecture?</summary>
 <div class="say">In a Monolithic architecture, the entire application is built as one single, large block. If one part fails, the whole app crashes. In Microservices, the app is broken down into small, independent parts. DevOps prefers Microservices because they are much easier to update and scale without affecting the rest of the app.
 - That is the difference between them.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is Automation in DevOps?</summary>
+<details class="qa"><summary>What is Automation in DevOps?</summary>
 <div class="say">Automation means using tools to perform repetitive tasks automatically without human manual effort. In DevOps, we automate everything from testing the code, building the servers, to deploying the application. This saves a lot of time and completely removes human errors.
 - That is what automation is.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What are the main benefits of using DevOps?</summary>
+<details class="qa"><summary>What are the main benefits of using DevOps?</summary>
 <div class="say">The main benefits are faster software delivery to the customers and highly stable server environments. It also saves a lot of time by automating repetitive manual tasks, and it helps teams recover very quickly if a server crashes.
 - Those are the main benefits of DevOps.</div>
 </details>
 </section>
 
 <section class="part" id="linux">
-<div class="part-head"><h2>3 &middot; Linux</h2><span class="badge must">🔥 must know</span></div>
+<div class="part-head"><h2>4. Linux</h2></div>
 
-<details class="qa must" data-priority="must" open><summary>What is Linux?</summary>
+<details class="qa" open><summary>What is Linux?</summary>
 <div class="say">Technically, Linux is a kernel. It acts as a bridge between the user and the computer hardware. When we run commands, it translates them into a language the computer understands and gives the result back to us. In DevOps, we use it because it is highly secure and stable for our servers.
 - That is what Linux is.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a Server?</summary>
+<details class="qa"><summary>What is a Server?</summary>
 <div class="say">A server is simply a powerful computer that runs 24 hours a day to provide services. For example, it stores the application code and databases so users can access the website anytime over the internet without any interruption.
 - That is a basic server.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is the difference between Linux and Windows?</summary>
+<details class="qa"><summary>What is the difference between Linux and Windows?</summary>
 <div class="say">Windows has a graphical interface and is mostly used for personal computers. Linux is mostly command-line based and is widely used for servers. Companies prefer Linux because it is faster, secure, and free to use.
 - That is the main difference.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What are some Linux commands you use daily?</summary>
+<details class="qa"><summary>What are some Linux commands you use daily?</summary>
 <div class="say">I regularly use basic commands to navigate and check files. For example, I use 'ls' to list files, 'cd' to change directories, 'mkdir' to create folders, and 'cat' to view the contents of a file. I also use 'grep' to search for specific words inside logs.
 - Those are my most used commands.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is the use of the 'sudo' command?</summary>
+<details class="qa"><summary>What is the use of the 'sudo' command?</summary>
 <div class="say">In Linux, regular users cannot perform admin tasks, like installing software or changing system files. If we need admin rights temporarily, we add 'sudo' before the command. It gives us superuser access for that specific task.
 - That covers the sudo command.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>How do you check and change file permissions?</summary>
+<details class="qa"><summary>How do you check and change file permissions?</summary>
 <div class="say">We use the 'ls -l' command to check who can read, write, or execute a file. If we want to change these permissions, we use the 'chmod' command. For example, 'chmod 777' gives full permissions to everyone.
 - That is how we handle permissions.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>How do you check running processes on a server?</summary>
+<details class="qa"><summary>How do you check running processes on a server?</summary>
 <div class="say">If a server is slow, we need to see which application is using too much CPU or memory. We use the 'top' command to see a live list of all running processes. We can also use the 'ps' command to check specific processes.
 - That is how we monitor processes.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a package manager in Linux?</summary>
+<details class="qa"><summary>What is a package manager in Linux?</summary>
 <div class="say">A package manager is a tool that helps us easily install, update, or remove software. For example, in Ubuntu we use 'apt', and in RedHat we use 'yum'. It automatically downloads the software and sets it up.
 - That is the role of a package manager.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>How do you check if your server is connected to the internet?</summary>
+<details class="qa"><summary>How do you check if your server is connected to the internet?</summary>
 <div class="say">We use the 'ping' command followed by a website name, like 'ping google.com'. If the server is connected, it will receive a response back. If it fails, it means there is a network issue.
 - That is how we check connectivity.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>How do you check logs in Linux?</summary>
+<details class="qa"><summary>How do you check logs in Linux?</summary>
 <div class="say">Logs are very important to find out why an application or server failed. To check live logs, I use the 'tail -f' command, which shows the new lines as they are happening. If I need to find a specific error in a large file, I use the 'grep' command to search for it.
 - That is how I check logs.</div>
 </details>
+
+<div class="cmdrow"><span class="cmd">chmod</span><p>Used to change file or directory permissions. Example: chmod 755 filename</p></div>
+<div class="cmdrow"><span class="cmd">chown</span><p>Used to change the owner of a file or directory.</p></div>
+<div class="cmdrow"><span class="cmd">pwd</span><p>Shows the current working directory.</p></div>
+<div class="cmdrow"><span class="cmd">ls</span><p>Lists files and directories.</p></div>
+<div class="cmdrow"><span class="cmd">cd</span><p>Changes the current directory.</p></div>
+<div class="cmdrow"><span class="cmd">mkdir</span><p>Creates a new directory.</p></div>
+<div class="cmdrow"><span class="cmd">touch</span><p>Creates a new empty file.</p></div>
+<div class="cmdrow"><span class="cmd">cp</span><p>Copies files or directories.</p></div>
+<div class="cmdrow"><span class="cmd">mv</span><p>Moves or renames files.</p></div>
+<div class="cmdrow"><span class="cmd">rm</span><p>Removes files or directories.</p></div>
+<div class="cmdrow"><span class="cmd">cat</span><p>Shows the content of a file.</p></div>
+</div class="cmdrow"><span class="cmd">grep</span><p>Searches for a word or pattern inside a file.</p></div>
 </section>
 
 <section class="part" id="git">
-<div class="part-head"><h2>4 &middot; Git & GitHub</h2><span class="badge must">🔥 must know</span></div>
+<div class="part-head"><h2>5. Git & GitHub</h2></div>
 
-<details class="qa must" data-priority="must" open><summary>What is Git?</summary>
+<details class="qa" open><summary>What is Git?</summary>
 <div class="say">Git is a version control system used to track changes in code. When multiple developers work on a project, Git helps them work together without deleting each other's files. It keeps a history of who made what change and when.
 - That is all about Git.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is the difference between Git and GitHub?</summary>
+<details class="qa"><summary>What is the difference between Git and GitHub?</summary>
 <div class="say">Git is the command-line tool we install on our laptop to track code changes locally. GitHub is an online platform where we can store and share our Git repositories with other team members.
 - That is the main difference.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a repository (repo) in Git?</summary>
+<details class="qa"><summary>What is a repository (repo) in Git?</summary>
 <div class="say">A repository is like a main folder for a project. It contains all the project files, sub-folders, and the complete history of all the changes made to those files since the beginning.
 - That covers the repository.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a branch in Git?</summary>
+<details class="qa"><summary>What is a branch in Git?</summary>
 <div class="say">A branch is like a separate, safe workspace. If a developer wants to work on a new feature, they create a new branch so they don't disturb the main working code. Once tested, it is merged back.
 - That is the use of a branch.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a commit in Git?</summary>
+<details class="qa"><summary>What is a commit in Git?</summary>
 <div class="say">A commit is like saving a checkpoint of your work. When we make changes to a file and commit it, Git permanently saves that specific version along with a small message explaining what we changed.
 - That is what a commit means.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is the standard Git workflow to push code?</summary>
+<details class="qa"><summary>What is the standard Git workflow to push code?</summary>
 <div class="say">First, we use 'git add' to select the modified files. Next, we use 'git commit' to save those changes locally with a message. Finally, we use 'git push' to upload the code from our laptop to GitHub.
 - That is the standard Git workflow.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is the difference between 'git fetch' and 'git pull'?</summary>
+<details class="qa"><summary>What is the difference between 'git fetch' and 'git pull'?</summary>
 <div class="say">'git fetch' simply checks GitHub for any new changes but does not mix them with our local code. 'git pull' downloads the new changes and immediately merges them into our current working files.
 - That is the difference between them.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a merge conflict?</summary>
+<details class="qa"><summary>What is a merge conflict?</summary>
 <div class="say">A merge conflict happens when two developers change the exact same line in the same file. Git gets confused about which change to keep, so a developer has to manually check and fix the file before merging.
 - That is a merge conflict.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>How do you download code from GitHub to your laptop?</summary>
+<details class="qa"><summary>How do you download code from GitHub to your laptop?</summary>
 <div class="say">We use the 'git clone' command followed by the repository URL. This downloads a full copy of the remote GitHub project onto our local machine, including all its branches and history.
 - That is how we clone a repo.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a Pull Request (PR) in GitHub?</summary>
+<details class="qa"><summary>What is a Pull Request (PR) in GitHub?</summary>
 <div class="say">A Pull Request is a request to merge your new code into the main branch. It allows other team members to review your code, discuss changes, and approve it before the code actually goes to the main branch.
 - That is the purpose of a PR.</div>
 </details>
 </section>
 
 <section class="part" id="docker">
-<div class="part-head"><h2>5 &middot; Docker</h2><span class="badge must">🔥 must know</span></div>
+<div class="part-head"><h2>6. Docker</h2></div>
 
-<details class="qa must" data-priority="must" open><summary>What is Docker?</summary>
+<details class="qa" open><summary>What is Docker?</summary>
 <div class="say">Docker is a tool used to containerize applications. Sometimes an app works on a developer's laptop but fails on the server. Docker fixes this by packing the app and all its requirements into a single box called a container. This ensures the application runs exactly the same way anywhere.
 - That covers Docker.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is the difference between a Virtual Machine (VM) and a Container?</summary>
+<details class="qa"><summary>What is the difference between a Virtual Machine (VM) and a Container?</summary>
 <div class="say">A Virtual Machine needs its own full operating system to run, which makes it heavy and slow. A Docker container shares the host's operating system, making it very lightweight and fast to start.
 - That is the main difference.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a Docker Image?</summary>
+<details class="qa"><summary>What is a Docker Image?</summary>
 <div class="say">A Docker Image is like a read-only template or a blueprint. It contains the application code, libraries, and everything needed to run the application, but it is not running yet.
 - That covers Docker Image.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a Docker Container?</summary>
+<details class="qa"><summary>What is a Docker Container?</summary>
 <div class="say">A container is the running instance of a Docker Image. When we execute a Docker Image, it becomes a live container and starts running the application inside it.
 - That is a Docker Container.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a Dockerfile?</summary>
+<details class="qa"><summary>What is a Dockerfile?</summary>
 <div class="say">A Dockerfile is a simple text file with a set of instructions. It tells Docker how to build a Docker Image step by step, like what base OS to use and what files to copy.
 - That is the use of a Dockerfile.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is Docker Hub?</summary>
+<details class="qa"><summary>What is Docker Hub?</summary>
 <div class="say">Docker Hub is an online cloud storage, just like GitHub but for Docker Images. We can download ready-made images from it, like Ubuntu or MySQL, or upload our own custom images to share with others.
 - That is Docker Hub.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>How do you build an image from a Dockerfile?</summary>
+<details class="qa"><summary>How do you build an image from a Dockerfile?</summary>
 <div class="say">We use the 'docker build' command. We go to the folder where the Dockerfile is located and run this command. Docker reads the instructions in the file and creates the image.
 - That is how we build an image.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What are some basic Docker commands you use daily?</summary>
+<details class="qa"><summary>What are some basic Docker commands you use daily?</summary>
 <div class="say">I use 'docker images' to see the list of images, and 'docker ps' to check running containers. To start a new container, I use 'docker run', and to stop it, I use 'docker stop'.
 - Those are my regular Docker commands.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a Docker Volume?</summary>
+<details class="qa"><summary>What is a Docker Volume?</summary>
 <div class="say">Normally, when a container gets deleted, all the data inside it is also lost. To prevent this, we use Docker Volumes. It safely saves the container's data on our main server so we don't lose it.
 - That is the purpose of Docker Volumes.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>Can you explain the Dockerfile instructions?</summary>
+<details class="qa"><summary>Can you explain the Dockerfile instructions?</summary>
 <div class="say">- FROM: Selects the base operating system.
 - WORKDIR: Sets the working folder inside the container.
 - RUN: Installs the required software while building the image.
@@ -592,9 +506,9 @@ The main goal is to automate the entire software delivery process. This helps co
 </section>
 
 <section class="part" id="jenkins">
-<div class="part-head"><h2>6 &middot; Jenkins</h2><span class="badge must">🔥 must know</span></div>
+<div class="part-head"><h2>7. Jenkins</h2></div>
 
-<details class="qa must" data-priority="must" open><summary>What is CI/CD?</summary>
+<details class="qa" open><summary>What is CI/CD?</summary>
 <div class="say">CI/CD stands for Continuous Integration and Continuous Deployment.
 Continuous Integration (CI) is the first part. Whenever developers write new code, they merge it into a main branch. Then, automated tools instantly test that code to catch bugs early.
 Continuous Deployment (CD) is the next step. It takes that tested code and automatically pushes it to the servers.
@@ -602,487 +516,51 @@ In short, it is an automated pipeline that moves code from a developer's laptop 
 - So, that's CI/CD in short.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is Jenkins?</summary>
+<details class="qa"><summary>What is Jenkins?</summary>
 <div class="say">Jenkins is a popular open-source tool used for automation.
 Its main job is to run CI/CD pipelines. Whenever a developer pushes code to Git, Jenkins automatically picks it up, builds it, and tests it to find errors.
 Basically, it works like a robot that removes manual work and saves a lot of time for the team.
 - That is the main role of Jenkins.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a Jenkinsfile?</summary>
+<details class="qa"><summary>What is a Jenkinsfile?</summary>
 <div class="say">A Jenkinsfile is a simple text file where we define our entire CI/CD pipeline.
 Instead of creating jobs manually in the Jenkins UI, we write steps like build, test, and deploy as code. It is then stored in the Git repository along with the actual application code.
 - That is what we call Pipeline-as-Code in Jenkins.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is the difference between Declarative and Scripted pipelines?</summary>
+<details class="qa"><summary>What is the difference between Declarative and Scripted pipelines?</summary>
 <div class="say">There are two ways to write a Jenkinsfile. Scripted is the older way, which uses complex programming logic. Declarative is the newer and easier way, which uses a very simple and readable structure. We mostly use Declarative pipelines today.
 - That is the difference between them.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What are Jenkins Plugins?</summary>
+<details class="qa"><summary>What are Jenkins Plugins?</summary>
 <div class="say">Jenkins alone cannot do everything on its own. Plugins are small add-ons that give extra features to Jenkins. For example, if we want Jenkins to connect to Git, Docker, or SonarQube, we just install their specific plugins.
 - That is the use of plugins.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a Jenkins Workspace?</summary>
+<details class="qa"><summary>What is a Jenkins Workspace?</summary>
 <div class="say">A workspace is simply a temporary folder created by Jenkins on the server. When a pipeline runs, Jenkins downloads the code from Git into this folder, does all the building and testing here, and moves forward.
 - That is a Jenkins workspace.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>How does Jenkins automatically know when new code is pushed to Git?</summary>
+<details class="qa"><summary>How does Jenkins automatically know when new code is pushed to Git?</summary>
 <div class="say">We use a feature called Webhooks. We configure a webhook in GitHub. So, the moment a developer pushes new code, GitHub automatically sends a signal to Jenkins, and Jenkins immediately starts the pipeline.
 - That is how Webhooks work.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>What is a Jenkins Agent (or Slave node)?</summary>
+<details class="qa"><summary>What is a Jenkins Agent (or Slave node)?</summary>
 <div class="say">If we run hundreds of jobs on the main Jenkins server (Master), it will become slow or crash. To avoid this, we connect extra servers to Jenkins, called Agents. The Master just gives the orders, and these Agents do the actual heavy work of building the code.
 - That is the Jenkins Agent concept.</div>
 </details>
 
-<details class="qa must" data-priority="must"><summary>How do you troubleshoot a failed pipeline in Jenkins?</summary>
+<details class="qa"><summary>How do you troubleshoot a failed pipeline in Jenkins?</summary>
 <div class="say">If a pipeline fails, the first thing I do is check the console logs in Jenkins. The logs clearly show exactly which step failed and give the error message. Based on that error, I investigate further or inform the development team.
 - That is my troubleshooting approach.</div>
 </details>
-</section>
 
-<section class="part" id="aws">
-<div class="part-head"><h2>7 &middot; AWS</h2><span class="badge must">🔥 must know</span></div>
-
-<details class="qa must" data-priority="must" open><summary>What is AWS?</summary>
-<div class="say">AWS stands for Amazon Web Services. It is a cloud computing platform that provides resources like servers, storage, and databases over the internet. Instead of buying physical hardware, we just rent it on a pay-as-you-go basis.
-- That is what AWS is.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>What is an EC2 instance?</summary>
-<div class="say">EC2 stands for Elastic Compute Cloud. It is simply a virtual server in the AWS cloud. We can choose our required CPU, RAM, and operating system (like Linux or Windows) to run our applications on it.
-- That covers EC2.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>What is Amazon S3?</summary>
-<div class="say">S3 stands for Simple Storage Service. It is an unlimited cloud storage service where we can safely store and retrieve any amount of data, like images, logs, and backups. We store these files in folders called "Buckets".
-- That is what S3 is.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>What is IAM in AWS?</summary>
-<div class="say">IAM stands for Identity and Access Management. It is a security service used to create users, groups, and roles. It helps us control exactly who can access which AWS resources and what actions they can perform.
-- That is the main role of IAM.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>What is the difference between an IAM Role and an IAM Policy?</summary>
-<div class="say">An IAM Policy is a JSON document that defines exact permissions, like "allow read access to S3". An IAM Role is an identity that we attach to AWS resources (like EC2 instances), not to human users. The Role uses the Policy to get the permissions it needs.
-- That is the difference between them.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>What is a VPC?</summary>
-<div class="say">VPC stands for Virtual Private Cloud. It allows us to create our own isolated, private network inside the AWS public cloud. We place our databases and main servers inside this VPC so hackers on the internet cannot reach them directly.
-- That covers VPC.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>What is a Security Group?</summary>
-<div class="say">A Security Group acts as a virtual firewall for our EC2 instances. It controls the network traffic going in and coming out of our server. For example, we open port 22 for SSH access and port 80 for web traffic using security group rules.
-- That is the purpose of a Security Group.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>What is an Auto Scaling Group?</summary>
-<div class="say">Auto Scaling automatically monitors our application load. If the user traffic suddenly increases, it automatically adds more EC2 servers to handle the load. When the traffic drops, it automatically removes the extra servers to save costs.
-- That is how Auto Scaling works.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>What is an Elastic Load Balancer (ELB)?</summary>
-<div class="say">When multiple EC2 instances are running, a Load Balancer sits in front of them. It receives all the incoming user traffic and distributes it equally among the active instances so that no single server is overloaded or crashes.
-- That is the use of a Load Balancer.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>What is Amazon Route 53?</summary>
-<div class="say">Route 53 is the DNS (Domain Name System) service of AWS. Its main job is to act like a phonebook. It connects user-friendly website names (like mywebsite.com) to the actual IP addresses of our Load Balancers or EC2 servers.
-- That is Route 53.</div>
-</details>
-</section>
-
-<section class="part" id="terraform">
-<div class="part-head"><h2>8 &middot; Terraform</h2><span class="badge should">⭐ should know</span></div>
-
-<details class="qa should" data-priority="should" open><summary>What is Terraform?</summary>
-<div class="say">Terraform is an Infrastructure as Code tool. Instead of manually logging into a cloud provider to create servers, we write simple code to create them. If we need the exact same setup again, we just run the code.
-- That is how Terraform works.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>Can you explain the standard Terraform workflow?</summary>
-<div class="say">The daily workflow uses three main commands. First, we run 'terraform init' to download the required plugins. Then, we run 'terraform plan' to see a preview of what will be created. Finally, we run 'terraform apply' to actually create those resources in the cloud.
-- That is the standard workflow.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is a Terraform Provider?</summary>
-<div class="say">Terraform can work with many platforms like AWS, Azure, or Kubernetes. A provider is like a plugin that helps Terraform understand and connect to a specific cloud platform's API to create those resources.
-- That is the role of a provider.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is the Terraform State file?</summary>
-<div class="say">When Terraform creates resources, it needs to remember what it created. It stores all this information in a file called 'terraform.tfstate'. It acts as a database mapping our written code to the actual real cloud resources.
-- That covers the state file.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>Why do we need a Remote Backend?</summary>
-<div class="say">By default, the state file is saved locally on our laptop. If a team of developers is working together, everyone needs access to the same state file. So, we store it remotely in a central place, like an AWS S3 bucket, to share it securely.
-- That is why we use a remote backend.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is State Locking in Terraform?</summary>
-<div class="say">If two developers run 'terraform apply' at the exact same time, the state file can get corrupted. State locking prevents this by locking the file when one person is using it, making the second person wait. We usually use AWS DynamoDB for this.
-- That is the purpose of state locking.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What are Terraform Modules?</summary>
-<div class="say">Modules are like reusable folders of Terraform code. If we need to create the same type of server for different environments (like Dev, QA, and Prod), we don't write the code 3 times. We just create one module and reuse it to save time.
-- That is the use of modules.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>How do you pass inputs to your Terraform code?</summary>
-<div class="say">We use Variables. Instead of hardcoding values like server names or instance types directly in the main code, we define them in a 'variables.tf' file. This makes our code very flexible and easy to change.
-- That is how we use variables.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is the 'terraform destroy' command?</summary>
-<div class="say">This command is used to permanently delete the infrastructure. It reads the state file, finds every resource that Terraform created, and cleanly removes them from the cloud platform. We mostly use this in testing environments to save costs.
-- That is how we use the destroy command.</div>
-</details>
-</section>
-
-<section class="part" id="ansible">
-<div class="part-head"><h2>9 &middot; Ansible</h2><span class="badge should">⭐ should know</span></div>
-
-<details class="qa should" data-priority="should" open><summary>What is Ansible?</summary>
-<div class="say">Ansible is a configuration management tool. If I need to install a software on a hundred servers, doing it manually takes hours. With Ansible, I can write a simple playbook and update all servers at the exact same time.
-- That is it for Ansible.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is the main advantage of Ansible?</summary>
-<div class="say">The biggest advantage is that Ansible is "agentless". Unlike other tools, we do not need to install any special software or agents on the target servers. It simply connects to them using basic SSH and does the work.
-- That is its main advantage.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is an Ansible Inventory?</summary>
-<div class="say">An inventory is simply a text file where we list the IP addresses of all our target servers. We can also group these servers, like putting all web servers in one group and database servers in another, to manage them easily.
-- That covers the inventory.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is an Ansible Playbook?</summary>
-<div class="say">A playbook is a YAML file where we write our actual automation code. It contains a list of tasks, like installing packages, starting services, or copying files, which we want to execute on our target servers.
-- That is an Ansible playbook.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What are Ansible Modules?</summary>
-<div class="say">Modules are the actual tools that do the work in Ansible. When we write a task in a playbook, we use a specific module. For example, we use the 'yum' or 'apt' module to install software, and the 'copy' module to transfer files.
-- That is the use of modules.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What does Idempotency mean in Ansible?</summary>
-<div class="say">Idempotency is a very important concept. It means no matter how many times you run an Ansible playbook, it will only make changes if they are actually needed. If the server is already correctly configured, it will do nothing.
-- That is what idempotency means.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is an Ansible Role?</summary>
-<div class="say">When a playbook becomes too big, it is very hard to read and manage. Roles help us break down that big playbook into smaller, organized folders like tasks, variables, and files. This makes the code clean and easy to reuse.
-- That is the purpose of roles.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What are Ad-hoc commands in Ansible?</summary>
-<div class="say">Playbooks are used for full setups. But if we want to do a quick task, like checking the uptime of 50 servers immediately, we run a single line command in the terminal instead of writing a full playbook.
-- That covers ad-hoc commands.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>How does Ansible connect to Linux servers securely?</summary>
-<div class="say">Ansible uses standard SSH keys for connection. We generate an SSH key on our main Ansible server and copy the public key to all the target servers. After that, Ansible can connect and run tasks without asking for a password.
-- That is how the connection works.</div>
-</details>
-</section>
-
-<section class="part" id="monitoring">
-<div class="part-head"><h2>10 &middot; Monitoring</h2><span class="badge should">⭐ should know</span></div>
-
-<details class="qa should" data-priority="should" open><summary>Why do we need Monitoring in DevOps?</summary>
-<div class="say">We need monitoring to constantly check the health of our servers and applications. If a server's CPU goes to 100% or an application crashes, monitoring tools immediately send us an alert so we can fix it quickly.
-- That is the main purpose of monitoring.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is Prometheus?</summary>
-<div class="say">Prometheus is an open-source monitoring tool. Its main job is to collect numerical data, called "metrics", from our servers. Examples of metrics are CPU usage, memory usage, and hard disk space.
-- That is what Prometheus is.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>How does Prometheus collect data?</summary>
-<div class="say">Prometheus uses a "Pull" mechanism. Instead of waiting for the servers to push their data, Prometheus actively connects to the target servers at regular intervals (like every 15 seconds) and pulls the data itself.
-- That is how it collects data.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is Node Exporter?</summary>
-<div class="say">Node Exporter is a small software we install on our Linux servers. Prometheus cannot understand the server directly. So, Node Exporter reads the server's CPU and memory data, and translates it into a format that Prometheus can understand and pull.
-- That covers Node Exporter.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is Grafana?</summary>
-<div class="say">Grafana is an open-source visualization tool. Prometheus collects the raw data, but raw numbers are hard to read. Grafana connects to Prometheus and converts that raw data into beautiful, easy-to-understand graphs and dashboards.
-- That is the role of Grafana.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is the relationship between Prometheus and Grafana?</summary>
-<div class="say">They work perfectly together like a backend and frontend. Prometheus is the backend database that silently collects and stores the server metrics. Grafana is the frontend screen that displays those metrics as charts.
-- That is their relationship.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is PromQL?</summary>
-<div class="say">PromQL stands for Prometheus Query Language. It is a simple language we use to search, filter, and calculate the metrics stored inside Prometheus, just like we use SQL to search in normal databases.
-- That is what PromQL is.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is Loki?</summary>
-<div class="say">Loki is a log aggregation tool. Instead of manually logging into 10 different servers to check error logs, Loki collects all the text logs from every server and stores them in one central place.
-- That is what Loki is.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is the difference between Prometheus and Loki?</summary>
-<div class="say">The difference is very simple. Prometheus is used only for "Metrics" (numbers, like CPU 80%). Loki is used only for "Logs" (text messages, like 'Error 404' or 'Database connection failed'). Both can be connected to Grafana.
-- That is the main difference between them.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>How do you get alerts if a server goes down?</summary>
-<div class="say">We use a tool called Alertmanager. If a server goes down, Prometheus detects it and sends a signal to Alertmanager. Alertmanager then immediately sends an automated email or a Slack message to the DevOps team.
-- That is how alerting works.</div>
-</details>
-</section>
-
-<section class="part" id="kubernetes">
-<div class="part-head"><h2>11 &middot; Kubernetes</h2><span class="badge basic">🟢 basic only</span></div>
-
-<details class="qa basic" data-priority="basic" open><summary>What is Kubernetes?</summary>
-<div class="say">Kubernetes is an orchestration tool used to manage containers. While Docker is used to create containers, managing hundreds of them manually is very difficult. Kubernetes automatically handles scaling, restarting, and managing these containers. 
-- That is Kubernetes in short.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is the difference between Docker and Kubernetes?</summary>
-<div class="say">Docker is used to build and run single containers. But if we have hundreds of containers, managing them manually is very difficult. Kubernetes is the tool that automatically manages, scales, and monitors all those Docker containers.
-- That is the main difference.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is a Pod in Kubernetes?</summary>
-<div class="say">A Pod is the smallest and most basic unit in Kubernetes. In Kubernetes, we do not run containers directly. Instead, we put the container inside a Pod, and Kubernetes manages that Pod. Usually, one Pod contains one container.
-- That covers the Pod concept.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is a Node in Kubernetes?</summary>
-<div class="say">A Node is simply a physical server or a virtual machine in our Kubernetes cluster. There are two types: Master nodes that control and manage everything, and Worker nodes where our actual application Pods are running.
-- That is what a Node is.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is a Deployment in Kubernetes?</summary>
-<div class="say">A Deployment is a resource used to manage our Pods. If a Pod crashes, the Deployment automatically creates a new one to replace it. It also helps us easily upgrade our application to a new version without any downtime.
-- That is the purpose of a Deployment.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is a Kubernetes Service?</summary>
-<div class="say">Pods are born and die constantly, and their IP addresses keep changing. A Service acts as a load balancer and gives a permanent IP address to a group of Pods. This allows users to access our application constantly without worrying about changing IPs.
-- That is the role of a Service.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is a ReplicaSet?</summary>
-<div class="say">A ReplicaSet ensures that a specific number of Pods are always running. For example, if we configure it to keep 3 Pods running, and one suddenly crashes, the ReplicaSet immediately starts a new one to maintain the count of 3.
-- That is how a ReplicaSet works.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is a Namespace?</summary>
-<div class="say">A Namespace is like a virtual cluster inside our main Kubernetes cluster. If multiple teams (like Dev, QA, Prod) are using the same cluster, we create separate namespaces for them so their resources do not mix or disturb each other.
-- That covers Namespaces.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is 'kubectl'?</summary>
-<div class="say">'kubectl' is the command-line tool we use to talk to the Kubernetes cluster. Just like we use Docker commands, we use 'kubectl' commands to create resources, check Pod status, view logs, and manage the entire cluster from our laptop.
-- That is the use of kubectl.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>How do you manage configurations and passwords in Kubernetes?</summary>
-<div class="say">We use ConfigMaps and Secrets. We use ConfigMaps to store plain text configurations, like database URLs. For sensitive data, like passwords and API keys, we safely store them using Secrets.
-- That is how we manage them.</div>
-</details>
-</section>
-
-<section class="part" id="sonarqube">
-<div class="part-head"><h2>12 &middot; SonarQube</h2><span class="badge basic">🟢 basic only</span></div>
-
-<details class="qa basic" data-priority="basic" open><summary>What is SonarQube?</summary>
-<div class="say">SonarQube is an automated code quality testing tool. Think of it like a grammar checker, but for programming code. It automatically scans the developer's code to find hidden errors and security issues before the app goes live.
-- That is what SonarQube is.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What exactly does SonarQube check? (Bugs, Vulnerabilities, Code Smells)</summary>
-<div class="say">It mainly checks three things. First is a Bug, which is an error that will crash the app. Second is a Vulnerability, which is a security hole that hackers can use. Third is a Code Smell, which is not an error, but confusing code that is hard to read and maintain later.
-- Those are the main things it checks.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is a Quality Gate?</summary>
-<div class="say">A Quality Gate is just a strict pass or fail rule. We can set a rule like "the code must have zero bugs". If the code meets this rule, the gate says "Passed". If it doesn't, the gate says "Failed" and stops the code from moving forward.
-- That is the purpose of a Quality Gate.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is a Quality Profile?</summary>
-<div class="say">A Quality Profile is simply a collection of rules for a specific language. For example, Java will have its own set of rules, and Python will have a different set. SonarQube uses this profile to check if the developer followed the correct coding standards for that language.
-- That covers Quality Profiles.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>How does SonarQube work with Jenkins?</summary>
-<div class="say">We put SonarQube right inside our CI/CD pipeline. After Jenkins builds the code, it runs the Sonar scan. If the Quality Gate fails, Jenkins automatically stops the pipeline, prevents the deployment, and sends an alert to the developers.
-- That is how they work together.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is Code Coverage in SonarQube?</summary>
-<div class="say">Code coverage simply tells us how much of the code is actually being tested. If the coverage is 80%, it means the developers wrote test cases for 80% of their code. The remaining 20% is untested and might have hidden issues.
-- That is what code coverage means.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is "Technical Debt" in SonarQube?</summary>
-<div class="say">Technical debt is an estimate of time. Sometimes developers write messy code just to finish a task quickly. SonarQube analyzes this and tells us exactly how many hours or days it will take to clean up and fix that messy code in the future.
-- That is technical debt.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is a SonarScanner?</summary>
-<div class="say">SonarQube has two main parts: the Server and the Scanner. The SonarScanner is a small tool that runs on our Jenkins machine. It actually reads the code, analyzes it, and then sends the final report to the main SonarQube Server dashboard to display.
-- That is the role of SonarScanner.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>What is a "False Positive" and how do you handle it?</summary>
-<div class="say">Sometimes SonarQube flags a piece of code as a bug, but as humans, we know it is actually safe and correct. This is a false positive. In this case, an admin or senior developer can simply log into SonarQube and manually mark that issue as "Resolved" or "Safe".
-- That is how we handle false positives.</div>
-</details>
-
-<details class="qa basic" data-priority="basic"><summary>Why do we use SonarQube when developers already review the code manually?</summary>
-<div class="say">Manual code reviews take a lot of time, and humans can easily miss small security flaws in thousands of lines of code. SonarQube automates this. It checks everything in a few seconds and guarantees that bad code never reaches the live servers.
-- That is the main benefit of SonarQube.</div>
-</details>
-</section>
-
-<section class="part" id="architecture-recap">
-<div class="part-head"><h2>13 &middot; Architecture Recap</h2><span class="badge must">🔥 must know</span></div>
-
-<details class="qa must" data-priority="must" open><summary>Can you explain the Docker architecture?</summary>
-<div class="say">Docker follows a Client-Server architecture. It consists of 4 main components:
-- Docker Client: The CLI or terminal where users run commands (like docker build or docker run).
-- Docker Daemon (Server): The background service running on the host that listens to client requests and manages objects.
-- Images and Containers: Images are the read-only templates, and containers are the running instances of those images.
-- Docker Registry: The storage system (like Docker Hub) where we push and pull Docker images.
-- That covers the Docker architecture.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>Can you explain the Git architecture?</summary>
-<div class="say">Git follows a Distributed Version Control architecture. It consists of 4 main areas:
-- Working Directory: The local folder where we create and edit our files.
-- Staging Area: A temporary index where we add files before committing them.
-- Local Repository: The hidden .git folder on our laptop where our committed history is saved safely.
-- Remote Repository: The central server (like GitHub) where we push our code to collaborate with others.
-- That covers the Git architecture.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>Can you explain the Jenkins architecture?</summary>
-<div class="say">Jenkins follows a Master-Agent (or Master-Slave) distributed architecture. It consists of 3 main components:
-- Jenkins Master: The main server that schedules jobs, monitors the agents, and records the pipeline results.
-- Jenkins Agent (Node): The worker servers that actually execute the builds, run tests, and do the heavy lifting.
-- Webhooks / SCM: The trigger mechanism that automatically notifies the Master when new code is pushed to Git.
-- That covers the Jenkins architecture.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>Can you explain the Terraform architecture?</summary>
-<div class="say">Terraform follows a Plugin-based architecture. It consists of 3 main components:
-- Terraform Core: The main engine that reads our configuration files and creates the execution plan.
-- Terraform Providers: The plugins (like AWS, Azure) that allow Terraform to communicate with the actual cloud APIs.
-- State File (.tfstate): The database file where Terraform tracks and maps the real-world cloud resources to our code.
-- That covers the Terraform architecture.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>Can you explain the Ansible architecture?</summary>
-<div class="say">Ansible follows a Push-based, Agentless architecture. It consists of 4 main components:
-- Control Node: The main machine where Ansible is installed and where we run our commands.
-- Inventory: A configuration file containing the IP addresses or hostnames of all target servers.
-- Playbooks & Modules: Playbooks are YAML files containing tasks, and Modules are the tools that execute those tasks.
-- Managed Nodes: The target servers that are configured via standard SSH connection, without needing any agents.
-- That covers the Ansible architecture.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>Can you explain a basic AWS VPC architecture?</summary>
-<div class="say">A standard AWS VPC follows a Multi-tier network architecture. It consists of 4 main components:
-- VPC (Virtual Private Cloud): The main isolated, private network boundary in the AWS cloud.
-- Internet Gateway (IGW): The component attached to the VPC that allows communication with the outside internet.
-- Public Subnets: The network areas that have direct internet access (used for Load Balancers or Web Servers).
-- Private Subnets: The secure network areas with no direct internet access (used for backend Databases).
-- That covers the VPC architecture.</div>
-</details>
-
-<details class="qa must" data-priority="must"><summary>Can you explain the Kubernetes (K8s) architecture?</summary>
-<div class="say">Kubernetes follows a Master-Worker cluster architecture. It consists of 4 core components:
-- Control Plane (Master Node): The brain of the cluster. It includes the API Server, Scheduler, and etcd database to manage everything.
-- Data Plane (Worker Nodes): The physical or virtual machines where our actual applications run.
-- Kubelet: The primary agent that runs on every worker node and communicates with the Master node.
-- Pods: The smallest deployable units in Kubernetes that contain one or more running containers.
-- That covers the Kubernetes architecture.</div>
-</details>
-</section>
-
-<section class="part" id="english-survival">
-<div class="part-head"><h2>14 &middot; English survival lines</h2><span class="badge must">🔥 memorise these</span></div>
-<p class="part-note">These are the sentences that save you when your mind goes blank. Memorise them word for word — they sound polite and confident in any interview.</p>
-
-<div class="phrase" data-priority="must"><div class="sit">To Buy Time</div><div class="say">Please give me a second to recall.
-Can I take a moment to think?</div></div>
-<div class="phrase" data-priority="must"><div class="sit">If You Don't Know</div><div class="say">I haven't worked on this directly, but I am quick to learn.
-I don't know the exact answer, but I will check the logs and research it.</div></div>
-<div class="phrase" data-priority="must"><div class="sit">Forgot the Command</div><div class="say">I don't remember the exact command, but I know the logic.
-I usually check the official documentation for the exact syntax.</div></div>
-<div class="phrase" data-priority="must"><div class="sit">Didn't Understand</div><div class="say">Sorry, can you please repeat the question?
-Could you please rephrase the question?</div></div>
-<div class="phrase" data-priority="must"><div class="sit">Partial Knowledge</div><div class="say">I am not an expert in this, but I know the basics.
-I haven't configured it from scratch, but I have monitored it.</div></div>
-</section>
-
-<!-- ORIGINAL TEMPLATE SECTIONS KEPT AS IS -->
-
-<section class="part" id="maven">
-<div class="part-head"><h2>15 &middot; Maven</h2><span class="badge should">⭐ should know</span></div>
-
-<details class="qa should" data-priority="should" open><summary>What is Maven? Why do we use it?</summary>
-<div class="say">Maven is a build tool for Java projects.
-It helps us compile code, manage dependencies, and package the application.
-We use it because it automatically downloads required libraries and builds the project in a standard way.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is pom.xml? What are dependencies?</summary>
-<div class="say">pom.xml is the configuration file of Maven. It contains the project details and the list of dependencies.
-Dependencies are external libraries that our project needs to work.</div>
-</details>
-
-<details class="qa should" data-priority="should"><summary>What is the Maven lifecycle?</summary>
-<div class="say">The Maven lifecycle has phases like validate, compile, test, package, and install, which run in order.</div>
-</details>
-</section>
-
-<section class="part" id="python-basics">
-<div class="part-head"><h2>Basic Python</h2><span class="badge basic">🟢 basic only</span></div>
-<details class="qa basic" data-priority="basic" open><summary>What is Python used for in DevOps?</summary>
-<div class="say">Python is used to write automation scripts, like checking server status, processing logs, or automating small tasks.
-I have basic knowledge of Python, and I have practiced simple scripts in my learning environment.</div>
-</details>
-</section>
-
-<section class="part" id="networking">
-<div class="part-head"><h2>Basic Networking</h2><span class="badge basic">🟢 basic only</span></div>
-<details class="qa basic" data-priority="basic" open><summary>What is networking? What is an IP address?</summary>
-<div class="say">Networking means connecting computers and servers together, so they can communicate and share data.
-An IP address is a unique number that identifies a device on a network.</div>
-</details>
-</section>
-
-<section class="part" id="cicd-pipeline">
-<div class="part-head"><h2>16 &middot; Complete CI/CD pipeline</h2><span class="badge must">🔥 must know</span></div>
-<p class="part-note">Pipeline: Developer → GitHub → Jenkins → SonarQube → Maven → Test → Docker → Docker Registry → AWS → Monitoring. This is one of the most likely questions you'll get — practice the final answer below until it's smooth.</p>
-<details class="qa must" data-priority="must" id="pipeline-final" open><summary>Explain your CI/CD pipeline. (final 30–60 second answer)</summary>
-<blockquote class="script">I will explain my CI/CD pipeline step by step.
+<details class="qa"><summary>Explain your CI/CD pipeline.</summary>
+<div class="say">I will explain my CI/CD pipeline step by step.
 First, the developer writes code and pushes it to GitHub.
 GitHub triggers a webhook, which automatically starts a Jenkins pipeline.
 Jenkins pulls the latest code from GitHub.
@@ -1092,27 +570,338 @@ Then Jenkins runs the test cases, to make sure the code is working correctly.
 After testing, Jenkins builds a Docker image using the Dockerfile, and pushes it to the Docker Registry.
 Then the application is deployed on AWS, for example on an EC2 instance, by pulling the image and running it as a container.
 Finally, monitoring tools continuously check the application, to make sure it's running properly.
-This whole process is automated — every time a developer pushes code, it goes through build, test, quality check, and deployment automatically.</blockquote>
+This whole process is automated — every time a developer pushes code, it goes through build, test, quality check, and deployment automatically.</div>
 </details>
 </section>
 
-<section class="part" id="troubleshooting">
-<div class="part-head"><h2>17 &middot; Troubleshooting scenarios</h2><span class="badge must">🔥 must know</span></div>
-<p class="part-note">For every scenario, follow the same pattern out loud: what you'd check first → the command → the likely reason → the fix.</p>
-<div class="scenario" data-priority="must"><h4>Docker container stopped</h4>
-<div class="say">First I check docker ps -a to see the container status. Then I check docker logs to find the error. Based on the reason, I fix the issue and start the container again.</div>
-</div>
-<div class="scenario" data-priority="must"><h4>Jenkins build failed</h4>
-<div class="say">I check the console output of the failed build. I find the exact error message, fix the issue — like a code error or missing dependency — then I run the build again.</div>
-</div>
-<div class="scenario" data-priority="must"><h4>EC2 server not reachable</h4>
-<div class="say">I check if the instance is in running state. Then I check the security group rules, to see if the correct port is open. I also confirm I am using the right key and public IP.</div>
-</div>
+<section class="part" id="kubernetes">
+<div class="part-head"><h2>8. Kubernetes</h2></div>
+
+<details class="qa" open><summary>What is Kubernetes?</summary>
+<div class="say">Kubernetes is an orchestration tool used to manage containers. While Docker is used to create containers, managing hundreds of them manually is very difficult. Kubernetes automatically handles scaling, restarting, and managing these containers. 
+- That is Kubernetes in short.</div>
+</details>
+
+<details class="qa"><summary>What is the difference between Docker and Kubernetes?</summary>
+<div class="say">Docker is used to build and run single containers. But if we have hundreds of containers, managing them manually is very difficult. Kubernetes is the tool that automatically manages, scales, and monitors all those Docker containers.
+- That is the main difference.</div>
+</details>
+
+<details class="qa"><summary>What is a Pod in Kubernetes?</summary>
+<div class="say">A Pod is the smallest and most basic unit in Kubernetes. In Kubernetes, we do not run containers directly. Instead, we put the container inside a Pod, and Kubernetes manages that Pod. Usually, one Pod contains one container.
+- That covers the Pod concept.</div>
+</details>
+
+<details class="qa"><summary>What is a Node in Kubernetes?</summary>
+<div class="say">A Node is simply a physical server or a virtual machine in our Kubernetes cluster. There are two types: Master nodes that control and manage everything, and Worker nodes where our actual application Pods are running.
+- That is what a Node is.</div>
+</details>
+
+<details class="qa"><summary>What is a Deployment in Kubernetes?</summary>
+<div class="say">A Deployment is a resource used to manage our Pods. If a Pod crashes, the Deployment automatically creates a new one to replace it. It also helps us easily upgrade our application to a new version without any downtime.
+- That is the purpose of a Deployment.</div>
+</details>
+
+<details class="qa"><summary>What is a Kubernetes Service?</summary>
+<div class="say">Pods are born and die constantly, and their IP addresses keep changing. A Service acts as a load balancer and gives a permanent IP address to a group of Pods. This allows users to access our application constantly without worrying about changing IPs.
+- That is the role of a Service.</div>
+</details>
+
+<details class="qa"><summary>What is a ReplicaSet?</summary>
+<div class="say">A ReplicaSet ensures that a specific number of Pods are always running. For example, if we configure it to keep 3 Pods running, and one suddenly crashes, the ReplicaSet immediately starts a new one to maintain the count of 3.
+- That is how a ReplicaSet works.</div>
+</details>
+
+<details class="qa"><summary>What is a Namespace?</summary>
+<div class="say">A Namespace is like a virtual cluster inside our main Kubernetes cluster. If multiple teams (like Dev, QA, Prod) are using the same cluster, we create separate namespaces for them so their resources do not mix or disturb each other.
+- That covers Namespaces.</div>
+</details>
+
+<details class="qa"><summary>What is 'kubectl'?</summary>
+<div class="say">'kubectl' is the command-line tool we use to talk to the Kubernetes cluster. Just like we use Docker commands, we use 'kubectl' commands to create resources, check Pod status, view logs, and manage the entire cluster from our laptop.
+- That is the use of kubectl.</div>
+</details>
+
+<details class="qa"><summary>How do you manage configurations and passwords in Kubernetes?</summary>
+<div class="say">We use ConfigMaps and Secrets. We use ConfigMaps to store plain text configurations, like database URLs. For sensitive data, like passwords and API keys, we safely store them using Secrets.
+- That is how we manage them.</div>
+</details>
+</section>
+
+<section class="part" id="sonarqube">
+<div class="part-head"><h2>9. SonarQube</h2></div>
+
+<details class="qa" open><summary>What is SonarQube?</summary>
+<div class="say">SonarQube is an automated code quality testing tool. Think of it like a grammar checker, but for programming code. It automatically scans the developer's code to find hidden errors and security issues before the app goes live.
+- That is what SonarQube is.</div>
+</details>
+
+<details class="qa"><summary>What exactly does SonarQube check? (Bugs, Vulnerabilities, Code Smells)</summary>
+<div class="say">It mainly checks three things. First is a Bug, which is an error that will crash the app. Second is a Vulnerability, which is a security hole that hackers can use. Third is a Code Smell, which is not an error, but confusing code that is hard to read and maintain later.
+- Those are the main things it checks.</div>
+</details>
+
+<details class="qa"><summary>What is a Quality Gate?</summary>
+<div class="say">A Quality Gate is just a strict pass or fail rule. We can set a rule like "the code must have zero bugs". If the code meets this rule, the gate says "Passed". If it doesn't, the gate says "Failed" and stops the code from moving forward.
+- That is the purpose of a Quality Gate.</div>
+</details>
+
+<details class="qa"><summary>What is a Quality Profile?</summary>
+<div class="say">A Quality Profile is simply a collection of rules for a specific language. For example, Java will have its own set of rules, and Python will have a different set. SonarQube uses this profile to check if the developer followed the correct coding standards for that language.
+- That covers Quality Profiles.</div>
+</details>
+
+<details class="qa"><summary>How does SonarQube work with Jenkins?</summary>
+<div class="say">We put SonarQube right inside our CI/CD pipeline. After Jenkins builds the code, it runs the Sonar scan. If the Quality Gate fails, Jenkins automatically stops the pipeline, prevents the deployment, and sends an alert to the developers.
+- That is how they work together.</div>
+</details>
+
+<details class="qa"><summary>What is Code Coverage in SonarQube?</summary>
+<div class="say">Code coverage simply tells us how much of the code is actually being tested. If the coverage is 80%, it means the developers wrote test cases for 80% of their code. The remaining 20% is untested and might have hidden issues.
+- That is what code coverage means.</div>
+</details>
+
+<details class="qa"><summary>What is "Technical Debt" in SonarQube?</summary>
+<div class="say">Technical debt is an estimate of time. Sometimes developers write messy code just to finish a task quickly. SonarQube analyzes this and tells us exactly how many hours or days it will take to clean up and fix that messy code in the future.
+- That is technical debt.</div>
+</details>
+
+<details class="qa"><summary>What is a SonarScanner?</summary>
+<div class="say">SonarQube has two main parts: the Server and the Scanner. The SonarScanner is a small tool that runs on our Jenkins machine. It actually reads the code, analyzes it, and then sends the final report to the main SonarQube Server dashboard to display.
+- That is the role of SonarScanner.</div>
+</details>
+
+<details class="qa"><summary>What is a "False Positive" and how do you handle it?</summary>
+<div class="say">Sometimes SonarQube flags a piece of code as a bug, but as humans, we know it is actually safe and correct. This is a false positive. In this case, an admin or senior developer can simply log into SonarQube and manually mark that issue as "Resolved" or "Safe".
+- That is how we handle false positives.</div>
+</details>
+
+<details class="qa"><summary>Why do we use SonarQube when developers already review the code manually?</summary>
+<div class="say">Manual code reviews take a lot of time, and humans can easily miss small security flaws in thousands of lines of code. SonarQube automates this. It checks everything in a few seconds and guarantees that bad code never reaches the live servers.
+- That is the main benefit of SonarQube.</div>
+</details>
+</section>
+
+<section class="part" id="aws">
+<div class="part-head"><h2>10. AWS</h2></div>
+
+<details class="qa" open><summary>What is AWS?</summary>
+<div class="say">AWS stands for Amazon Web Services. It is a cloud computing platform that provides resources like servers, storage, and databases over the internet. Instead of buying physical hardware, we just rent it on a pay-as-you-go basis.
+- That is what AWS is.</div>
+</details>
+
+<details class="qa"><summary>What is an EC2 instance?</summary>
+<div class="say">EC2 stands for Elastic Compute Cloud. It is simply a virtual server in the AWS cloud. We can choose our required CPU, RAM, and operating system (like Linux or Windows) to run our applications on it.
+- That covers EC2.</div>
+</details>
+
+<details class="qa"><summary>What is Amazon S3?</summary>
+<div class="say">S3 stands for Simple Storage Service. It is an unlimited cloud storage service where we can safely store and retrieve any amount of data, like images, logs, and backups. We store these files in folders called "Buckets".
+- That is what S3 is.</div>
+</details>
+
+<details class="qa"><summary>What is IAM in AWS?</summary>
+<div class="say">IAM stands for Identity and Access Management. It is a security service used to create users, groups, and roles. It helps us control exactly who can access which AWS resources and what actions they can perform.
+- That is the main role of IAM.</div>
+</details>
+
+<details class="qa"><summary>What is the difference between an IAM Role and an IAM Policy?</summary>
+<div class="say">An IAM Policy is a JSON document that defines exact permissions, like "allow read access to S3". An IAM Role is an identity that we attach to AWS resources (like EC2 instances), not to human users. The Role uses the Policy to get the permissions it needs.
+- That is the difference between them.</div>
+</details>
+
+<details class="qa"><summary>What is a VPC?</summary>
+<div class="say">VPC stands for Virtual Private Cloud. It allows us to create our own isolated, private network inside the AWS public cloud. We place our databases and main servers inside this VPC so hackers on the internet cannot reach them directly.
+- That covers VPC.</div>
+</details>
+
+<details class="qa"><summary>What is a Security Group?</summary>
+<div class="say">A Security Group acts as a virtual firewall for our EC2 instances. It controls the network traffic going in and coming out of our server. For example, we open port 22 for SSH access and port 80 for web traffic using security group rules.
+- That is the purpose of a Security Group.</div>
+</details>
+
+<details class="qa"><summary>What is an Auto Scaling Group?</summary>
+<div class="say">Auto Scaling automatically monitors our application load. If the user traffic suddenly increases, it automatically adds more EC2 servers to handle the load. When the traffic drops, it automatically removes the extra servers to save costs.
+- That is how Auto Scaling works.</div>
+</details>
+
+<details class="qa"><summary>What is an Elastic Load Balancer (ELB)?</summary>
+<div class="say">When multiple EC2 instances are running, a Load Balancer sits in front of them. It receives all the incoming user traffic and distributes it equally among the active instances so that no single server is overloaded or crashes.
+- That is the use of a Load Balancer.</div>
+</details>
+
+<details class="qa"><summary>What is Amazon Route 53?</summary>
+<div class="say">Route 53 is the DNS (Domain Name System) service of AWS. Its main job is to act like a phonebook. It connects user-friendly website names (like mywebsite.com) to the actual IP addresses of our Load Balancers or EC2 servers.
+- That is Route 53.</div>
+</details>
+</section>
+
+<section class="part" id="ansible">
+<div class="part-head"><h2>11. Ansible</h2></div>
+
+<details class="qa" open><summary>What is Ansible?</summary>
+<div class="say">Ansible is a configuration management tool. If I need to install a software on a hundred servers, doing it manually takes hours. With Ansible, I can write a simple playbook and update all servers at the exact same time.
+- That is it for Ansible.</div>
+</details>
+
+<details class="qa"><summary>What is the main advantage of Ansible?</summary>
+<div class="say">The biggest advantage is that Ansible is "agentless". Unlike other tools, we do not need to install any special software or agents on the target servers. It simply connects to them using basic SSH and does the work.
+- That is its main advantage.</div>
+</details>
+
+<details class="qa"><summary>What is an Ansible Inventory?</summary>
+<div class="say">An inventory is simply a text file where we list the IP addresses of all our target servers. We can also group these servers, like putting all web servers in one group and database servers in another, to manage them easily.
+- That covers the inventory.</div>
+</details>
+
+<details class="qa"><summary>What is an Ansible Playbook?</summary>
+<div class="say">A playbook is a YAML file where we write our actual automation code. It contains a list of tasks, like installing packages, starting services, or copying files, which we want to execute on our target servers.
+- That is an Ansible playbook.</div>
+</details>
+
+<details class="qa"><summary>What are Ansible Modules?</summary>
+<div class="say">Modules are the actual tools that do the work in Ansible. When we write a task in a playbook, we use a specific module. For example, we use the 'yum' or 'apt' module to install software, and the 'copy' module to transfer files.
+- That is the use of modules.</div>
+</details>
+
+<details class="qa"><summary>What does Idempotency mean in Ansible?</summary>
+<div class="say">Idempotency is a very important concept. It means no matter how many times you run an Ansible playbook, it will only make changes if they are actually needed. If the server is already correctly configured, it will do nothing.
+- That is what idempotency means.</div>
+</details>
+
+<details class="qa"><summary>What is an Ansible Role?</summary>
+<div class="say">When a playbook becomes too big, it is very hard to read and manage. Roles help us break down that big playbook into smaller, organized folders like tasks, variables, and files. This makes the code clean and easy to reuse.
+- That is the purpose of roles.</div>
+</details>
+
+<details class="qa"><summary>What are Ad-hoc commands in Ansible?</summary>
+<div class="say">Playbooks are used for full setups. But if we want to do a quick task, like checking the uptime of 50 servers immediately, we run a single line command in the terminal instead of writing a full playbook.
+- That covers ad-hoc commands.</div>
+</details>
+
+<details class="qa"><summary>How does Ansible connect to Linux servers securely?</summary>
+<div class="say">Ansible uses standard SSH keys for connection. We generate an SSH key on our main Ansible server and copy the public key to all the target servers. After that, Ansible can connect and run tasks without asking for a password.
+- That is how the connection works.</div>
+</details>
+</section>
+
+<section class="part" id="terraform">
+<div class="part-head"><h2>12. Terraform</h2></div>
+
+<details class="qa" open><summary>What is Terraform?</summary>
+<div class="say">Terraform is an Infrastructure as Code tool. Instead of manually logging into a cloud provider to create servers, we write simple code to create them. If we need the exact same setup again, we just run the code.
+- That is how Terraform works.</div>
+</details>
+
+<details class="qa"><summary>Can you explain the standard Terraform workflow?</summary>
+<div class="say">The daily workflow uses three main commands. First, we run 'terraform init' to download the required plugins. Then, we run 'terraform plan' to see a preview of what will be created. Finally, we run 'terraform apply' to actually create those resources in the cloud.
+- That is the standard workflow.</div>
+</details>
+
+<details class="qa"><summary>What is a Terraform Provider?</summary>
+<div class="say">Terraform can work with many platforms like AWS, Azure, or Kubernetes. A provider is like a plugin that helps Terraform understand and connect to a specific cloud platform's API to create those resources.
+- That is the role of a provider.</div>
+</details>
+
+<details class="qa"><summary>What is the Terraform State file?</summary>
+<div class="say">When Terraform creates resources, it needs to remember what it created. It stores all this information in a file called 'terraform.tfstate'. It acts as a database mapping our written code to the actual real cloud resources.
+- That covers the state file.</div>
+</details>
+
+<details class="qa"><summary>Why do we need a Remote Backend?</summary>
+<div class="say">By default, the state file is saved locally on our laptop. If a team of developers is working together, everyone needs access to the same state file. So, we store it remotely in a central place, like an AWS S3 bucket, to share it securely.
+- That is why we use a remote backend.</div>
+</details>
+
+<details class="qa"><summary>What is State Locking in Terraform?</summary>
+<div class="say">If two developers run 'terraform apply' at the exact same time, the state file can get corrupted. State locking prevents this by locking the file when one person is using it, making the second person wait. We usually use AWS DynamoDB for this.
+- That is the purpose of state locking.</div>
+</details>
+
+<details class="qa"><summary>What are Terraform Modules?</summary>
+<div class="say">Modules are like reusable folders of Terraform code. If we need to create the same type of server for different environments (like Dev, QA, and Prod), we don't write the code 3 times. We just create one module and reuse it to save time.
+- That is the use of modules.</div>
+</details>
+
+<details class="qa"><summary>How do you pass inputs to your Terraform code?</summary>
+<div class="say">We use Variables. Instead of hardcoding values like server names or instance types directly in the main code, we define them in a 'variables.tf' file. This makes our code very flexible and easy to change.
+- That is how we use variables.</div>
+</details>
+
+<details class="qa"><summary>What is the 'terraform destroy' command?</summary>
+<div class="say">This command is used to permanently delete the infrastructure. It reads the state file, finds every resource that Terraform created, and cleanly removes them from the cloud platform. We mostly use this in testing environments to save costs.
+- That is how we use the destroy command.</div>
+</details>
+</section>
+
+<section class="part" id="architectures">
+<div class="part-head"><h2>13. Architectures</h2></div>
+
+<details class="qa" open><summary>Can you explain the Docker architecture?</summary>
+<div class="say">Docker follows a Client-Server architecture. It consists of 4 main components:
+- Docker Client: The CLI or terminal where users run commands (like docker build or docker run).
+- Docker Daemon (Server): The background service running on the host that listens to client requests and manages objects.
+- Images and Containers: Images are the read-only templates, and containers are the running instances of those images.
+- Docker Registry: The storage system (like Docker Hub) where we push and pull Docker images.
+- That covers the Docker architecture.</div>
+</details>
+
+<details class="qa"><summary>Can you explain the Git architecture?</summary>
+<div class="say">Git follows a Distributed Version Control architecture. It consists of 4 main areas:
+- Working Directory: The local folder where we create and edit our files.
+- Staging Area: A temporary index where we add files before committing them.
+- Local Repository: The hidden .git folder on our laptop where our committed history is saved safely.
+- Remote Repository: The central server (like GitHub) where we push our code to collaborate with others.
+- That covers the Git architecture.</div>
+</details>
+
+<details class="qa"><summary>Can you explain the Jenkins architecture?</summary>
+<div class="say">Jenkins follows a Master-Agent (or Master-Slave) distributed architecture. It consists of 3 main components:
+- Jenkins Master: The main server that schedules jobs, monitors the agents, and records the pipeline results.
+- Jenkins Agent (Node): The worker servers that actually execute the builds, run tests, and do the heavy lifting.
+- Webhooks / SCM: The trigger mechanism that automatically notifies the Master when new code is pushed to Git.
+- That covers the Jenkins architecture.</div>
+</details>
+
+<details class="qa"><summary>Can you explain the Terraform architecture?</summary>
+<div class="say">Terraform follows a Plugin-based architecture. It consists of 3 main components:
+- Terraform Core: The main engine that reads our configuration files and creates the execution plan.
+- Terraform Providers: The plugins (like AWS, Azure) that allow Terraform to communicate with the actual cloud APIs.
+- State File (.tfstate): The database file where Terraform tracks and maps the real-world cloud resources to our code.
+- That covers the Terraform architecture.</div>
+</details>
+
+<details class="qa"><summary>Can you explain the Ansible architecture?</summary>
+<div class="say">Ansible follows a Push-based, Agentless architecture. It consists of 4 main components:
+- Control Node: The main machine where Ansible is installed and where we run our commands.
+- Inventory: A configuration file containing the IP addresses or hostnames of all target servers.
+- Playbooks & Modules: Playbooks are YAML files containing tasks, and Modules are the tools that execute those tasks.
+- Managed Nodes: The target servers that are configured via standard SSH connection, without needing any agents.
+- That covers the Ansible architecture.</div>
+</details>
+
+<details class="qa"><summary>Can you explain a basic AWS VPC architecture?</summary>
+<div class="say">A standard AWS VPC follows a Multi-tier network architecture. It consists of 4 main components:
+- VPC (Virtual Private Cloud): The main isolated, private network boundary in the AWS cloud.
+- Internet Gateway (IGW): The component attached to the VPC that allows communication with the outside internet.
+- Public Subnets: The network areas that have direct internet access (used for Load Balancers or Web Servers).
+- Private Subnets: The secure network areas with no direct internet access (used for backend Databases).
+- That covers the VPC architecture.</div>
+</details>
+
+<details class="qa"><summary>Can you explain the Kubernetes (K8s) architecture?</summary>
+<div class="say">Kubernetes follows a Master-Worker cluster architecture. It consists of 4 core components:
+- Control Plane (Master Node): The brain of the cluster. It includes the API Server, Scheduler, and etcd database to manage everything.
+- Data Plane (Worker Nodes): The physical or virtual machines where our actual applications run.
+- Kubelet: The primary agent that runs on every worker node and communicates with the Master node.
+- Pods: The smallest deployable units in Kubernetes that contain one or more running containers.
+- That covers the Kubernetes architecture.</div>
+</details>
 </section>
 
 <section class="part" id="project-questions">
-<div class="part-head"><h2>18 &middot; Questions about your project</h2><span class="badge must">🔥 must know</span></div>
-<details class="qa must" data-priority="must" open><summary>Tell me about your project.</summary>
+<div class="part-head"><h2>14. Your Project</h2></div>
+<details class="qa" open><summary>Tell me about your project.</summary>
 <div class="say">In my learning environment, I practiced building a complete CI/CD pipeline.
 I used GitHub to store my code, Jenkins to automate the build and deployment, Maven to build the application, SonarQube to check code quality, Docker to containerize the application, and I deployed it on an AWS EC2 instance.
 I also practiced basic monitoring to check the application status.
@@ -1122,62 +911,14 @@ This was a practice project, not a production project, but I did it hands-on by 
 
 </main>
 </div>
-<a href="#study-plan" class="backtotop">↑ Top</a>
+<a href="#" class="backtotop" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">↑ Top</a>
 <script>
-(function(){
-  var search = document.getElementById('search');
-  var filterBtns = document.querySelectorAll('.filterbtn');
-  var practiceBtn = document.getElementById('practiceBtn');
-  var revealBtn = document.getElementById('revealBtn');
-  var countEl = document.getElementById('count');
-  var activePriority = 'all';
-
-  function allItems(){
-    return document.querySelectorAll('.qa, .cmdrow, .scenario');
-  }
-
-  function applyFilters(){
-    var q = (search.value || '').toLowerCase().trim();
-    var items = allItems();
-    var visible = 0;
-    items.forEach(function(el){
-      var text = el.textContent.toLowerCase();
-      var matchesText = q === '' || text.indexOf(q) !== -1;
-      var pri = el.getAttribute('data-priority') || 'must';
-      var matchesPriority = activePriority === 'all' || pri === activePriority;
-      var show = matchesText && matchesPriority;
-      el.classList.toggle('hidden', !show);
-      if(show) visible++;
-    });
-    document.querySelectorAll('section.part').forEach(function(sec){
-      var kids = sec.querySelectorAll('.qa, .cmdrow, .scenario');
-      if(kids.length === 0) return;
-      var anyVisible = Array.prototype.some.call(kids, function(k){ return !k.classList.contains('hidden'); });
-      sec.style.display = anyVisible ? '' : 'none';
-    });
-    countEl.textContent = visible + ' shown';
-  }
-
-  search.addEventListener('input', applyFilters);
-  filterBtns.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      filterBtns.forEach(function(b){ b.classList.remove('active'); });
-      btn.classList.add('active');
-      activePriority = btn.getAttribute('data-p');
-      applyFilters();
+  // Simple script to ensure smooth details toggling if needed
+  document.querySelectorAll('details').forEach(function(d){
+    d.addEventListener('click', function(e) {
+      if(e.target.tagName === 'A') return;
     });
   });
-
-  practiceBtn.addEventListener('click', function(){
-    document.querySelectorAll('details.qa').forEach(function(d){ d.open = false; });
-    window.scrollTo({top:0, behavior:'smooth'});
-  });
-  revealBtn.addEventListener('click', function(){
-    document.querySelectorAll('details.qa').forEach(function(d){ d.open = true; });
-  });
-
-  applyFilters();
-})();
 </script>
 </body>
 </html>
