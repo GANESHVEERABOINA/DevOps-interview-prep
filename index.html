@@ -195,6 +195,19 @@ section.part:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
   line-height: 1.7;
 }
 
+/* Architecture Images inside Answers */
+.arch-img {
+  display: block;
+  width: 100%;
+  max-width: 650px;
+  border-radius: 8px;
+  margin: 20px 0;
+  background: #ffffff; /* White background to make transparent SVGs readable */
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
 /* ---------- Phrase (Saving Words) Block ---------- */
 .phrase { 
   background: var(--bg-card);
@@ -245,6 +258,7 @@ section.part:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
   .qa, .phrase, .cmdrow { border: 1px solid #ccc; background: #fff; page-break-inside: avoid; }
   .part-head h2 { -webkit-text-fill-color: black; }
   .qa .say { color: #333; }
+  .arch-img { border: none; box-shadow: none; }
 }
 </style>
 </head>
@@ -932,70 +946,103 @@ This whole process is automated — every time a developer pushes code, it goes 
 </details>
 </section>
 
-<section class="part" id="architectures">
-<div class="part-head"><h2>13. Architectures</h2></div>
+<!-- ========================================== -->
+<!-- 13. ARCHITECTURES (UPDATED WITH DIAGRAMS)  -->
+<!-- ========================================== -->
 
-<details class="qa" open><summary>Can you explain the Docker architecture?</summary>
-<div class="say">Docker follows a Client-Server architecture. It consists of 4 main components:
-- Docker Client: The CLI or terminal where users run commands (like docker build or docker run).
-- Docker Daemon (Server): The background service running on the host that listens to client requests and manages objects.
-- Images and Containers: Images are the read-only templates, and containers are the running instances of those images.
-- Docker Registry: The storage system (like Docker Hub) where we push and pull Docker images.
-- That covers the Docker architecture.</div>
+<section class="part" id="architectures">
+<div class="part-head">
+  <h2>13. Architectures (With Diagrams)</h2>
+  <p>In-Depth Architectural Explanations and Visuals</p>
+</div>
+
+<details class="qa" open><summary>Can you explain the Git & GitHub architecture?</summary>
+<div class="say">Git follows a Distributed Version Control architecture with 4 main areas:
+- Working Directory: Local folder where files are modified.
+- Staging Area: Temporary index where files are added before commit.
+- Local Repository: The hidden .git folder saving the committed history safely.
+- Remote Repository (GitHub): The central server for collaboration.
+
+<img src="https://git-scm.com/images/about/index1.png" alt="Git Architecture Diagram" class="arch-img">
+That covers the Git architecture.</div>
 </details>
 
-<details class="qa"><summary>Can you explain the Git architecture?</summary>
-<div class="say">Git follows a Distributed Version Control architecture. It consists of 4 main areas:
-- Working Directory: The local folder where we create and edit our files.
-- Staging Area: A temporary index where we add files before committing them.
-- Local Repository: The hidden .git folder on our laptop where our committed history is saved safely.
-- Remote Repository: The central server (like GitHub) where we push our code to collaborate with others.
-- That covers the Git architecture.</div>
+<details class="qa"><summary>Can you explain the Docker architecture?</summary>
+<div class="say">Docker follows a Client-Server architecture. It consists of 3 main components:
+- Docker Client: CLI/Terminal for running commands.
+- Docker Host (Daemon): The background service managing images, containers, networks, and volumes.
+- Docker Registry (Docker Hub): The storage system for pushing/pulling images.
+
+<img src="https://docs.docker.com/engine/images/architecture.svg" alt="Docker Architecture Diagram" class="arch-img">
+That covers the Docker architecture.</div>
 </details>
 
 <details class="qa"><summary>Can you explain the Jenkins architecture?</summary>
-<div class="say">Jenkins follows a Master-Agent (or Master-Slave) distributed architecture. It consists of 3 main components:
-- Jenkins Master: The main server that schedules jobs, monitors the agents, and records the pipeline results.
-- Jenkins Agent (Node): The worker servers that actually execute the builds, run tests, and do the heavy lifting.
-- Webhooks / SCM: The trigger mechanism that automatically notifies the Master when new code is pushed to Git.
-- That covers the Jenkins architecture.</div>
+<div class="say">Jenkins uses a Master-Agent (Distributed) architecture:
+- Jenkins Master: Schedules jobs, dispatches builds to agents, monitors agents, and records pipeline results.
+- Jenkins Agent (Node): Worker machines that execute the actual build and test steps.
+- Webhooks: Triggers that notify the Master on GitHub code pushes.
+
+<img src="https://www.jenkins.io/images/user-manual/scaling-jenkins.png" alt="Jenkins Architecture Diagram" class="arch-img">
+That covers the Jenkins architecture.</div>
 </details>
 
 <details class="qa"><summary>Can you explain the Terraform architecture?</summary>
-<div class="say">Terraform follows a Plugin-based architecture. It consists of 3 main components:
-- Terraform Core: The main engine that reads our configuration files and creates the execution plan.
-- Terraform Providers: The plugins (like AWS, Azure) that allow Terraform to communicate with the actual cloud APIs.
-- State File (.tfstate): The database file where Terraform tracks and maps the real-world cloud resources to our code.
-- That covers the Terraform architecture.</div>
+<div class="say">Terraform follows a Plugin-based architecture:
+- Terraform Core: Reads configuration files, compares with the state file, and creates the execution plan.
+- Terraform Providers: Plugins downloaded during `init` (e.g., AWS, Azure) that talk directly to cloud APIs.
+- State File (.tfstate): The database keeping track of real-world infrastructure mappings.
+
+<img src="https://developer.hashicorp.com/_next/image?url=%2Fdocs-images%2Fterraform%2Fterraform-architecture.png&w=1080&q=75" onerror="this.src='https://via.placeholder.com/800x400/ffffff/3b82f6?text=Terraform+Core+%2B+Providers'" alt="Terraform Architecture Diagram" class="arch-img">
+That covers the Terraform architecture.</div>
 </details>
 
 <details class="qa"><summary>Can you explain the Ansible architecture?</summary>
-<div class="say">Ansible follows a Push-based, Agentless architecture. It consists of 4 main components:
-- Control Node: The main machine where Ansible is installed and where we run our commands.
-- Inventory: A configuration file containing the IP addresses or hostnames of all target servers.
-- Playbooks & Modules: Playbooks are YAML files containing tasks, and Modules are the tools that execute those tasks.
-- Managed Nodes: The target servers that are configured via standard SSH connection, without needing any agents.
-- That covers the Ansible architecture.</div>
-</details>
+<div class="say">Ansible uses a Push-based, Agentless architecture:
+- Control Node: The machine running Ansible, reading playbooks and the inventory.
+- Inventory: File listing all target servers (Managed Nodes) by IP/hostname.
+- Modules: Small tools pushed to target nodes to execute tasks.
+- Managed Nodes: Target servers configured securely over standard SSH.
 
-<details class="qa"><summary>Can you explain a basic AWS VPC architecture?</summary>
-<div class="say">A standard AWS VPC follows a Multi-tier network architecture. It consists of 4 main components:
-- VPC (Virtual Private Cloud): The main isolated, private network boundary in the AWS cloud.
-- Internet Gateway (IGW): The component attached to the VPC that allows communication with the outside internet.
-- Public Subnets: The network areas that have direct internet access (used for Load Balancers or Web Servers).
-- Private Subnets: The secure network areas with no direct internet access (used for backend Databases).
-- That covers the VPC architecture.</div>
+<img src="https://docs.ansible.com/ansible/latest/_images/ansible-architecture.svg" onerror="this.src='https://via.placeholder.com/800x400/ffffff/3b82f6?text=Ansible+Agentless+Architecture'" alt="Ansible Architecture Diagram" class="arch-img">
+That covers the Ansible architecture.</div>
 </details>
 
 <details class="qa"><summary>Can you explain the Kubernetes (K8s) architecture?</summary>
-<div class="say">Kubernetes follows a Master-Worker cluster architecture. It consists of 4 core components:
-- Control Plane (Master Node): The brain of the cluster. It includes the API Server, Scheduler, and etcd database to manage everything.
-- Data Plane (Worker Nodes): The physical or virtual machines where our actual applications run.
-- Kubelet: The primary agent that runs on every worker node and communicates with the Master node.
-- Pods: The smallest deployable units in Kubernetes that contain one or more running containers.
-- That covers the Kubernetes architecture.</div>
+<div class="say">Kubernetes follows a Control Plane - Worker Node architecture:
+- Control Plane (Master): The brain managing the cluster (API Server, Scheduler, etcd, Controller Manager).
+- Worker Nodes: Machines running the application Pods (Kubelet, Kube-proxy, Container Runtime).
+- Pods: Smallest deployable units running the containers.
+
+<img src="https://kubernetes.io/images/docs/components-of-kubernetes.svg" alt="Kubernetes Architecture Diagram" class="arch-img">
+That covers the Kubernetes architecture.</div>
+</details>
+
+<details class="qa"><summary>Can you explain the SonarQube architecture?</summary>
+<div class="say">SonarQube uses a Client-Server architecture for continuous code inspection:
+- SonarScanner: The client tool that runs inside the CI/CD pipeline (e.g., Jenkins) to scan the code locally.
+- SonarQube Server: The central hub consisting of a Web Server (UI), Search Server (Elasticsearch), and Compute Engine for processing reports.
+- Database: Stores configuration, historical quality gates, and code metrics.
+
+<img src="https://docs.sonarsource.com/sonarqube-server/latest/images/server-components.svg" onerror="this.src='https://via.placeholder.com/800x400/ffffff/3b82f6?text=SonarQube+Scanner+%2B+Server'" alt="SonarQube Architecture Diagram" class="arch-img">
+That covers the SonarQube architecture.</div>
+</details>
+
+<details class="qa"><summary>Can you explain the Monitoring (Prometheus & Grafana) architecture?</summary>
+<div class="say">Prometheus uses a Pull-based architecture for metrics collection:
+- Prometheus Server: The core that scrapes (pulls) metrics from targets and stores them in a Time-Series Database (TSDB).
+- Node Exporters/Targets: Agents running on servers exposing `/metrics` endpoints.
+- Alertmanager: Handles and routes alerts to Slack/Email.
+- Grafana: Connects to Prometheus as a data source to build visual dashboards.
+
+<img src="https://prometheus.io/assets/architecture.png" alt="Prometheus Architecture Diagram" class="arch-img">
+That covers the Monitoring architecture.</div>
 </details>
 </section>
+
+<!-- ========================================== -->
+<!-- 14. YOUR PROJECT                           -->
+<!-- ========================================== -->
 
 <section class="part" id="project-questions">
 <div class="part-head"><h2>14. Your Project</h2></div>
@@ -1008,7 +1055,7 @@ This was a practice project, not a production project, but I did it hands-on by 
 </section>
 
 <!-- ========================================== -->
-<!-- TOP 50 IN-DEPTH QUESTIONS -->
+<!-- TOP 50 IN-DEPTH QUESTIONS                  -->
 <!-- ========================================== -->
 
 <section class="part" id="top50-sec1">
