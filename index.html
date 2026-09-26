@@ -10,13 +10,13 @@
 <style>
 :root {
   /* Premium Dark Mode Palette */
-  --bg-main: #0a0a0c; /* Deep dark background matching Gemini */
+  --bg-main: #0a0a0c; 
   --bg-card: rgba(255, 255, 255, 0.03);
   --bg-card-hover: rgba(255, 255, 255, 0.06);
   
   /* Borders */
   --border-light: rgba(255, 255, 255, 0.08);
-  --border-active: rgba(96, 165, 250, 0.5); /* Blue glow */
+  --border-active: rgba(96, 165, 250, 0.5); 
   
   /* Typography */
   --text-main: #f3f4f6;
@@ -55,9 +55,9 @@ body::before {
   width: 200%;
   height: 200%;
   background: 
-    radial-gradient(circle at 50% 50%, rgba(123, 31, 162, 0.15) 0%, transparent 40%), /* Deep Purple glow */
-    radial-gradient(circle at 60% 40%, rgba(66, 133, 244, 0.12) 0%, transparent 40%), /* Blue glow */
-    radial-gradient(circle at 40% 60%, rgba(138, 43, 226, 0.1) 0%, transparent 40%);  /* Violet glow */
+    radial-gradient(circle at 50% 50%, rgba(123, 31, 162, 0.15) 0%, transparent 40%), 
+    radial-gradient(circle at 60% 40%, rgba(66, 133, 244, 0.12) 0%, transparent 40%), 
+    radial-gradient(circle at 40% 60%, rgba(138, 43, 226, 0.1) 0%, transparent 40%);  
   z-index: -1;
   pointer-events: none;
   animation: geminiLiveGlow 15s infinite alternate ease-in-out;
@@ -134,7 +134,6 @@ section.part { max-width: 85ch; padding: 40px 0 0; border-top: 1px solid var(--b
 section.part:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
 
 .part-head { margin-bottom: 24px; }
-/* Gradient Heading */
 .part-head h2 { 
   margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; 
   background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
@@ -191,7 +190,7 @@ section.part:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
   padding: 0 20px 20px 42px; 
   font-size: 15px; 
   white-space: pre-line;
-  color: #d1d5db; /* Softer text for reading */
+  color: #d1d5db; 
   line-height: 1.7;
 }
 
@@ -202,10 +201,11 @@ section.part:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
   max-width: 650px;
   border-radius: 8px;
   margin: 20px 0;
-  background: #ffffff; /* White background to make transparent SVGs readable */
+  background-color: rgba(255, 255, 255, 0.95); 
   padding: 16px;
   border: 1px solid rgba(255,255,255,0.2);
   box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  object-fit: contain;
 }
 
 /* ---------- Phrase (Saving Words) Block ---------- */
@@ -963,7 +963,9 @@ This whole process is automated — every time a developer pushes code, it goes 
 - Local Repository: The hidden .git folder saving the committed history safely.
 - Remote Repository (GitHub): The central server for collaboration.
 
-<img src="https://git-scm.com/images/about/index1.png" alt="Git Architecture Diagram" class="arch-img">
+<img src="https://git-scm.com/images/about/index1.png" 
+     onerror="this.onerror=null; this.style.backgroundColor='transparent'; this.style.padding='0'; this.src='https://placehold.co/800x400/1e293b/60a5fa?text=Git+Architecture';" 
+     alt="Git Architecture Diagram" class="arch-img">
 That covers the Git architecture.</div>
 </details>
 
@@ -973,7 +975,9 @@ That covers the Git architecture.</div>
 - Docker Host (Daemon): The background service managing images, containers, networks, and volumes.
 - Docker Registry (Docker Hub): The storage system for pushing/pulling images.
 
-<img src="https://docs.docker.com/engine/images/architecture.svg" alt="Docker Architecture Diagram" class="arch-img">
+<img src="https://docs.docker.com/engine/images/architecture.svg" 
+     onerror="this.onerror=null; this.style.backgroundColor='transparent'; this.style.padding='0'; this.src='https://placehold.co/800x400/1e293b/60a5fa?text=Docker+Architecture';" 
+     alt="Docker Architecture Diagram" class="arch-img">
 That covers the Docker architecture.</div>
 </details>
 
@@ -983,7 +987,9 @@ That covers the Docker architecture.</div>
 - Jenkins Agent (Node): Worker machines that execute the actual build and test steps.
 - Webhooks: Triggers that notify the Master on GitHub code pushes.
 
-<img src="https://www.jenkins.io/images/user-manual/scaling-jenkins.png" alt="Jenkins Architecture Diagram" class="arch-img">
+<img src="https://raw.githubusercontent.com/jenkins-infra/jenkins.io/master/content/images/user-manual/scaling-jenkins.png" 
+     onerror="this.onerror=null; this.style.backgroundColor='transparent'; this.style.padding='0'; this.src='https://placehold.co/800x400/1e293b/60a5fa?text=Jenkins+Architecture';" 
+     alt="Jenkins Architecture Diagram" class="arch-img">
 That covers the Jenkins architecture.</div>
 </details>
 
@@ -993,7 +999,9 @@ That covers the Jenkins architecture.</div>
 - Terraform Providers: Plugins downloaded during `init` (e.g., AWS, Azure) that talk directly to cloud APIs.
 - State File (.tfstate): The database keeping track of real-world infrastructure mappings.
 
-<img src="https://developer.hashicorp.com/_next/image?url=%2Fdocs-images%2Fterraform%2Fterraform-architecture.png&w=1080&q=75" onerror="this.src='https://via.placeholder.com/800x400/ffffff/3b82f6?text=Terraform+Core+%2B+Providers'" alt="Terraform Architecture Diagram" class="arch-img">
+<img src="https://raw.githubusercontent.com/hashicorp/terraform-website/master/content/source/assets/images/terraform-architecture.png" 
+     onerror="this.onerror=null; this.style.backgroundColor='transparent'; this.style.padding='0'; this.src='https://placehold.co/800x400/1e293b/60a5fa?text=Terraform+Architecture';" 
+     alt="Terraform Architecture Diagram" class="arch-img">
 That covers the Terraform architecture.</div>
 </details>
 
@@ -1004,7 +1012,9 @@ That covers the Terraform architecture.</div>
 - Modules: Small tools pushed to target nodes to execute tasks.
 - Managed Nodes: Target servers configured securely over standard SSH.
 
-<img src="https://docs.ansible.com/ansible/latest/_images/ansible-architecture.svg" onerror="this.src='https://via.placeholder.com/800x400/ffffff/3b82f6?text=Ansible+Agentless+Architecture'" alt="Ansible Architecture Diagram" class="arch-img">
+<img src="https://raw.githubusercontent.com/ansible/ansible-documentation/main/docs/docsite/rst/_images/ansible-architecture.svg" 
+     onerror="this.onerror=null; this.style.backgroundColor='transparent'; this.style.padding='0'; this.src='https://placehold.co/800x400/1e293b/60a5fa?text=Ansible+Architecture';" 
+     alt="Ansible Architecture Diagram" class="arch-img">
 That covers the Ansible architecture.</div>
 </details>
 
@@ -1014,7 +1024,9 @@ That covers the Ansible architecture.</div>
 - Worker Nodes: Machines running the application Pods (Kubelet, Kube-proxy, Container Runtime).
 - Pods: Smallest deployable units running the containers.
 
-<img src="https://kubernetes.io/images/docs/components-of-kubernetes.svg" alt="Kubernetes Architecture Diagram" class="arch-img">
+<img src="https://raw.githubusercontent.com/kubernetes/website/main/static/images/docs/components-of-kubernetes.svg" 
+     onerror="this.onerror=null; this.style.backgroundColor='transparent'; this.style.padding='0'; this.src='https://placehold.co/800x400/1e293b/60a5fa?text=Kubernetes+Architecture';" 
+     alt="Kubernetes Architecture Diagram" class="arch-img">
 That covers the Kubernetes architecture.</div>
 </details>
 
@@ -1024,7 +1036,9 @@ That covers the Kubernetes architecture.</div>
 - SonarQube Server: The central hub consisting of a Web Server (UI), Search Server (Elasticsearch), and Compute Engine for processing reports.
 - Database: Stores configuration, historical quality gates, and code metrics.
 
-<img src="https://docs.sonarsource.com/sonarqube-server/latest/images/server-components.svg" onerror="this.src='https://via.placeholder.com/800x400/ffffff/3b82f6?text=SonarQube+Scanner+%2B+Server'" alt="SonarQube Architecture Diagram" class="arch-img">
+<img src="https://raw.githubusercontent.com/SonarSource/sonarqube-docs/master/images/server-components.svg" 
+     onerror="this.onerror=null; this.style.backgroundColor='transparent'; this.style.padding='0'; this.src='https://placehold.co/800x400/1e293b/60a5fa?text=SonarQube+Architecture';" 
+     alt="SonarQube Architecture Diagram" class="arch-img">
 That covers the SonarQube architecture.</div>
 </details>
 
@@ -1035,7 +1049,9 @@ That covers the SonarQube architecture.</div>
 - Alertmanager: Handles and routes alerts to Slack/Email.
 - Grafana: Connects to Prometheus as a data source to build visual dashboards.
 
-<img src="https://prometheus.io/assets/architecture.png" alt="Prometheus Architecture Diagram" class="arch-img">
+<img src="https://raw.githubusercontent.com/prometheus/docs/main/static/assets/architecture.png" 
+     onerror="this.onerror=null; this.style.backgroundColor='transparent'; this.style.padding='0'; this.src='https://placehold.co/800x400/1e293b/60a5fa?text=Prometheus+Architecture';" 
+     alt="Prometheus Architecture Diagram" class="arch-img">
 That covers the Monitoring architecture.</div>
 </details>
 </section>
