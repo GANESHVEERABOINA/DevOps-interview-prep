@@ -56,7 +56,6 @@ Since this is a pure frontend Single Page Application (SPA), there is no complex
 
 Clone the repository:
 
-Bash
 git clone https://github.com/yourusername/your-repo-name.git
 Open the folder and double-click index.html to run it directly in any modern web browser.
 
