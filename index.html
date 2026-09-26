@@ -23,7 +23,7 @@
   --rule: rgba(255, 255, 255, 0.12);
   
   /* Accents */
-  --accent: #3b82f6; /* Blue accent for all items */
+  --accent: #3b82f6;
   --link: #60a5fa;
   
   /* Fonts */
@@ -73,15 +73,16 @@ nav.side {
 
 nav.side .navtitle { 
   font-family: var(--font-mono); 
-  font-size: 12px; 
+  font-size: 11px; 
   text-transform: uppercase; 
   letter-spacing: 0.1em; 
   color: var(--text-muted); 
-  margin: 0 8px 16px; 
+  margin: 20px 8px 12px; 
 }
-nav.side ul { list-style: none; margin: 0 0 30px 0; padding: 0; }
+nav.side .navtitle:first-of-type { margin-top: 0; }
+nav.side ul { list-style: none; margin: 0 0 20px 0; padding: 0; }
 nav.side li a {
-  display: block; padding: 8px 12px; border-radius: 8px; color: var(--text-main); font-size: 14.5px;
+  display: block; padding: 7px 12px; border-radius: 8px; color: var(--text-main); font-size: 14px;
   transition: all 0.2s ease; margin-bottom: 2px;
 }
 nav.side li a:hover { background: var(--glass-bg); padding-left: 16px; color: var(--accent); }
@@ -94,23 +95,24 @@ section.part { max-width: 80ch; padding: 30px 0 10px; border-top: 1px solid var(
 section.part:first-of-type { border-top: none; padding-top: 0; }
 
 .part-head { margin-bottom: 20px; }
-.part-head h2 { margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.01em; color: #fff; }
+.part-head h2 { margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.01em; color: #fff; }
+.part-head p { margin: 6px 0 0; font-size: 14px; color: var(--text-muted); }
 
-/* QA Sections (Uniform Styling) */
+/* QA Sections */
 .qa { border-left: 3px solid var(--accent); padding-left: 16px; margin: 0 0 20px; scroll-margin-top: 40px; }
 
 .qa summary {
-  font-weight: 500; cursor: pointer; list-style: none; padding: 10px 12px; font-size: 17px;
+  font-weight: 500; cursor: pointer; list-style: none; padding: 10px 12px; font-size: 16.5px;
   border-radius: 8px; transition: background 0.2s;
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: baseline; gap: 10px;
 }
 .qa summary:hover { background: var(--glass-bg); }
 .qa summary::-webkit-details-marker { display: none; }
-.qa summary::before { content: "▸"; color: var(--text-muted); font-size: 14px; font-family: var(--font-mono); }
+.qa summary::before { content: "▸"; color: var(--text-muted); font-size: 13px; font-family: var(--font-mono); }
 .qa[open] summary::before { content: "▾"; color: var(--accent); }
 
 /* Glassmorphism Cards for Answers */
-.qa .say, .scenario .say, .phrase .say {
+.qa .say, .phrase .say {
   margin: 12px 0 12px 10px; 
   padding: 16px 20px; 
   background: var(--glass-bg); 
@@ -124,9 +126,6 @@ section.part:first-of-type { border-top: none; padding-top: 0; }
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.qa .kp { margin: 10px 0 4px 10px; padding-left: 18px; color: var(--text-muted); font-size: 14.5px; }
-.qa .kp li { margin-bottom: 6px; }
-
 /* Commands */
 .cmd { 
   font-family: var(--font-mono); background: rgba(255,255,255,0.1); 
@@ -136,16 +135,9 @@ section.part:first-of-type { border-top: none; padding-top: 0; }
 .cmdrow .cmd { font-weight: 500; background: none; padding: 0; font-size: 14.5px;}
 .cmdrow p { margin: 4px 0 0; font-size: 14px; color: var(--text-muted); }
 
-/* Scenarios */
-.scenario { border-left: 3px solid var(--accent); padding-left: 16px; margin: 0 0 24px 0; }
-.scenario h4 { margin: 0 0 10px; font-size: 16px; color: #fff; font-weight: 600; }
-.scenario table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 12px; }
-.scenario table td { padding: 4px 8px 4px 0; vertical-align: top; }
-.scenario table td.label { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); white-space: nowrap; width: 110px; text-transform: uppercase;}
-
 /* Phrases */
 .phrase { border-left: 3px solid var(--accent); padding-left: 16px; margin-bottom: 20px; }
-.phrase .sit { font-size: 14px; color: var(--text-muted); font-weight: 500; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-mono); }
+.phrase .sit { font-size: 13px; color: var(--text-muted); font-weight: 500; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-mono); }
 
 .backtotop { 
   position: fixed; right: 24px; bottom: 24px; font-family: var(--font-main); font-weight: 500; font-size: 13px; 
@@ -159,14 +151,14 @@ section.part:first-of-type { border-top: none; padding-top: 0; }
   .wrap { grid-template-columns: 1fr; }
   body { font-size: 12.5px; background: white; color: black; }
   a { color: inherit; }
-  .qa .say, .scenario .say, .phrase .say { background: #f0f0f0; border: 1px solid #ccc; color: black; filter: none; }
+  .qa .say, .phrase .say { background: #f0f0f0; border: 1px solid #ccc; color: black; filter: none; }
 }
 </style>
 </head>
 <body>
 <div class="wrap">
 <nav class="side">
-  <div class="navtitle">Interview Topics</div>
+  <div class="navtitle">General Topics</div>
   <ul>
     <li><a href="#hr-questions">1. HR & Personal</a></li>
     <li><a href="#saving-words">2. Saving Words</a></li>
@@ -182,6 +174,14 @@ section.part:first-of-type { border-top: none; padding-top: 0; }
     <li><a href="#terraform">12. Terraform</a></li>
     <li><a href="#architectures">13. Architectures</a></li>
     <li><a href="#project-questions">14. Your Project</a></li>
+  </ul>
+
+  <div class="navtitle">Top 50 In-Depth Q&As</div>
+  <ul>
+    <li><a href="#top50-sec1">AWS Compute & Networking</a></li>
+    <li><a href="#top50-sec2">AWS Storage & Auto Scaling</a></li>
+    <li><a href="#top50-sec3">Linux & Version Control</a></li>
+    <li><a href="#top50-sec4">Containerization & CI/CD</a></li>
   </ul>
 </nav>
 
@@ -909,11 +909,392 @@ This was a practice project, not a production project, but I did it hands-on by 
 </details>
 </section>
 
+<!-- ========================================== -->
+<!-- TOP 50 IN-DEPTH QUESTIONS (NEW SECTIONS)   -->
+<!-- ========================================== -->
+
+<section class="part" id="top50-sec1">
+<div class="part-head">
+  <h2>Section 1: AWS Compute & Networking</h2>
+  <p>In-Depth Technical Questions & Answers (Q1 - Q11)</p>
+</div>
+
+<details class="qa"><summary>Q1: What is EC2 and how is it different from a traditional physical server?</summary>
+<div class="say">EC2 is simply a virtual server we rent from AWS on demand.
+Instead of buying, storing, and maintaining physical hardware ourselves, we just click a button and get a server ready in minutes.
+
+That is the main difference.</div>
+</details>
+
+<details class="qa"><summary>Q2: Explain the difference between On-Demand, Reserved, and Spot EC2 instances.</summary>
+<div class="say">On-Demand is paying per hour whenever you need it. Reserved is signing a 1 to 3-year contract for a big discount. Spot is using Amazon's leftover spare servers for a huge discount, but they can be taken back anytime.
+
+That covers the EC2 pricing types.</div>
+</details>
+
+<details class="qa"><summary>Q3: How do you securely connect to a Linux EC2 instance?</summary>
+<div class="say">We connect using SSH with a private .pem key file.
+For extra security, we configure the Security Group to only allow port 22 access from our specific laptop's IP address, not from the whole internet.
+
+That is how we securely connect.</div>
+</details>
+
+<details class="qa"><summary>Q4: What are security groups and network ACLs in VPC? How do they differ?</summary>
+<div class="say">A Security Group acts as a virtual firewall for a single EC2 instance.
+A Network ACL acts as a firewall for the entire Subnet. Security Groups are stateful (if request goes in, response is allowed out automatically), while NACLs are stateless.
+
+That is the difference between them.</div>
+</details>
+
+<details class="qa"><summary>Q5: Explain subnets, route tables, and internet gateway in a VPC.</summary>
+<div class="say">Think of a VPC as a house.
+Subnets are the separate rooms inside the house. Route Tables are the directional maps telling data where to go. The Internet Gateway is the main front door that allows internet traffic to enter the house.
+
+That covers the VPC components.</div>
+</details>
+
+<details class="qa"><summary>Q6: What is an Elastic IP and when would you use it?</summary>
+<div class="say">A normal public IP changes every time we stop and start an EC2 instance.
+An Elastic IP is a permanent, fixed public IP address that never changes, which is very useful for web servers or databases that need a constant address.
+
+That is what an Elastic IP is.</div>
+</details>
+
+<details class="qa"><summary>Q7: What is an AMI and how do you create a custom AMI?</summary>
+<div class="say">An AMI is simply a blueprint or template of a server.
+To create one, we launch an EC2, install our required software on it, take a snapshot, and save it. Now we can use this custom AMI to launch 100 identical servers.
+
+That is what an AMI is.</div>
+</details>
+
+<details class="qa"><summary>Q8: What is Elastic Load Balancer (ELB)? Name its types.</summary>
+<div class="say">An ELB automatically distributes incoming user traffic equally among multiple EC2 servers so no single server crashes.
+The main types are Application Load Balancer (for websites/HTTP) and Network Load Balancer (for ultra-fast TCP traffic).
+
+That covers the Load Balancer.</div>
+</details>
+
+<details class="qa"><summary>Q9: How does a load balancer improve availability and scalability?</summary>
+<div class="say">If one server suddenly dies, the load balancer detects it and immediately stops sending users to that dead server.
+It ensures users only connect to healthy servers, keeping the application available 24/7.
+
+That is how it improves availability.</div>
+</details>
+
+<details class="qa"><summary>Q10: What is a target group in Application Load Balancer (ALB)?</summary>
+<div class="say">A Target Group is simply a logical grouping of our destination servers.
+When the Load Balancer receives a request from a user, it looks at the Target Group to see the list of active EC2 instances where it can forward that request.
+
+That is a Target Group.</div>
+</details>
+
+<details class="qa"><summary>Q11: Explain health checks in ELB and what happens when an instance fails it.</summary>
+<div class="say">The ELB continuously pings a specific file on our EC2 instances to check if they are alive.
+If an instance does not respond, it fails the health check. The ELB immediately stops sending user traffic to it until it becomes healthy again.
+
+That is how health checks work.</div>
+</details>
+</section>
+
+<section class="part" id="top50-sec2">
+<div class="part-head">
+  <h2>Section 2: AWS Storage, Security & Auto Scaling</h2>
+  <p>In-Depth Technical Questions & Answers (Q12 - Q25)</p>
+</div>
+
+<details class="qa"><summary>Q12: What is S3 and what are some common use cases in DevOps pipelines?</summary>
+<div class="say">S3 is an unlimited cloud storage service where we store files in buckets.
+In DevOps, we use it all the time to store Terraform state files, application backups, and CI/CD build artifacts.
+
+That is what S3 is used for.</div>
+</details>
+
+<details class="qa"><summary>Q13: Explain S3 storage classes (Standard, IA, Glacier) briefly.</summary>
+<div class="say">Standard is for data we access daily.
+Infrequent Access (IA) is cheaper and used for data we rarely open. Glacier is the absolute cheapest option, used only for long-term archiving where data takes hours to retrieve.
+
+Those are the S3 storage classes.</div>
+</details>
+
+<details class="qa"><summary>Q14: How do you secure an S3 bucket?</summary>
+<div class="say">First, we block all public access.
+Then we use strict IAM and Bucket Policies to define exactly who can read or write. Finally, we enable server-side encryption so the data is unreadable if stolen.
+
+That is how we secure S3.</div>
+</details>
+
+<details class="qa"><summary>Q15: What is versioning in S3 and why is it useful?</summary>
+<div class="say">Versioning keeps a complete history of every file change.
+If a developer accidentally overwrites or deletes an important configuration file, versioning allows us to instantly restore the previous version.
+
+That is why versioning is useful.</div>
+</details>
+
+<details class="qa"><summary>Q16: What is IAM? Explain users, groups, roles, and policies.</summary>
+<div class="say">IAM is the security guard of AWS.
+A User is a single person. A Group is a team of users. A Role is an identity for AWS services (like EC2). A Policy is a JSON document that defines the exact permissions they have.
+
+That covers IAM components.</div>
+</details>
+
+<details class="qa"><summary>Q17: What is the difference between an IAM user and an IAM role?</summary>
+<div class="say">An IAM User has permanent login details, like a password and access keys.
+An IAM Role has no password; it provides temporary permissions and is usually attached to AWS resources like an EC2 instance to let it securely talk to other services.
+
+That is the difference.</div>
+</details>
+
+<details class="qa"><summary>Q18: How do you grant an EC2 instance access to S3 without using access keys?</summary>
+<div class="say">We should never hardcode secret access keys on a server.
+Instead, we create an IAM Role with S3 permissions and attach that Role directly to the EC2 instance from the AWS console.
+
+That is the secure way to do it.</div>
+</details>
+
+<details class="qa"><summary>Q19: What is the principle of least privilege in IAM?</summary>
+<div class="say">It means giving a user or a system only the absolute minimum permissions they need to do their exact job, and nothing more.
+For example, if someone only needs to read a file, we never give them delete permissions.
+
+That is the principle of least privilege.</div>
+</details>
+
+<details class="qa"><summary>Q20: What is Auto Scaling in AWS and what problem does it solve?</summary>
+<div class="say">Auto Scaling automatically adds or removes EC2 servers based on user traffic.
+It solves two problems: it adds servers during high traffic so the app doesn't crash, and removes them during low traffic to save company money.
+
+That is what Auto Scaling does.</div>
+</details>
+
+<details class="qa"><summary>Q21: Explain the components of an Auto Scaling Group.</summary>
+<div class="say">It has four main parts.
+The Launch Template is the server blueprint. The Minimum Capacity is the lowest number of servers running. The Maximum Capacity is the highest limit. The Desired Capacity is the exact number we want running right now.
+
+Those are the ASG components.</div>
+</details>
+
+<details class="qa"><summary>Q22: How do you configure scaling policies based on CPU utilization?</summary>
+<div class="say">We use CloudWatch to monitor the servers.
+We set a simple rule: if the average CPU utilization of our servers goes above 80% for 5 minutes, trigger the Auto Scaling Group to launch one new server.
+
+That is how we configure it.</div>
+</details>
+
+<details class="qa"><summary>Q23: How do ELB and Auto Scaling work together for a highly available architecture?</summary>
+<div class="say">They are a perfect team.
+When the Auto Scaling Group creates a brand new EC2 server, it automatically registers it with the ELB Target Group. The ELB immediately starts sending user traffic to that new server.
+
+That is how they work together.</div>
+</details>
+
+<details class="qa"><summary>Q24: How would you add an existing EC2 instance to an Auto Scaling group?</summary>
+<div class="say">It is very simple.
+We go to the AWS console, select our running EC2 instance, click on "Actions", and select "Attach to Auto Scaling Group". The ASG will then take control of it.
+
+That is how we attach it.</div>
+</details>
+
+<details class="qa"><summary>Q25: What are some best practices to design a highly available application on AWS?</summary>
+<div class="say">We should never put all our resources in one data center.
+We deploy our EC2 instances across Multiple Availability Zones, place a Load Balancer in front of them, use Auto Scaling for traffic spikes, and use a managed Multi-AZ database like RDS.
+
+That is the best practice for high availability.</div>
+</details>
+</section>
+
+<section class="part" id="top50-sec3">
+<div class="part-head">
+  <h2>Section 3: Linux & Version Control</h2>
+  <p>In-Depth Technical Questions & Answers (Q26 - Q37)</p>
+</div>
+
+<details class="qa"><summary>Q26: How do you check CPU, memory, and disk usage in Linux?</summary>
+<div class="say">I use the top or htop command to see live CPU and memory usage.
+To get a clean summary of total memory, I use free -m. To check the remaining hard disk space, I use df -h.
+
+Those are the commands I use.</div>
+</details>
+
+<details class="qa"><summary>Q27: How do you check which process is using high CPU or memory?</summary>
+<div class="say">I open the terminal and type top.
+Inside the top command, I press 'P' to automatically sort all running processes by highest CPU usage, or I press 'M' to sort them by highest Memory usage.
+
+That is how I find the heavy processes.</div>
+</details>
+
+<details class="qa"><summary>Q28: How do you view and search logs in Linux?</summary>
+<div class="say">To watch logs live as they are being generated, I use tail -f /path/to/logfile.
+If I need to search for a specific problem inside a massive log file, I use the grep command, like grep "error" /path/to/logfile.
+
+That is how I handle logs.</div>
+</details>
+
+<details class="qa"><summary>Q29: Write a simple shell script to restart a service if it’s down.</summary>
+<div class="say">I would write a simple if-condition:
+if ! systemctl is-active --quiet nginx; then systemctl restart nginx; fi
+This checks if Nginx is not active, and if so, it restarts it.
+
+That is the simple script.</div>
+</details>
+
+<details class="qa"><summary>Q30: How do you check open ports and listening services on a Linux server?</summary>
+<div class="say">I use the netstat -tulpn or ss -tulpn command.
+This immediately lists all the active ports on the server and shows exactly which application or process is using them.
+
+That is how I check open ports.</div>
+</details>
+
+<details class="qa"><summary>Q31: What is version control and why is it important in DevOps?</summary>
+<div class="say">Version control is a system that records every single change made to the code.
+It is important because multiple developers can work together without deleting each other's code, and if a bad bug is deployed, we can instantly rollback to a working version.
+
+That is why it is important.</div>
+</details>
+
+<details class="qa"><summary>Q32: Explain the difference between git pull and git fetch.</summary>
+<div class="say">git fetch simply downloads the latest changes from GitHub to our laptop, but does not mix them with our current work.
+git pull downloads those changes and immediately forces a merge into our local code.
+
+That is the main difference.</div>
+</details>
+
+<details class="qa"><summary>Q33: What is a merge conflict and how do you resolve it?</summary>
+<div class="say">A conflict happens when two developers edit the exact same line of code and Git doesn't know which one to keep.
+To resolve it, we open the file manually, delete the wrong code, keep the correct one, save it, and then commit the file.
+
+That is how we resolve conflicts.</div>
+</details>
+
+<details class="qa"><summary>Q34: Explain a typical Git workflow you have used.</summary>
+<div class="say">First, I create a feature branch from the main branch.
+I write my code and push it to GitHub. Then, I raise a Pull Request (PR). Once my senior team members review and approve it, we merge it into the main branch.
+
+That is the standard workflow.</div>
+</details>
+
+<details class="qa"><summary>Q35: How do you revert a commit that has already been pushed?</summary>
+<div class="say">I do not delete the old commit because it ruins the history for others.
+Instead, I use the git revert &lt;commit-id&gt; command. This creates a brand new, safe commit that does the exact opposite of the bad commit, undoing the mistake cleanly.
+
+That is how I revert safely.</div>
+</details>
+
+<details class="qa"><summary>Q36: What is the difference between Git and GitHub?</summary>
+<div class="say">Git is the actual command-line software installed on our laptops that tracks our code history locally.
+GitHub is a cloud-based website where we upload and share our Git repositories so the whole team can collaborate.
+
+That is the difference between them.</div>
+</details>
+
+<details class="qa"><summary>Q37: How do you use pull requests and code reviews in your team?</summary>
+<div class="say">A Pull Request acts as a security gate.
+Before any developer's code is merged into the main production branch, they raise a PR. The rest of the team reviews the code to catch bugs and ensure quality before clicking approve.
+
+That is how we use PRs.</div>
+</details>
+</section>
+
+<section class="part" id="top50-sec4">
+<div class="part-head">
+  <h2>Section 4: Containerization & CI/CD Pipelines</h2>
+  <p>In-Depth Technical Questions & Answers (Q38 - Q50)</p>
+</div>
+
+<details class="qa"><summary>Q38: What is Docker and how is it different from a virtual machine?</summary>
+<div class="say">A Virtual Machine requires a heavy, full Operating System for every single application, making it slow.
+Docker shares the host's OS. It just packages the app and its dependencies into a lightweight container, making it extremely fast to start and easy to move anywhere.
+
+That is the main difference.</div>
+</details>
+
+<details class="qa"><summary>Q39: Explain the difference between a Docker image and a container.</summary>
+<div class="say">An image is like a blueprint or a recipe; it is a read-only file that contains our code.
+A container is the actual running application created from that image. We can run multiple active containers from one single image.
+
+That is the difference between them.</div>
+</details>
+
+<details class="qa"><summary>Q40: What is a Dockerfile? Give a simple example.</summary>
+<div class="say">A Dockerfile is a simple text file with instructions on how to build an image.
+Example: We use FROM python as the base, COPY . /app to bring our code in, RUN pip install to get dependencies, and CMD ["python", "app.py"] to start the app.
+
+That is what a Dockerfile is.</div>
+</details>
+
+<details class="qa"><summary>Q41: How do you build and push a Docker image to a registry?</summary>
+<div class="say">First, I run docker build -t myapp:v1 . to create the image.
+Then, I run docker login to authenticate. Finally, I run docker push myapp:v1 to safely upload it to Docker Hub or AWS ECR.
+
+That is the build and push process.</div>
+</details>
+
+<details class="qa"><summary>Q42: How do you reduce Docker image size?</summary>
+<div class="say">I use very small base images like Alpine Linux instead of full Ubuntu.
+I also combine multiple RUN commands into a single line, and use Multi-stage builds so that unnecessary build tools are thrown away from the final image.
+
+That is how I reduce image size.</div>
+</details>
+
+<details class="qa"><summary>Q43: What are Docker volumes and why are they used?</summary>
+<div class="say">Containers are temporary; if a database container crashes, all data inside it is lost forever.
+Volumes are safe storage folders mapped outside the container. They ensure our database records stay permanently safe even if the container is deleted.
+
+That is why we use Volumes.</div>
+</details>
+
+<details class="qa"><summary>Q44: Explain basic Docker networking (bridge, host, none) at a high level.</summary>
+<div class="say">Bridge is the default network where containers can talk to each other in isolation.
+Host removes the isolation and shares the main server's exact IP network. None completely disables network access, keeping the container fully offline.
+
+That covers Docker networking.</div>
+</details>
+
+<details class="qa"><summary>Q45: What is CI/CD and what benefits does it bring?</summary>
+<div class="say">CI/CD stands for Continuous Integration and Continuous Deployment.
+It automates everything. Instead of humans doing manual work, CI/CD automatically tests the code, finds bugs instantly, and deploys it to the servers fast and safely.
+
+That is the main benefit.</div>
+</details>
+
+<details class="qa"><summary>Q46: Explain Jenkins architecture.</summary>
+<div class="say">Jenkins uses a Master-Agent architecture.
+The Jenkins Master is the boss; it stores configurations and schedules the pipelines. The Jenkins Agents are the actual worker servers that take the orders and do the heavy lifting like building the code.
+
+That is the Jenkins architecture.</div>
+</details>
+
+<details class="qa"><summary>Q47: What is a Jenkins pipeline? Difference between declarative and scripted pipeline.</summary>
+<div class="say">A pipeline is a series of automated steps to release software.
+Declarative pipeline is written in simple, easy-to-read blocks. Scripted pipeline is written in complex Groovy code for highly advanced, programmatic logic.
+
+That is the difference between them.</div>
+</details>
+
+<details class="qa"><summary>Q48: Describe a simple CI/CD pipeline you have worked on.</summary>
+<div class="say">It starts when a developer pushes code to Git.
+Jenkins automatically triggers, builds the Java code using Maven, runs SonarQube for quality checks, builds a Docker image, pushes it to DockerHub, and finally deploys it on an EC2 server.
+
+That is a standard pipeline flow.</div>
+</details>
+
+<details class="qa"><summary>Q49: How do you trigger a Jenkins job on a Git push?</summary>
+<div class="say">We configure a Webhook inside GitHub.
+We paste our Jenkins server URL in GitHub's settings. So, the second a developer pushes code, GitHub automatically fires an HTTP signal to Jenkins to wake up and start the job.
+
+That is how we automate the trigger.</div>
+</details>
+
+<details class="qa"><summary>Q50: How do you manage credentials and secrets in Jenkins?</summary>
+<div class="say">We should absolutely never hardcode passwords inside the pipeline code.
+Instead, we save the passwords securely inside the 'Jenkins Credentials Manager' and reference their variable names inside the pipeline so they stay hidden in the logs.
+
+That is how we manage secrets securely.</div>
+</details>
+</section>
+
 </main>
 </div>
 <a href="#" class="backtotop" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">↑ Top</a>
 <script>
-  // Simple script to ensure smooth details toggling if needed
   document.querySelectorAll('details').forEach(function(d){
     d.addEventListener('click', function(e) {
       if(e.target.tagName === 'A') return;
