@@ -16,25 +16,28 @@
 > **💡 The Core Idea:** Many freshers struggle not because they lack technical knowledge, but because they don't know *how to explain concepts simply*. This website eliminates the fluff, providing practical, conversational answers—exactly how you should speak them out loud to an interviewer.
 
 ## ✨ Key Features
-- **💬 Conversational Answers:** No robotic definitions. Easy-to-understand English.
-- **🔥 Top 50 In-Depth Q&A:** High-weightage questions across AWS, Linux, CI/CD, and Containers.
-- **🛟 English Survival Lines:** Memorize exact phrases to use when your mind goes blank.
-- **🎤 Interactive Practice Mode:** Hide answers, test your memory, and reveal them with a click.
-- **🔍 Live Search & Filtering:** Instantly find any question, command, or tool.
-- **💎 Glassmorphism UI:** A sleek, pure-black (`#000000`) dark theme designed to reduce eye strain.
+- **💬 Conversational Answers:** No robotic definitions. Easy-to-understand English, structured exactly how you would speak in an interview.
+- **🔥 Top 50 In-Depth Q&A:** A brand new, dedicated section featuring 50 high-weightage interview questions categorized logically (AWS, Linux, CI/CD, Containerization).
+- **🛟 English Survival Lines:** Memorize exact phrases to use when your mind goes blank, when you need to buy time, or when you don't know the answer.
+- **🌌 Premium Gemini-Style UI:** A sleek, deep-dark theme featuring a live, animated ambient glow (inspired by Google Gemini) and smooth glassmorphism accordion cards.
+- **📱 Distraction-Free Layout:** Clean, uniform design with smooth scrolling and active sidebar highlighting for a seamless reading experience.
 
 ## 📚 Topics Covered
 Structured to flow exactly like a real interview:
+
+**General Topics:**
 1. **HR & Personal** 🙋‍♂️
-2. **DevOps Basics** ⚙️
-3. **Core Tools** 🛠️ *(Linux, Git, Docker, Jenkins, Kubernetes, SonarQube)*
-4. **Cloud & IaC** ☁️ *(AWS, Terraform, Ansible)*
-5. **Tool Architectures** 🏗️
+2. **Saving Words (Survival Lines)** 🛟
+3. **DevOps Basics** ⚙️
+4. **Core Tools** 🛠️ *(Linux, Git & GitHub, Docker, Jenkins, Kubernetes, SonarQube)*
+5. **Cloud & IaC** ☁️ *(AWS, Terraform, Ansible)*
+6. **Architectures & Your Project** 🏗️
 
-## 📸 Sneak Peek
-*(You can upload a screenshot of your website in your repo and replace this image link later)*
-
-![UI Preview](https://via.placeholder.com/900x450/000000/3b82f6?text=Modern+Glassmorphism+UI+Screenshot+Goes+Here)
+**Top 50 In-Depth Q&As:**
+- **Section 1:** AWS Compute & Networking
+- **Section 2:** AWS Storage, Security & Auto Scaling
+- **Section 3:** Linux & Version Control
+- **Section 4:** Containerization & CI/CD Pipelines
 
 ## 🚀 Getting Started
 
