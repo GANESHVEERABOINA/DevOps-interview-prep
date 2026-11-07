@@ -287,6 +287,10 @@ section.part:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
     <li><a href="#terraform">12. Terraform</a></li>
     <li><a href="#architectures">13. Architectures</a></li>
     <li><a href="#project-questions">14. Your Project</a></li>
+    <li><a href="#devsecops">15. DevSecOps</a></li>
+    <li><a href="#helm-gitops">16. Helm, GitOps & ArgoCD</a></li>
+    <li><a href="#backend-db-ports">17. Backend, APIs & DB Ports</a></li>
+    <li><a href="#http-errors">18. HTTP Error Codes</a></li>
   </ul>
 
   <div class="navtitle">Top 50 In-Depth Q&As</div>
@@ -305,9 +309,10 @@ section.part:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
 
 <details class="qa" open><summary>Introduce yourself...!</summary>
 <div class="say">Hi, thank you for this opportunity. I am Ganesh Veeraboina, with a background in Computer Science and a focus on DevOps and Automation.
-I work with Linux and Git, set up CI/CD pipelines using Jenkins, and integrate SonarQube for code quality. I also containerize apps with Docker, manage them via Kubernetes, automate infrastructure using Terraform and Ansible, and use monitoring tools to ensure smooth operations.
-I am seeking an entry-level role to apply these skills to real-world projects and grow within a team. Thank you.
-That is all about me for now.</div>
+I work with Linux, Git, Jenkins, SonarQube, Docker, Kubernetes, Terraform, and Ansible.
+Along with DevOps, I am expanding my skills in DevSecOps by integrating security into every stage of the CI/CD pipeline to identify vulnerabilities, protect user data, and deliver secure applications to end users.
+I am seeking an entry-level opportunity to apply my skills to real-world projects and grow within a team.
+Thank you. That's all about me for now.</div>
 </details>
 
 <details class="qa"><summary>Why are you looking for a job change?</summary>
@@ -695,6 +700,13 @@ This whole process is automated — every time a developer pushes code, it goes 
 - That is Kubernetes in short.</div>
 </details>
 
+<details class="qa"><summary>Can you explain the Kubernetes (K8s) Architecture in detail?</summary>
+<div class="say">Kubernetes has two main parts: the Control Plane (Master Node) and the Worker Nodes.
+The Control Plane is the brain of the cluster. It has 4 components: API Server (handles all requests), etcd (the database that stores cluster state), Scheduler (decides which node runs a new Pod), and Controller Manager (makes sure crashed Pods are replaced).
+The Worker Node is where our actual containers run. It has 3 components: Kubelet (agent that talks to the Master and manages Pods), Kube-proxy (handles networking and load balancing), and Container Runtime like Docker or containerd (runs the containers).
+- That covers the complete Kubernetes architecture.</div>
+</details>
+
 <details class="qa"><summary>What is the difference between Docker and Kubernetes?</summary>
 <div class="say">Docker is used to build and run single containers. But if we have hundreds of containers, managing them manually is very difficult. Kubernetes is the tool that automatically manages, scales, and monitors all those Docker containers.
 - That is the main difference.</div>
@@ -715,9 +727,15 @@ This whole process is automated — every time a developer pushes code, it goes 
 - That is the purpose of a Deployment.</div>
 </details>
 
-<details class="qa"><summary>What is a Kubernetes Service?</summary>
-<div class="say">Pods are born and die constantly, and their IP addresses keep changing. A Service acts as a load balancer and gives a permanent IP address to a group of Pods. This allows users to access our application constantly without worrying about changing IPs.
+<details class="qa"><summary>What is a Kubernetes Service (ClusterIP, NodePort, LoadBalancer)?</summary>
+<div class="say">Pods die and get recreated constantly, so their IP addresses keep changing. A Service gives a permanent IP address and load balances traffic to a group of Pods.
+ClusterIP is used for internal communication inside the cluster, NodePort exposes the app on a static port on the server, and LoadBalancer exposes the app to the public internet using a cloud load balancer.
 - That is the role of a Service.</div>
+</details>
+
+<details class="qa"><summary>What is an Ingress in Kubernetes?</summary>
+<div class="say">Instead of creating a separate expensive cloud LoadBalancer for every single microservice, we use Ingress. Ingress sits at the front of the cluster and routes external HTTP/HTTPS traffic to different internal Services based on the domain name or URL path (like /api or /admin).
+- That is what Ingress does.</div>
 </details>
 
 <details class="qa"><summary>What is a ReplicaSet?</summary>
@@ -854,116 +872,103 @@ This whole process is automated — every time a developer pushes code, it goes 
 </details>
 
 <details class="qa"><summary>What is the difference between a public subnet and a private subnet?</summary>
-<div class="say">A public subnet has a route to an Internet Gateway, which can allow internet access when the resource also has the required public IP and security rules. A private subnet does not have a direct route to an Internet Gateway. Private resources can use a NAT Gateway for outbound internet access when configured.
+<div class="say">A public subnet has a direct route to an Internet Gateway, so servers inside it can be accessed from the internet. A private subnet has no direct route to the Internet Gateway, keeping backend servers and databases completely hidden from the public internet.
 - That is the difference between public and private subnets.</div>
 </details>
 
-<details class="qa"><summary>What are EFS, EBS, and S3 in AWS?</summary>
-<div class="say">EBS provides block storage, commonly attached to EC2 instances. EFS provides shared file storage that multiple instances can access. S3 provides object storage for files, backups, logs, and other data.
-- These are the main AWS storage services.</div>
+<details class="qa"><summary>How do you access servers in a Private Subnet? (Bastion Host / Jump Server & SSM)</summary>
+<div class="say">Since private subnet servers do not have public IPs, we cannot SSH into them directly from our laptop.
+We use two methods: First, we launch a Bastion Host (Jump Server) in the public subnet; we SSH into the Bastion Host first, and from there we SSH into the private server using its private IP. Second, the modern way is using AWS Systems Manager (SSM) Session Manager, which lets us securely log in directly from the AWS Console without opening port 22 or using a Bastion Host.
+- That is how we access private subnet servers.</div>
 </details>
 
-<details class="qa"><summary>What is the difference between EFS, EBS, and S3?</summary>
-<div class="say">EBS is block storage generally used as a disk for an EC2 instance. EFS is a managed file system that can be mounted by multiple supported instances. S3 stores objects in buckets and is accessed through APIs or compatible tools rather than being a regular EC2 disk.
+<details class="qa"><summary>If our application is running inside a private subnet, how do end users access it?</summary>
+<div class="say">We place an internet-facing Application Load Balancer (ALB) inside the public subnet. When users visit our website, their request hits the public Load Balancer first, and the Load Balancer securely forwards the traffic internally to our application servers running inside the private subnet.
+- That is how users access an application in a private subnet.</div>
+</details>
+
+<details class="qa"><summary>How do servers in a private subnet download software updates from the internet?</summary>
+<div class="say">We place a NAT Gateway inside the public subnet and attach it to the private subnet's route table. This allows private servers to send outbound requests to the internet to download patches or packages, while blocking any external hacker from initiating an inbound connection back into the private server.
+- That is the purpose of a NAT Gateway.</div>
+</details>
+
+<details class="qa"><summary>How does an application in a private subnet connect to a database in another private subnet?</summary>
+<div class="say">The application connects to the database using its private IP address or private RDS endpoint over the internal VPC network. We configure the Database Security Group to only allow inbound traffic on the database port (like 3306 for MySQL) specifically from the Application Server's Security Group.
+- That is how an application connects to a database privately.</div>
+</details>
+
+<details class="qa"><summary>What are EFS, EBS, and S3 in AWS, and how do they differ?</summary>
+<div class="say">EBS is block storage that works like a virtual hard disk attached to a single EC2 instance. EFS is shared network file storage that can be mounted to multiple EC2 instances at the same time. S3 is object storage used to store files, backups, and static media in buckets over the internet.
 - That is the main difference between EFS, EBS, and S3.</div>
 </details>
 
 <details class="qa"><summary>What is an AMI in AWS?</summary>
-<div class="say">AMI stands for Amazon Machine Image. It is a template used to launch EC2 instances and includes information such as the operating system and configured software.
+<div class="say">AMI stands for Amazon Machine Image. It is a pre-configured template used to launch EC2 instances and includes the operating system and required software packages.
 - That is what an AMI is.</div>
 </details>
 
-<details class="qa"><summary>What is the difference between an AMI and an EBS volume?</summary>
-<div class="say">An AMI is a template used to launch an EC2 instance. An EBS volume is block storage that an instance can use as a disk. An AMI can include snapshots used to create the instance's EBS volumes.
-- That is the difference between an AMI and an EBS volume.</div>
-</details>
-
-<details class="qa"><summary>What is a NAT Gateway in AWS?</summary>
-<div class="say">A NAT Gateway allows resources in a private subnet to initiate outbound connections to the internet or other supported destinations, while preventing unsolicited inbound connections from the internet through the NAT Gateway. The private subnet's route table must direct the appropriate outbound traffic to it.
-- That is the purpose of a NAT Gateway.</div>
-</details>
-
-<details class="qa"><summary>What is a Network ACL (NACL) in AWS?</summary>
-<div class="say">A Network ACL is a network-level security control associated with a subnet. It can allow or deny inbound and outbound traffic using numbered rules. Network ACLs are stateless, so inbound and outbound traffic must be allowed as needed.
-- That is what a NACL is.</div>
-</details>
-
-<details class="qa"><summary>What is a route table in AWS?</summary>
-<div class="say">A route table contains rules that determine where network traffic from a subnet or gateway is directed. For example, a route can send local VPC traffic within the VPC, internet-bound traffic to an Internet Gateway, or private-subnet outbound traffic to a NAT Gateway.
-- That is the purpose of a route table.</div>
-</details>
-
-<details class="qa"><summary>What is the difference between a route table and a NACL?</summary>
-<div class="say">A route table decides where network traffic should go. A NACL controls whether traffic is allowed or denied at the subnet level. Route tables are for routing; NACLs are for network traffic filtering.
+<details class="qa"><summary>What is the difference between a Route Table and a Network ACL (NACL)?</summary>
+<div class="say">A Route Table is like a map that decides where network traffic should go next. A Network ACL (NACL) is a stateless firewall at the subnet level that decides whether traffic is allowed or denied using numbered rules.
 - That is the main difference.</div>
-</details>
-
-<details class="qa"><summary>If our application is running inside a private subnet, how do users connect to it?</summary>
-<div class="say">For a public-facing application, we can place an internet-facing Application Load Balancer in public subnets and configure it to forward requests to application instances in private subnets. The instances do not need public IP addresses. Security groups should allow application traffic from the load balancer only. For an internal-only application, we can use an internal load balancer and private connectivity such as a VPN or Direct Connect.
-- That is how users can securely access an application in a private subnet.</div>
-</details>
-
-<details class="qa"><summary>How does an application in a private subnet connect to a database in another private subnet?</summary>
-<div class="say">The application connects to the database using its private IP address or private DNS endpoint and the database port. Both subnets need appropriate VPC routes, and the database security group should allow inbound traffic on the database port from the application's security group. For example, MySQL commonly uses port 3306 and PostgreSQL commonly uses port 5432.
-- That is how an application connects to a database privately.</div>
-</details>
-
-<details class="qa"><summary>How can we connect to an EC2 instance in a private subnet?</summary>
-<div class="say">We can connect through a bastion host (jump server) in a public subnet using SSH, or use AWS Systems Manager Session Manager when the instance, IAM permissions, and network connectivity are configured. We should not expose the private instance directly to the internet.
-- These are common secure ways to access a private EC2 instance.</div>
-</details>
-
-<details class="qa"><summary>Can an EC2 instance in a private subnet access the internet?</summary>
-<div class="say">Yes. We can configure a NAT Gateway in a public subnet and add a route from the private subnet's route table to the NAT Gateway for internet-bound traffic. The instance can initiate outbound connections, but the NAT Gateway does not provide direct inbound access from the internet.
-- That is how private-subnet instances can access the internet.</div>
 </details>
 </section>
 
 <section class="part" id="ansible">
-<div class="part-head"><h2>11. Ansible</h2></div>
+<div class="part-head"><h2>11. Ansible & CI/CD Integration</h2></div>
 
 <details class="qa" open><summary>What is Ansible?</summary>
-<div class="say">Ansible is a configuration management tool. If I need to install a software on a hundred servers, doing it manually takes hours. With Ansible, I can write a simple playbook and update all servers at the exact same time.
+<div class="say">Ansible is an open-source configuration management tool. If I need to install software, update packages, or copy files across a hundred servers, doing it manually takes hours. With Ansible, I write a simple YAML playbook from one central machine and configure all 100 servers at the exact same time.
 - That is it for Ansible.</div>
 </details>
 
 <details class="qa"><summary>What is the main advantage of Ansible?</summary>
-<div class="say">The biggest advantage is that Ansible is "agentless". Unlike other tools, we do not need to install any special software or agents on the target servers. It simply connects to them using basic SSH and does the work.
+<div class="say">The biggest advantage is that Ansible is "agentless". Unlike other tools like Puppet or Chef, we do not need to install any background software or agents on our target servers. Ansible simply connects to Linux servers using standard SSH and runs the tasks.
 - That is its main advantage.</div>
 </details>
 
+<details class="qa"><summary>How do you use Ansible inside a CI/CD pipeline? (Jenkins + Ansible)</summary>
+<div class="say">In a CI/CD pipeline, Jenkins handles the build and testing, while Ansible handles server configuration and deployment.
+Once Jenkins compiles the code and creates the build artifact or Docker image, Jenkins triggers an 'ansible-playbook' command. Ansible then connects to all target servers via SSH, installs required dependencies like Docker or Java, copies the new application version, and restarts the service automatically.
+- That is how Ansible works in CI/CD.</div>
+</details>
+
+<details class="qa"><summary>What is the difference between Terraform and Ansible?</summary>
+<div class="say">Terraform is an infrastructure provisioning tool used to create cloud resources from scratch, like VPCs, EC2 instances, and RDS databases. Ansible is a configuration management tool used after the server is created to install software, edit config files, and deploy applications inside those servers.
+- That is the difference between Terraform and Ansible.</div>
+</details>
+
 <details class="qa"><summary>What is an Ansible Inventory?</summary>
-<div class="say">An inventory is simply a text file where we list the IP addresses of all our target servers. We can also group these servers, like putting all web servers in one group and database servers in another, to manage them easily.
+<div class="say">An inventory is simply a text file (usually hosts.ini) where we list the IP addresses or domain names of all our target servers. We can group these servers, like [webservers] and [dbservers], so we can run specific playbooks on specific groups.
 - That covers the inventory.</div>
 </details>
 
 <details class="qa"><summary>What is an Ansible Playbook?</summary>
-<div class="say">A playbook is a YAML file where we write our actual automation code. It contains a list of tasks, like installing packages, starting services, or copying files, which we want to execute on our target servers.
+<div class="say">A playbook is a simple YAML file where we write our automation code. It contains a list of sequential tasks, like installing Nginx, copying configuration files, and starting the service on our target servers.
 - That is an Ansible playbook.</div>
 </details>
 
 <details class="qa"><summary>What are Ansible Modules?</summary>
-<div class="say">Modules are the actual tools that do the work in Ansible. When we write a task in a playbook, we use a specific module. For example, we use the 'yum' or 'apt' module to install software, and the 'copy' module to transfer files.
+<div class="say">Modules are the built-in scripts that do the actual work inside an Ansible task. For example, we use the 'apt' or 'yum' module to install packages, the 'copy' module to transfer files, and the 'service' module to start or restart applications.
 - That is the use of modules.</div>
 </details>
 
 <details class="qa"><summary>What does Idempotency mean in Ansible?</summary>
-<div class="say">Idempotency is a very important concept. It means no matter how many times you run an Ansible playbook, it will only make changes if they are actually needed. If the server is already correctly configured, it will do nothing.
+<div class="say">Idempotency means that running the same Ansible playbook once or ten times gives the exact same result without breaking anything. If Nginx is already installed on the server, Ansible checks the state first and skips the installation instead of reinstalling it.
 - That is what idempotency means.</div>
 </details>
 
-<details class="qa"><summary>What is an Ansible Role?</summary>
-<div class="say">When a playbook becomes too big, it is very hard to read and manage. Roles help us break down that big playbook into smaller, organized folders like tasks, variables, and files. This makes the code clean and easy to reuse.
-- That is the purpose of roles.</div>
+<details class="qa"><summary>What is an Ansible Role and Ansible Vault?</summary>
+<div class="say">An Ansible Role breaks a large complex playbook into clean, reusable folders like tasks, handlers, templates, and vars. Ansible Vault is used to encrypt sensitive data like database passwords or SSH keys inside our playbooks so they are not visible as plain text in Git.
+- That covers Ansible Roles and Vault.</div>
 </details>
 
 <details class="qa"><summary>What are Ad-hoc commands in Ansible?</summary>
-<div class="say">Playbooks are used for full setups. But if we want to do a quick task, like checking the uptime of 50 servers immediately, we run a single line command in the terminal instead of writing a full playbook.
+<div class="say">Playbooks are used for multi-step setups, while Ad-hoc commands are one-line terminal commands used for quick, one-time tasks—like pinging 50 servers at once or checking free disk space across all servers immediately.
 - That covers ad-hoc commands.</div>
 </details>
 
 <details class="qa"><summary>How does Ansible connect to Linux servers securely?</summary>
-<div class="say">Ansible uses standard SSH keys for connection. We generate an SSH key on our main Ansible server and copy the public key to all the target servers. After that, Ansible can connect and run tasks without asking for a password.
+<div class="say">Ansible uses passwordless SSH key authentication. We generate an SSH key pair on the Ansible Control Node and copy the public key to the target servers. This allows Ansible to connect and execute tasks securely without typing a password.
 - That is how the connection works.</div>
 </details>
 </section>
@@ -1134,11 +1139,245 @@ That covers the Monitoring architecture.</div>
 <section class="part" id="project-questions">
 <div class="part-head"><h2>14. Your Project</h2></div>
 <details class="qa" open><summary>Tell me about your project.</summary>
-<div class="say">In my learning environment, I practiced building a complete CI/CD pipeline.
-I used GitHub to store my code, Jenkins to automate the build and deployment, Maven to build the application, SonarQube to check code quality, Docker to containerize the application, and I deployed it on an AWS EC2 instance.
-I also practiced basic monitoring to check the application status.
-This was a practice project, not a production project, but I did it hands-on by myself.</div>
+<div class="say">In my learning environment, I worked on a 3-tier web application and built an automated CI/CD pipeline around it.
+The application has a React frontend, a Node.js Express backend API, and a MongoDB database. I used GitHub to store the code, Jenkins to automate the build, SonarQube to scan code quality, and Docker to containerize the frontend and backend into images pushed to Docker Hub.
+For deployment, I used Kubernetes along with Helm charts and Traefik ingress to manage the multi-container setup.
+This hands-on project helped me practice end-to-end automation, container orchestration, and troubleshooting in a real-world setup.</div>
 </details>
+</section>
+
+<!-- ========================================== -->
+<!-- 15. DEVSECOPS (NEW SECTION)                -->
+<!-- ========================================== -->
+
+<section class="part" id="devsecops">
+<div class="part-head">
+  <h2>15. DevSecOps</h2>
+  <p>Simple & Clear Security Integration Questions for CI/CD Pipelines</p>
+</div>
+
+<details class="qa" open><summary>What is DevSecOps, and how is it different from DevOps?</summary>
+<div class="say">DevOps focuses on speed and automation between Development and Operations, while DevSecOps integrates security into every stage of the CI/CD pipeline.
+Instead of doing security checks manually at the very end before production release, we automate security scanning for code, dependencies, Docker images, and infrastructure right inside the build pipeline.
+- That is what DevSecOps is.</div>
+</details>
+
+<details class="qa"><summary>What does "Shift-Left Security" mean in DevSecOps?</summary>
+<div class="say">Shift-Left means moving security checks to the earliest stages of software development—right when a developer writes and commits code.
+Finding and fixing a security vulnerability during coding or build time is much faster, cheaper, and safer than fixing it after deploying to production.
+- That is Shift-Left Security.</div>
+</details>
+
+<details class="qa"><summary>How do you prevent developers from pushing passwords or AWS keys to Git?</summary>
+<div class="say">I use secret scanning tools like Gitleaks or TruffleHog as a pre-commit hook and in the first stage of the Jenkins pipeline.
+It automatically scans all Git commits for hardcoded passwords, API tokens, and AWS keys, and immediately blocks the commit or fails the pipeline if a leaked secret is detected.
+- That is how we prevent secret leaks in Git.</div>
+</details>
+
+<details class="qa"><summary>What is SAST, and how do you use it in your pipeline?</summary>
+<div class="say">SAST stands for Static Application Security Testing. It scans the developer's source code from the inside to find security flaws like SQL Injection or hardcoded credentials without running the application.
+In my pipeline, I integrate SonarQube with a strict Quality Gate so that if any critical security vulnerability is found in the code, the pipeline stops automatically.
+- That covers SAST.</div>
+</details>
+
+<details class="qa"><summary>How do you scan Docker images and open-source libraries for vulnerabilities?</summary>
+<div class="say">I use Trivy inside my CI/CD pipeline for both Software Composition Analysis (SCA) and container image scanning.
+Before pushing an image to Docker Hub, Trivy scans the Linux OS packages and third-party libraries (like package.json or pom.xml) for known CVEs, and stops the build if high or critical vulnerabilities exist.
+- That is how I scan Docker images using Trivy.</div>
+</details>
+
+<details class="qa"><summary>How do you secure Terraform and Kubernetes YAML files before deployment?</summary>
+<div class="say">I use Checkov or Tfsec for Infrastructure as Code (IaC) security scanning.
+It automatically checks Terraform code and Kubernetes manifests for misconfigurations—such as public S3 buckets, open security groups (0.0.0.0/0), or containers running as the root user—before we apply them to the cloud.
+- That is how we secure IaC files.</div>
+</details>
+
+<details class="qa"><summary>What is DAST, and how is it different from SAST?</summary>
+<div class="say">While SAST scans static source code from the inside during the build stage, DAST (Dynamic Application Security Testing) tests the live running application from the outside like a real hacker.
+We use tools like OWASP ZAP against our staging environment URL to find runtime security issues like authentication flaws or missing security headers.
+- That is the difference between SAST and DAST.</div>
+</details>
+
+<details class="qa"><summary>How do you handle sensitive data like database passwords in CI/CD pipelines?</summary>
+<div class="say">We never hardcode passwords or API keys inside Git, Jenkinsfiles, or Dockerfiles.
+Instead, I store secrets safely in Jenkins Credentials Manager, AWS Secrets Manager, or HashiCorp Vault, and inject them dynamically as masked environment variables only at runtime.
+- That is how we handle secrets securely.</div>
+</details>
+
+<details class="qa"><summary>What Docker and Kubernetes security best practices do you follow?</summary>
+<div class="say">First, I use minimal multi-stage base images like Alpine to reduce the attack surface.
+Second, I always configure the Dockerfile to run the application as a non-root user.
+Third, I scan images with Trivy and restrict Pod permissions in Kubernetes using RBAC (Role-Based Access Control) and Network Policies.
+- Those are the security best practices I follow.</div>
+</details>
+
+<details class="qa"><summary>Can you explain your complete DevSecOps CI/CD pipeline flow?</summary>
+<div class="say">When a developer pushes code to GitHub, Jenkins starts the automated DevSecOps pipeline:
+First, Gitleaks scans the repository to ensure no secrets or keys are leaked.
+Second, the code is built and SonarQube runs a SAST scan with a Quality Gate.
+Third, Checkov scans the Kubernetes and Terraform files, Docker builds the image, and Trivy scans the Docker image for critical CVEs.
+Finally, the verified image is deployed to the staging environment, where OWASP ZAP runs a DAST scan before releasing to production.
+- That is my complete DevSecOps pipeline flow.</div>
+</details>
+</section>
+
+<!-- ========================================== -->
+<!-- 16. HELM, GITOPS & ARGOCD (NEW SECTION)    -->
+<!-- ========================================== -->
+
+<section class="part" id="helm-gitops">
+<div class="part-head">
+  <h2>16. Helm, GitOps & ArgoCD</h2>
+  <p>Kubernetes Packaging and Automated GitOps Delivery</p>
+</div>
+
+<details class="qa" open><summary>What is Helm in Kubernetes?</summary>
+<div class="say">Helm is the package manager for Kubernetes, just like 'apt' for Ubuntu or 'yum' for RedHat.
+Instead of writing and applying 10 or 15 separate YAML files for Deployments, Services, ConfigMaps, and Ingress manually, Helm bundles all of them into a single reusable package called a Helm Chart.
+- That is what Helm is.</div>
+</details>
+
+<details class="qa"><summary>What is a Helm Chart and how does 'values.yaml' work?</summary>
+<div class="say">A Helm Chart is a structured folder containing three main parts: Chart.yaml (metadata about the chart), a templates/ folder (dynamic Kubernetes YAML templates), and a values.yaml file.
+Instead of editing the YAML templates for every environment, we just change variables like image tags or replica counts inside values.yaml to deploy the exact same chart to Dev, QA, and Production.
+- That covers Helm Charts and values.yaml.</div>
+</details>
+
+<details class="qa"><summary>What are some common Helm commands you use?</summary>
+<div class="say">I use 'helm create' to generate a new chart structure, 'helm install' to deploy the chart to the Kubernetes cluster, 'helm upgrade' to push new changes, and 'helm rollback' to immediately revert back to a previous working version if a deployment fails.
+- Those are the main Helm commands.</div>
+</details>
+
+<details class="qa"><summary>What is GitOps?</summary>
+<div class="say">GitOps is a modern practice where Git acts as the "Single Source of Truth" for both our application code and our Kubernetes infrastructure YAML files.
+In GitOps, we never run 'kubectl apply' manually on the cluster. Instead, any change we want in production is committed to Git, and an automated tool syncs that exact change into the Kubernetes cluster.
+- That is what GitOps means.</div>
+</details>
+
+<details class="qa"><summary>What is ArgoCD and how does it work?</summary>
+<div class="say">ArgoCD is a declarative GitOps Continuous Delivery tool that runs inside our Kubernetes cluster.
+It continuously watches our Git repository 24/7 and compares the YAML files in Git (Desired State) with what is actually running in Kubernetes (Live State). When we update an image tag in Git, ArgoCD detects the change and automatically updates the cluster.
+- That is how ArgoCD works.</div>
+</details>
+
+<details class="qa"><summary>What is Self-Healing in ArgoCD?</summary>
+<div class="say">If someone manually logs into the Kubernetes cluster and changes or deletes a Deployment using kubectl, the cluster goes "OutOfSync" with Git.
+With Self-Healing enabled, ArgoCD immediately detects this unauthorized manual change and overwrites it back to match the exact configuration stored in Git.
+- That is Self-Healing in ArgoCD.</div>
+</details>
+
+<details class="qa"><summary>What is the difference between Push-based CI/CD (Jenkins) and Pull-based GitOps (ArgoCD)?</summary>
+<div class="say">In a traditional Push-based pipeline, Jenkins sits outside the cluster and needs admin cluster credentials to push deployments into Kubernetes.
+In a Pull-based GitOps workflow, ArgoCD sits safely inside the Kubernetes cluster, pulls changes from Git, and applies them locally—so we never have to expose our cluster credentials outside.
+- That is the difference between Push and Pull CI/CD.</div>
+</details>
+</section>
+
+<!-- ========================================== -->
+<!-- 17. BACKEND, APIs, DBMS & PORTS (NEW)      -->
+<!-- ========================================== -->
+
+<section class="part" id="backend-db-ports">
+<div class="part-head">
+  <h2>17. Backend, APIs, Databases & Ports</h2>
+  <p>3-Tier Architecture, Tool API Communication, SQL/NoSQL/Redis, and Default Ports</p>
+</div>
+
+<details class="qa" open><summary>What is the Backend, and how does a 3-Tier Application Architecture work?</summary>
+<div class="say">A 3-Tier application is divided into three layers: Frontend, Backend, and Database.
+The Frontend (like React + Nginx) is the visual UI the user sees in the browser. The Backend (like Node.js Express, Java Spring Boot, or Python) is the brain that processes business logic, authentication, and calculations. The Database (like MongoDB or MySQL) permanently stores the data.
+When a user clicks a button on the Frontend, it sends an API request to the Backend, the Backend fetches or saves data in the Database, and sends the response back to the user.
+- That is how the Backend and 3-tier architecture work.</div>
+</details>
+
+<details class="qa"><summary>How do APIs work between different DevOps tools (and between Frontend & Backend)?</summary>
+<div class="say">API stands for Application Programming Interface. It acts like a waiter in a restaurant that carries messages between two different softwares using HTTP requests (GET, POST, PUT, DELETE) and JSON data.
+In DevOps, all tools talk to each other using APIs: when we push code, GitHub sends a POST API call (Webhook) to Jenkins; Jenkins talks to the SonarQube API to check the Quality Gate; Jenkins calls the Docker daemon API to build images; and Terraform calls the AWS API to create EC2 servers.
+- That is how APIs connect different tools together.</div>
+</details>
+
+<details class="qa"><summary>What is a DBMS, and what is the difference between SQL and NoSQL databases?</summary>
+<div class="say">DBMS (Database Management System) is software used to store, retrieve, and manage application data securely.
+SQL databases (like MySQL and PostgreSQL) store structured data in strict rows and tables, which is great for banking and transactions. NoSQL databases (like MongoDB) store unstructured data as flexible JSON-like documents, which is fast and easy to scale for modern web applications.
+- That is the difference between SQL and NoSQL.</div>
+</details>
+
+<details class="qa"><summary>What is Redis, and why do we use it in our architecture?</summary>
+<div class="say">Redis is an ultra-fast, in-memory key-value database used mainly for caching and session management.
+Normal databases store data on a hard disk, which takes time to read. Redis stores frequently requested data (like product catalogs or user login sessions) directly inside the server's RAM, reducing database load and making the application respond in milliseconds.
+- That is why we use Redis.</div>
+</details>
+
+<details class="qa"><summary>What are the most important Default Ports a DevOps Engineer must know?</summary>
+<div class="say">In interviews and while configuring Security Groups or Kubernetes Services, we use these standard ports:
+For System & Web: SSH is 22, DNS is 53, HTTP is 80, and HTTPS is 443.
+For DevOps Tools: Jenkins is 8080, SonarQube is 9000, Kubernetes API Server is 6443, Prometheus is 9090, and Grafana is 3000.
+For Databases: MySQL is 3306, PostgreSQL is 5432, MongoDB is 27017, and Redis is 6379.
+- Those are the key default ports.</div>
+</details>
+
+<div class="cmdrow"><span class="cmd">Port 22 / Port 80 / Port 443</span><p><strong>22:</strong> SSH (Secure Linux Login) | <strong>80:</strong> HTTP (Unencrypted Web) | <strong>443:</strong> HTTPS (SSL Encrypted Web)</p></div>
+<div class="cmdrow"><span class="cmd">Port 3306 (MySQL) &amp; Port 5432 (PostgreSQL)</span><p>Standard default ports for Relational (SQL) Databases used in AWS RDS and backend connections.</p></div>
+<div class="cmdrow"><span class="cmd">Port 27017 (MongoDB) &amp; Port 6379 (Redis)</span><p><strong>27017:</strong> NoSQL Document Database (MongoDB) | <strong>6379:</strong> In-Memory Cache Database (Redis).</p></div>
+<div class="cmdrow"><span class="cmd">Port 8080 (Jenkins) &amp; Port 9000 (SonarQube)</span><p><strong>8080:</strong> Default web port for Jenkins &amp; Tomcat | <strong>9000:</strong> Default web dashboard port for SonarQube.</p></div>
+<div class="cmdrow"><span class="cmd">Port 6443 (K8s API) / 9090 (Prometheus) / 3000 (Grafana/Node.js)</span><p><strong>6443:</strong> Kubernetes API Server | <strong>9090:</strong> Prometheus Metrics | <strong>3000:</strong> Grafana UI &amp; React/Node dev server.</p></div>
+</section>
+
+<!-- ========================================== -->
+<!-- 18. HTTP STATUS & ERROR CODES (NEW)        -->
+<!-- ========================================== -->
+
+<section class="part" id="http-errors">
+<div class="part-head">
+  <h2>18. HTTP Status & Error Numbers (404, 503, etc.)</h2>
+  <p>Common Web Server & Load Balancer Error Codes and How to Troubleshoot Them</p>
+</div>
+
+<details class="qa" open><summary>What do the different HTTP status code ranges mean (2xx, 3xx, 4xx, 5xx)?</summary>
+<div class="say">HTTP status codes tell us what happened when a browser or API called the server:
+- 2xx (like 200 OK) means Success—the request worked properly.
+- 3xx (like 301) means Redirection—the page moved to a new URL (like HTTP to HTTPS).
+- 4xx (like 401, 403, 404) means Client-Side Error—the user typed a wrong URL or lacks permission.
+- 5xx (like 500, 502, 503, 504) means Server-Side Error—our backend application, container, or load balancer failed.
+- That is the summary of HTTP status codes.</div>
+</details>
+
+<details class="qa"><summary>What is Error 404 (Not Found) and how do you troubleshoot it?</summary>
+<div class="say">Error 404 means the server is up and running, but the specific page, file, or API path requested by the user does not exist.
+To troubleshoot, I check if the URL path or Ingress routing rule is spelled correctly, verify if the frontend build files exist inside the Nginx folder (/usr/share/nginx/html), and check the Nginx or Ingress rewrite configuration.
+- That is how I handle a 404 error.</div>
+</details>
+
+<details class="qa"><summary>What is Error 503 (Service Unavailable) and how do you troubleshoot it?</summary>
+<div class="say">Error 503 means the web server or Load Balancer cannot handle the request right now because the backend servers are either down, crashed, or completely overloaded.
+In AWS or Kubernetes, I immediately check if the backend EC2 instances failed their Load Balancer health checks, or I run 'kubectl get pods' to see if the application Pods are in CrashLoopBackOff or scaling up.
+- That is how I troubleshoot a 503 error.</div>
+</details>
+
+<details class="qa"><summary>What is the difference between Error 502 (Bad Gateway) and Error 504 (Gateway Timeout)?</summary>
+<div class="say">Both happen when a Reverse Proxy (like Nginx) or Load Balancer tries to talk to the backend server:
+Error 502 (Bad Gateway) happens when the backend application (like Node.js or Java) has stopped running or crashed, so Nginx gets an invalid connection refusal.
+Error 504 (Gateway Timeout) happens when the backend server is still running, but is taking too long (for example, stuck on a heavy database query), so the Load Balancer gives up waiting and times out.
+- That is the difference between 502 and 504.</div>
+</details>
+
+<details class="qa"><summary>What is the difference between Error 401 (Unauthorized) and Error 403 (Forbidden)?</summary>
+<div class="say">Error 401 (Unauthorized) means the user is not logged in or sent an invalid/expired authentication token.
+Error 403 (Forbidden) means the server knows who the user is, but that user does not have permission to access that specific resource—or the file permissions on the server/S3 bucket block access.
+- That is the difference between 401 and 403.</div>
+</details>
+
+<details class="qa"><summary>What is Error 500 (Internal Server Error)?</summary>
+<div class="say">Error 500 is a generic code-level crash inside the backend application—such as an unhandled exception in code, a missing environment variable, or a failed database connection.
+To fix it, I immediately check the application container logs using 'docker logs' or 'kubectl logs' to see the exact stack trace.
+- That is what a 500 error means.</div>
+</details>
+
+<div class="cmdrow"><span class="cmd">200 OK &amp; 301 Moved Permanently</span><p><strong>200:</strong> Request succeeded normally (used for ELB/K8s health checks) | <strong>301:</strong> Permanent URL redirect (e.g., HTTP to HTTPS).</p></div>
+<div class="cmdrow"><span class="cmd">400 Bad Request / 401 Unauthorized / 403 Forbidden</span><p><strong>400:</strong> Invalid JSON or syntax sent by client | <strong>401:</strong> Missing/invalid login token | <strong>403:</strong> Logged in, but no permission (or S3/WAF blocked).</p></div>
+<div class="cmdrow"><span class="cmd">404 Not Found</span><p>Server is reachable, but the requested URL path, API endpoint, or static file does not exist.</p></div>
+<div class="cmdrow"><span class="cmd">500 Internal Server Error</span><p>Backend code crashed due to a bug, missing env variable, or database connection failure. Check app logs.</p></div>
+<div class="cmdrow"><span class="cmd">502 Bad Gateway / 503 Service Unavailable / 504 Gateway Timeout</span><p><strong>502:</strong> Nginx/ALB cannot reach crashed backend service | <strong>503:</strong> No healthy backend Pods/instances available or server overloaded | <strong>504:</strong> Backend/DB took too long to respond.</p></div>
 </section>
 
 <!-- ========================================== -->
